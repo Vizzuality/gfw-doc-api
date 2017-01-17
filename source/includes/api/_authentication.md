@@ -1,26 +1,24 @@
 # Authentication
 
-The RW API uses JWT Tokens to identify and authenticate to the users.
+The RW API uses JWT Tokens to identify and authenticate users.
 
-## Generate your own Oauth Token
+## How to generate your own Oauth Token
 
-For generate your own token, follow the next steps:
+To generate your own token, follow the next steps:
 
-1- Enter in Control Tower Application
-Navigate to [http://api.resourcewatch.org:82](http://api.resourcewatch.org:82)
-
-If you don't login before, the application will redirect you to the login page.
+1. Navigate to [http://api.resourcewatch.org:82](http://api.resourcewatch.org:82)
+If you aren't logged in yet, the application will redirect you to the login page.
 You will see:
-<img src="images/authentication/login.png" class="screenshot"/>
-You can login with Email/Password or with your account of Google, Facebook, Twitter. If you don't remember your password, it happens to all of us, you can restart your password by clicking on 'Recover password'.
+![Control Tower login page](images/authentication/login.png)
 
-2- When you login correctly, you will be redirected to Control Tower Application and you will see:
-<img src="images/authentication/control-tower.png" class="screenshot"/>
+You can login with your WRI credentials (email and password), or with your Google, Facebook, or Twitter account. If you don't remember your password (don't worry! it happens to everyone!), you can reset your password clicking on 'Recover password'.
 
-3- To obtain your token, you click in Profile menu item and you will see:
-<img src="images/authentication/profile.png" class="screenshot"/>
+2. After logging in you will be redirected to the Control Tower application and you will see:
+![Control Tower Dashboard](images/authentication/control-tower.png)
 
+3. To obtain your token, click in the Profile menu item and you will see:
+![Control Tower Profile](images/authentication/profile.png)
 
-4- Copy your token clicking in Copy button. Remember to use it, add the header `Authorization: Bearer: <yourToken>`
+4. Copy your token clicking the Copy button. Remember to add the header `Authorization: Bearer: <yourToken>` in order to use it.
 
 

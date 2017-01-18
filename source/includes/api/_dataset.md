@@ -31,23 +31,23 @@ Lorem Ipsum “Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, c
 <a href="https://earthengine.google.com/" target="_blank"><img src="https://earthengine.google.com/static/images/GoogleEarthEngine_Grey_108.png" class="logo-third"/></a>
 Lorem Ipsum “Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit…” “There is no one who loves pain itself, who seeks after it and wants to have it, simply because it is pain…”
 
+## How to create a Dataset?
+Important things first! In order to create a dataset, you need an authorization token. Follow the steps of this [guide](#generate-your-own-oauth-token) to generate it. 
 
-## How create a Dataset?
-Important! In order to create a dataset, you need an authorization token. Follow the steps of this [guide](#generate-your-own-oauth-token) to generate it. 
-
-To create a dataset, you need to define all of the required fields. The fields that compose the dataset are:
+To create a dataset, you need to define all of the required fields in the request body. The fields that compose a dataset are:
 
 | Field             | Description                               | Type  | Values                                          | Required |
 | ------------------|:-----------------------------------------:| -----:| ---------------------------------------:        |  -------:|
 | name              | Name of the dataset                       | Text  | Any Text                                        | Yes
-| connectorType     | Type of connector.                        | Text  | rest, json, document                            | Yes
-| connectorProvider | Provider of connector                     | text  | rwjson, csv, carto, featureservice, wms         | Yes
+| connectorType     | Connector type                            | Text  | rest, json, document                            | Yes
+| connectorProvider | The provider of the connector             | Text  | rwjson, csv, carto, featureservice, wms         | Yes
 | connectorUrl      | Url of the data                           | Url   | Any url                                         | Yes
 | application       | Application to which the dataset belongs  | Array | gfw, forest-atlas, rw, prep, aqueduct, data4sdg | Yes
 
-### Carto
-#### Creating Carto datasets
-To create a Carto dataset, you have to do a POST with the following body
+There are some differences between datasets types.
+
+### Carto datasets
+> To create a Carto dataset, you have to do a POST with the following body:
 
 ```shell
 curl -X POST http://api.resourcewatch.org/dataset \
@@ -66,7 +66,7 @@ curl -X POST http://api.resourcewatch.org/dataset \
 }'
 ```
 
-> Real example:
+> A real example:
 
 ```shell
 curl -X POST http://api.resourcewatch.org/dataset \
@@ -85,70 +85,15 @@ curl -X POST http://api.resourcewatch.org/dataset \
 }'
 ```
 
-<aside class="success">
-Remember --create dataset is an authenticated endpoint!
+<aside class="notice">
+	Remember that create dataset is an authenticated endpoint!
 </aside>
 
-#### Checking the dataset
-To check the just created dataset, you can GET the dataset with its id.
-This is not an authenticated endpoint.
-
-> Real example:
-
-```shell
-curl -X GET http://api.resourcewatch.org/dataset/<dataset-id> \
--H "Content-Type: application/json"  -d \
-'{  
-}'
-
-```
-#### Updating the dataset
-In order to modify the dataset, you can PUT a request.
-It accepts the same parameters as the _create dataset_ endpoint, and you will need an authentication token.
-
-```shell
-curl -X PUT http://api.resourcewatch.org/dataset/<dataset-id> \
--H "Authorization: Bearer <your-token>" \
--H "Content-Type: application/json" -d \
-'{__
-	"dataset": {__
-		"name": "Another name for the dataset"
-	}
-}'
-```
-## Deleting a dataset
-You can delete a dataset! Just send a DELETE action to the endpoint:
-
-```shell
-curl -X DELETE http://api.resourcewatch.org/dataset/<dataset-id> \
--H "Authorization: Bearer <your-token>"
--H "Content-Type: application/json"
-```
-
-
-
-
 ### ArcGIS
-To create a ArcGIS dataset, you have to do a POST with the following body
 
-```shell
-curl -X POST http://api.resourcewatch.org/dataset \
--H "Authorization: Bearer <your-token>" \
--H "Content-Type: application/json"  -d \
-'{  
-   "dataset": {  
-      "connectorType":"rest", 
-      "connectorProvider":"featureservice", 
-      "connectorUrl":"<arcgisUrl>", 
-      "application":[  
-         "your", "apps" 
-      ], 
-      "name":"Example ArcGIS Dataset" 
-   } 
-}'
-```
+Both Carto and ArcGIS are REST information providers, but ArcGIS datasets have a different _connectorProvider_: _featureservice_. 
 
-> Real example:
+> An example query to register an ArcGIS dataset would look like this:
 
 ```shell
 curl -X POST http://api.resourcewatch.org/dataset \
@@ -167,16 +112,12 @@ curl -X POST http://api.resourcewatch.org/dataset \
 }'
 ```
 
-<aside class="success">
-Remember — create dataset is an authenticated endpoint!
-</aside>
-
 ### CSV
-At the current moment CSV Dataset only supports files delimited with semicolons. TSV files are not supported.
+At the current moment the CSV dataset service only supports semicolon-delimited files -- TSV files are not supported.
 
-The `connectorUrl` must be an accessible CSV file. Zip, tar, tar.zip, tsv not supported.
+The `connectorUrl` must be an accessible CSV file, non-compressed - zip, tar, tar.gz, etc are not supported.
 
-CSV Dataset has some optional fields in the creation process, that they are:
+CSV datasets support some optional fields in the creation process. They are:
 
 | Field             | Description                               | Type  | Values | Required |
 | -------------     |:-----------------------------------------:| -----:| -----:|  -----:|
@@ -234,7 +175,45 @@ curl -X POST http://api.resourcewatch.org/dataset \
 }'
 ```
 
-<aside class="success">
+### JSON
+
+<aside class="notice">
 Remember — create dataset is an authenticated endpoint!
 </aside>
+
+## Checking the dataset
+To check the just created dataset, you can perform a GET request for the dataset with its id.
+This is not an authenticated endpoint.
+
+```shell
+curl -X GET http://api.resourcewatch.org/dataset/<dataset-id> \
+-H "Content-Type: application/json"  -d \
+'{  
+}'
+
+```
+## Updating the dataset
+In order to modify the dataset, you can PUT a request.
+It accepts the same parameters as the _create dataset_ endpoint, and you will need an authentication token.
+
+> An example update request:
+
+```shell
+curl -X PUT http://api.resourcewatch.org/dataset/<dataset-id> \
+-H "Authorization: Bearer <your-token>" \
+-H "Content-Type: application/json" -d \
+'{__
+	"dataset": {__
+		"name": "Another name for the dataset"
+	}
+}'
+```
+## Deleting a dataset
+You can delete a dataset! Just send a DELETE request to the endpoint:
+
+```shell
+curl -X DELETE http://api.resourcewatch.org/dataset/<dataset-id> \
+-H "Authorization: Bearer <your-token>"
+-H "Content-Type: application/json"
+```
 

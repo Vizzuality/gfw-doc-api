@@ -2,9 +2,9 @@
 
 ## Metadata definition
 
-A Metadata can be any kind of data associated to a existing resource (i.e. Dataset, Layer or Widget)
+A Metadata can be any kind of data associated to an existing resource (i.e. Dataset, Layer or Widget)
 
-Some fields are important for identifying the entity properly, other ones are just optional and give extra information about it.
+Some fields are important to identify the entity properly, others are just optional and give extra information about it.
 
 | Field             | Description                                                       | Type
 | ------------------|:-----------------------------------------:                        | -----:
@@ -23,57 +23,7 @@ Some fields are important for identifying the entity properly, other ones are ju
 | info              | Some info about the metadata                                      | Object
 | units             | Measurement units                                                 | Object
 
-## Endpoints
-
-| Method            | Path                                                      
-| ------------------|:-----------------------------------------:                        
-| GET               | /dataset/:dataset/metadata                                          
-| POST              | /dataset/:dataset/metadata                        
-| PATCH             | /dataset/:dataset/metadata                         
-| DELETE            | /dataset/:dataset/metadata   
-| GET               | /dataset/:dataset/widget/:widget/metadata                                         
-| POST              | /dataset/:dataset/widget/:widget/metadata                       
-| PATCH             | /dataset/:dataset/widget/:widget/metadata                        
-| DELETE            | /dataset/:dataset/widget/:widget/metadata                                                  
-| GET               | /dataset/:dataset/layer/:layer/metadata                                         
-| POST              | /dataset/:dataset/layer/:layer/metadata                      
-| PATCH             | /dataset/:dataset/layer/:layer/metadata                       
-| DELETE            | /dataset/:dataset/layer/:layer/metadata                                                 
-| GET               | /metadata                                         
-| POST              | /dataset/metadata/find-by-ids                     
-| POST              | /dataset/:dataset/widget/metadata/find-by-ids                     
-| POST              | /dataset/:dataset/layer/metadata/find-by-ids                     
-
-### POST, PATCH, DELETE
-
-"application" and "language" attributes are required and it is mandatory to include them in the payload (when doing CRUD requests).
-**This doesn't apply to the FindByIds Endpoints**
-
-### GET Queryparam Filters:
-
-application filter:
-```
-application: gfw, gfw-climate, prep, rw, forest-atlas (select one or some of them)
-```
-
-language filter:
-```
-language: select between available languages (select one or some of them)
-```
-
-limit filter:
-```
-limit: the desired number
-```
-
-Custom param for /metadata endpoint
-```
-type: [dataset, widget, layer]
-```
-
-## CRUD Examples
-
-### Creating
+## Creating a metadata object
 
 | Field             | Required/Optional                                                      
 | ------------------|:-----------------------------------------:     
@@ -87,6 +37,8 @@ type: [dataset, widget, layer]
 | license           | optional                                        
 | info              | optional                                      
 | units             | optional                                             
+
+"application" and "language" attributes are required and it is mandatory to include them in the payload.
 
 <aside class="notice">
 Please, be sure that the request is properly authenticated and the current user has permission to the resource.
@@ -162,7 +114,27 @@ curl -X POST http://api.resourcewatch.org/dataset/<dataset-id>/layer/<layer-id>/
   }'
 ```
 
-### Getting
+## Getting metadata
+
+application filter:
+```
+application: gfw, gfw-climate, prep, rw, forest-atlas (select one or some of them)
+```
+
+language filter:
+```
+language: select between available languages (select one or some of them)
+```
+
+limit filter:
+```
+limit: the desired number
+```
+
+Custom param for /metadata endpoint
+```
+type: [dataset, widget, layer]
+```
 
 ```shell
 curl -X GET http://api.resourcewatch.org/dataset/<dataset-id>/metadata
@@ -182,7 +154,11 @@ curl -X GET http://api.resourcewatch.org/dataset/<dataset-id>/layer/<layer-id>/m
 curl -X GET http://api.resourcewatch.org/dataset/942b3f38-9504-4273-af51-0440170ffc86/metadata
 ```
 
-### Updating (partial)
+## Updating a metadata
+
+Partial update
+
+"application" and "language" attributes are required and it is mandatory to include them in the payload.
 
 ```shell
 curl -X PATCH http://api.resourcewatch.org/dataset/<dataset-id>/metadata \
@@ -245,7 +221,9 @@ curl -X PATCH http://api.resourcewatch.org/dataset/942b3f38-9504-4273-af51-04401
 }
 ```
 
-### Deleting
+## Deleting a metadata
+
+"application" and "language" attributes are required and it is mandatory to include them in the Queryparams
 
 ```shell
 curl -X DELETE http://api.resourcewatch.org/dataset/<dataset-id>/metadata?application=<app-id>&language=<language>
@@ -257,7 +235,7 @@ curl -X DELETE http://api.resourcewatch.org/dataset/<dataset-id>/metadata?applic
 curl -X DELETE http://api.resourcewatch.org/dataset/942b3f38-9504-4273-af51-0440170ffc86/metadata?application=rw&language=en \
 ```
 
-### Getting All
+## Getting all
 
 
 ```shell
@@ -290,12 +268,33 @@ curl -X GET http://api.resourcewatch.org/metadata?application=rw,gfw&language=en
 curl -X GET http://api.resourcewatch.org/metadata?language=en
 ```
 
-### Finding By Ids
+## Finding (getting) by ids
 
 "ids" property is required in the payload, in other case the endpoint responds a 400 HTTP ERROR (Bad Request)
 This property can be an Array or a String (comma-separated)
 payload -> {"ids": ["112313", "111123"]}
 payload -> {"ids": "112313, 111123"}
+
+application filter:
+```
+application: gfw, gfw-climate, prep, rw, forest-atlas (select one or some of them)
+```
+
+language filter:
+```
+language: select between available languages (select one or some of them)
+```
+
+limit filter:
+```
+limit: the desired number
+```
+
+Custom param for /metadata endpoint
+```
+type: [dataset, widget, layer]
+```
+
 
 ```shell
 curl -X POST http://api.resourcewatch.org/dataset/metadata/find-by-ids \

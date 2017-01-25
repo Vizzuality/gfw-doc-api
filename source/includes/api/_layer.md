@@ -18,6 +18,7 @@ Layer contains the next fields:
 | layerConfig       | Custom configuration                                    | Object
 | legendConfig      | Custom configuration                                    | Object
 | applicationConfig | Custom configuration                                    | Object
+| staticImageConfig | Custom configuration                                    | Object
 | default           | If it's a default layer for the dataset that it belongs | Boolean
 | published         | Is the layer published?                                 | Boolean
 
@@ -79,7 +80,8 @@ Remember — the response is jsonapi format
               }
             }
           },
-          "applicationConfig": {}
+          "applicationConfig": {},
+		  "staticImageConfig": {}
         }
       }
    ],
@@ -214,7 +216,8 @@ Remember — the response is jsonapi format
           }
         }
       },
-      "applicationConfig": {}
+      "applicationConfig": {},
+	  "staticImageConfig": {}
     }
   },
   "meta": {
@@ -239,6 +242,7 @@ To create a layer, you need to define all of the required fields in the request 
 | layerConfig       | Custom configuration                      | Object  | Valid object                                    | No
 | legendConfig      | Custom configuration                      | Object  | Valid object                                    | No
 | applicationConfig | Custom configuration                      | Object  | Valid object                                    | No
+| staticImageConfig | Custom configuration                      | Object  | Valid object                                    | No
 | iso               | Isos to which the layer belongs           | Array   | BRA, ES                                         | No
 | status            | Status of the Layer                       | Boolean | true - false                                    | No
 | dataset           | UuId of the dataset                       | Text    | Uuid of Dataset                                 | No
@@ -273,6 +277,7 @@ To update a layer, you need to define all of the required fields in the request 
 | layerConfig       | Custom configuration                      | Object  | Valid object                                    | No
 | legendConfig      | Custom configuration                      | Object  | Valid object                                    | No
 | applicationConfig | Custom configuration                      | Object  | Valid object                                    | No
+| staticImageConfig | Custom configuration                      | Object  | Valid object                                    | No
 | iso               | Isos to which the layer belongs           | Array   | BRA, ES                                         | No
 | status            | Status of the Layer                       | Boolean | true - false                                    | No
 | dataset           | UuId of the dataset                       | Text    | Uuid of Dataset                                 | No

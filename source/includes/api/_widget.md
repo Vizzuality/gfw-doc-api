@@ -90,19 +90,19 @@ Remember — the response is jsonapi format
 
 ### Filter params
 
-The filters available are:
+Available filters:
 
 | Field         | Description           | Type
 | ------------- |:-------------:| -----:|
 | name          | Filter the widgets whose name contains the filter text    | Text
 | dataset       | Filter the widgets by dataset uuid                        | Text
 | sort          | Sort json response by specific attribute                  | Text
-| status        | Filter widgets on status (pending, active, disabled, all) | Boolean
+| status        | Filter widgets on status (pending, active, disabled, all) | Text
 | published     | Filter widgets on published status (true, false)          | Boolean
 | verified      | Filter by verified status (true,false)                    | Boolean
 | template      | Filter by template status (true,false)                    | Boolean
 | default       | Filter by default status (true,false)                     | Boolean
-| app           | Filter widgets on application (prep, gfw, etc..)          | Array
+| app           | Filter widgets on application (prep, gfw, etc..)          | Text
 
 
 > Return the widgets filtered whose name contains glad

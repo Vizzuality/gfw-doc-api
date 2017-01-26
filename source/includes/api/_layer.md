@@ -97,16 +97,16 @@ Remember — the response is jsonapi format
 
 ### Filter params
 
-The filters available are:
+Available filters:
 
 | Field         | Description           | Type
 | ------------- |:-------------:| -----:|
 | name          | Filter the layers whose name contains the filter text    | Text
 | dataset       | Filter the layers by dataset uuid                        | Text
-| sort          | Sort json response by specific attribute                 | Text
-| status        | Filter layers on status (pending, active, disabled, all) | Boolean
+| sort          | Sort json response by specific attributes                | Text
+| status        | Filter layers on status (pending, active, disabled, all) | Text
 | published     | Filter layers on published status (true, false)          | Boolean
-| app           | Filter layers on application (prep, gfw, etc..)          | Array
+| app           | Filter layers on application (prep, gfw, etc..)          | Text
 
 
 > Return the layers filtered whose name contains emissions

@@ -6,26 +6,29 @@ A data set represents the raw data. We support four dataset types with different
 
 ## Supported dataset sources
 
-### Carto (connectorType: 'rest', provider: 'cartodb')
+### Carto
+(connectorType: 'rest', provider: 'cartodb')
 <a href="https://www.carto.com" target="_blank"><img src="images/dataset/carto.png" class="logo-third"/></a>
 CARTO is an open, powerful, and intuitive platform for discovering and predicting the key insights underlying the location data in our world.
 
-### ArcGIS (connectorType: 'rest', provider: 'featureservice')
+### ArcGIS
+(connectorType: 'rest', provider: 'featureservice')
 <a href="https://www.arcgis.com/features/index.html" target="_blank"><img src="https://www.arcgis.com/features/img/logo-esri.png" class="logo-third"/></a>
 ArcGIS Online is a Complete, Cloud-Based Mapping Platform
 
-### Google Earth Engine (Coming soon...) (connectorType: 'rest', provider: 'gee')
+### Google Earth Engine (Coming soon...)
+(connectorType: 'rest', provider: 'gee')
 <a href="https://earthengine.google.com/" target="_blank"><img src="https://earthengine.google.com/static/images/GoogleEarthEngine_Grey_108.png" class="logo-third"/></a>
 Google Earth Engine combines a multi-petabyte catalog of satellite imagery and geospatial datasets with planetary-scale analysis capabilities and makes it available for scientists, researchers, and developers to detect changes, map trends, and quantify differences on the Earth's surface.
 
-### CSV (connectorType: 'document', provider: 'csv')
-Lorem Ipsum “Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit…” “There is no one who loves pain itself, who seeks after it and wants to have it, simply because it is pain…”
+### CSV
+(connectorType: 'document', provider: 'csv')
 
-### JSON (connectorType: 'json', provider: 'rwjson')
-Lorem Ipsum “Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit…” “There is no one who loves pain itself, who seeks after it and wants to have it, simply because it is pain…”
+### JSON
+(connectorType: 'json', provider: 'rwjson')
 
-### WMS (connectorType: 'wms', provider: 'wms')
-Lorem Ipsum “Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit…” “There is no one who loves pain itself, who seeks after it and wants to have it, simply because it is pain…”
+### WMS
+(connectorType: 'wms', provider: 'wms')
 
 ## How obtain all datasets
 
@@ -108,6 +111,8 @@ Available filters:
 | app           | Filter datasets on application (prep, gfw, etc..)               | Text
 | includes      | Include relational resources (metadata,layer,widget,vocabulary) | Text
 
+includes for vocabulary: Coming soon..
+
 > Return the datasets filtered whose id contains d02df2f6-d80c-4274-bb6f-f062061655c4
 
 ```shell
@@ -180,7 +185,7 @@ Available filters:
 | app           | Filter datasets on application (prep, gfw, etc..)               | Text
 | includes      | Include relational resources (metadata,layer,widget,vocabulary) | Text
 
-To obtain the dataset:
+> To obtain the dataset:
 
 ```shell
 curl -X GET http://api.resourcewatch.org/dataset/51943691-eebc-4cb4-bdfb-057ad4fc2145
@@ -236,13 +241,13 @@ curl -X GET http://api.resourcewatch.org/dataset/51943691-eebc-4cb4-bdfb-057ad4f
 }
 ```
 
-To obtain the dataset including specific relational resource:
+> To obtain the dataset including specific relational resource:
 
 ```shell
 curl -X GET http://api.resourcewatch.org/dataset/06c44f9a-aae7-401e-874c-de13b7764959?includes=metadata
 ```
 
-To obtain the dataset including specific relational resource on specific application:
+> To obtain the dataset including specific relational resource on specific application:
 
 ```shell
 curl -X GET http://api.resourcewatch.org/dataset/06c44f9a-aae7-401e-874c-de13b7764959?includes=metadata&app=rw
@@ -252,7 +257,7 @@ curl -X GET http://api.resourcewatch.org/dataset/06c44f9a-aae7-401e-874c-de13b77
 Remember — the response is jsonapi format
 </aside>
 
-## How to create a Dataset?
+## Creating a Dataset
 Important things first! In order to create a dataset, you need an authorization token. Follow the steps of this [guide](#generate-your-own-oauth-token) to generate it.
 
 To create a dataset, you need to define all of the required fields in the request body. The fields that compose a dataset are:
@@ -273,7 +278,7 @@ To create a dataset, you need to define all of the required fields in the reques
 | vacabularies      | Relationship between a dataset and a Vocabulary               | Object | Example: "vocabularies": { "voc one": {"tags": ["tag one", "tag two"]} } | No
 | dataOverwrite     | Allows to overwrite dataset's data                            | Boolean| default false                                   | No
 | tags              | Tags for dataset                                              | Array  | Any list text                                   | No
-| vocabularies      | Cluster of tags                                               | Object | {"vocabularyOne": {"tags": [<tags>]},"vocabularyTwo": {"tags": [<tags>]}} | No
+| vocabularies      | Cluster of tags COMING SOON!                                  | Object | {"vocabularyOne": {"tags": [<tags>]},"vocabularyTwo": {"tags": [<tags>]}} | No
 
 There are some differences between datasets types.
 
@@ -438,7 +443,7 @@ JSON datasets support some optional fields in the creation process. They are:
 Remember — create dataset is an authenticated endpoint!
 </aside>
 
-## Updating the dataset
+## Updating a Dataset
 In order to modify the dataset, you can PUT/PATCH a request.
 It accepts the same parameters as the _create dataset_ endpoint, and you will need an authentication token.
 
@@ -458,7 +463,7 @@ curl -X PUT http://api.resourcewatch.org/dataset/<dataset-id> \
 Remember — create dataset is an authenticated endpoint!
 </aside>
 
-## Deleting a dataset
+## Deleting a Dataset
 You can delete a dataset! Just send a DELETE request to the endpoint:
 
 ```shell
@@ -466,6 +471,28 @@ curl -X DELETE http://api.resourcewatch.org/dataset/<dataset-id> \
 -H "Authorization: Bearer <your-token>"
 -H "Content-Type: application/json"
 ```
+<aside class="notice">
+Remember — create dataset is an authenticated endpoint!
+</aside>
+
+## Cloning a Dataset
+You can clone a dataset! Just send a POST request to the endpoint:
+
+```shell
+curl -X POST http://api.resourcewatch.org/dataset/5306fd54-df71-4e20-8b34-2ff464ab28be/clone \
+-H "Authorization: Bearer <your-token>"
+-H "Content-Type: application/json" -d \
+'{__
+  "dataset": {
+    "dataset_url": "/query/5306fd54-df71-4e20-8b34-2ff464ab28be?sql=select%20%2A%20from%20data%20limit%2010",
+    "application": [
+      "your",
+      "apps"
+    ]
+  }
+}'
+```
+
 <aside class="notice">
 Remember — create dataset is an authenticated endpoint!
 </aside>

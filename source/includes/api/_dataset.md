@@ -108,7 +108,7 @@ Available filters:
 | sort          | Sort json response by specific attributes                       | Text
 | status        | Filter datasets on status (pending, active, disabled, all)      | Text
 | provider      | Filter datasets on provider (cartodb, json, etc..)              | Boolean
-| app           | Filter datasets on application (prep, gfw, etc..)               | Text
+| app           | Filter datasets on application (For filter or -- prep,gfw,etc.. -- for filter and prep@gfw@prep@etc..) | Text
 | includes      | Include relational resources (metadata,layer,widget,vocabulary) | Text
 
 includes for vocabulary: Coming soon..
@@ -182,7 +182,7 @@ Available filters:
 
 | Field         | Description           | Type
 | ------------- |:-------------:| -----:|
-| app           | Filter datasets on application (prep, gfw, etc..)               | Text
+| app           | Filter datasets on application (For filter or -- prep,gfw,etc.. -- for filter and prep@gfw@prep@etc..)               | Text
 | includes      | Include relational resources (metadata,layer,widget,vocabulary) | Text
 
 > To obtain the dataset:

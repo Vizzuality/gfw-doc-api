@@ -269,7 +269,7 @@ To create a dataset, you need to define all of the required fields in the reques
 | connectorType     | Connector type                                                | Text   | rest, json, document, wms                       | Yes
 | provider          | The provider of the connector                                 | Text   | rwjson, csv, cartodb, featureservice, gee, wms  | Yes
 | connectorUrl      | Url of the data                                               | Url    | Any url                                         | Yes for rest - Yes for json if data not present
-| dataPath          | Path to access data                                           | Text   | Any valid JSON key                              | Yes
+| dataPath          | Path to access data (In case that the data is not the root object, this param specifies with attribute contain the data in the source data)               | Text   | Any valid JSON key                              | Yes
 | application       | Application to which the dataset belongs                      | Array  | gfw, forest-atlas, rw, prep, aqueduct, data4sdg | Yes
 | data              | JSON DATA only for json connector if connectorUrl not present | Array  | [{},{},{}]                                      | Yes for json if connectorUrl not present
 | dataAttributes    | Data fields - for json connector if data present              | Object | {"key1": {"type": "string"},... }               | No
@@ -491,6 +491,104 @@ curl -X POST http://api.resourcewatch.org/dataset/5306fd54-df71-4e20-8b34-2ff464
     ]
   }
 }'
+```
+
+<aside class="notice">
+Remember — create dataset is an authenticated endpoint!
+</aside>
+
+## Concatenate Data
+You can add more data to a dataset only if the dataset option overwrite (data_overwrite) is set to true.
+
+Just send a POST request to the endpoint:
+
+> Concatenate data using external data source:
+
+```shell
+curl -X POST http://api.resourcewatch.org/dataset/:dataset_id/concat \
+-H "Authorization: Bearer <your-token>" \
+-H "Content-Type: application/json"  -d \
+'{
+   "connectorUrl":"<csvUrl>",
+   "dataPath": "data... etc"
+}'
+```
+> Concatenate data using JSON array in post body:
+
+```shell
+curl -X POST http://api.resourcewatch.org/dataset/:dataset_id/concat \
+-H "Authorization: Bearer <your-token>" \
+-H "Content-Type: application/json"  -d \
+'{
+   "data": [{},{}]
+}'
+```
+
+<aside class="notice">
+Remember — create dataset is an authenticated endpoint!
+</aside>
+
+## Overwrite Data
+You can overwrite data in a dataset only if the dataset option overwrite (data_overwrite) is set to true.
+
+Just send a POST request to the endpoint:
+
+> Overwrite data using external data source:
+
+```shell
+curl -X POST http://api.resourcewatch.org/dataset/:dataset_id/data-overwrite \
+-H "Authorization: Bearer <your-token>" \
+-H "Content-Type: application/json"  -d \
+'{
+   "connectorUrl":"<csvUrl>",
+   "dataPath": "data... etc"
+}'
+```
+
+> Overwrite data using JSON array in post body:
+
+```shell
+curl -X POST http://api.resourcewatch.org/dataset/:dataset_id/data-overwrite \
+-H "Authorization: Bearer <your-token>" \
+-H "Content-Type: application/json"  -d \
+'{
+   "data": [{},{}]
+}'
+```
+
+<aside class="notice">
+Remember — create dataset is an authenticated endpoint!
+</aside>
+
+
+## Overwrite specific Data
+You can update data in a dataset only if the dataset option overwrite (data_overwrite) is set to true.
+
+Just send a POST request to the endpoint:
+
+```shell
+curl -X POST http://api.resourcewatch.org/dataset/:dataset_id/data/:data_id \
+-H "Authorization: Bearer <your-token>" \
+-H "Content-Type: application/json"  -d \
+'{
+   "data_id":":data_id",
+   "data": {"a": 1}
+}'
+```
+
+<aside class="notice">
+Remember — create dataset is an authenticated endpoint!
+</aside>
+
+## Delete specific Data
+You can delete data in a dataset only if the dataset option overwrite (data_overwrite) is set to true.
+
+Just send a DELETE request to the endpoint:
+
+```shell
+curl -X DELETE http://api.resourcewatch.org/dataset/:dataset_id/data/:data_id \
+-H "Authorization: Bearer <your-token>" \
+-H "Content-Type: application/json"
 ```
 
 <aside class="notice">

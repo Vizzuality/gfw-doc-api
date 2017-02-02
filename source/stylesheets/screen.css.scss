@@ -82,7 +82,8 @@ html, body {
   // This is the logo at the top of the ToC
   &>img {
     display: block;
-    max-width: 100%;
+    max-width: 200px;
+    padding: 20px 5px;
   }
 
   &>.search {
@@ -190,13 +191,13 @@ html, body {
     }
     .tocify-subheader {
       .tocify-item>a {
-        // Styling here for a level 2 nesting. For example -> 
+        // Styling here for a level 2 nesting. For example ->
         padding-left: $nav-padding + $nav-indent * 2;
         font-size: 12px;
       }
       .tocify-subheader {
         .tocify-item>a {
-          // Styling here for a level 2 nesting. For example -> 
+          // Styling here for a level 2 nesting. For example ->
           padding-left: $nav-padding + $nav-indent * 3;
           font-size: 12px;
         }

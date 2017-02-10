@@ -7,28 +7,28 @@ A data set represents the raw data. We support four dataset types with different
 ## Supported dataset sources
 
 ### Carto
-(connectorType: 'rest', provider: 'cartodb')
+***(connectorType: 'rest', provider: 'cartodb')***
 <a href="https://www.carto.com" target="_blank"><img src="images/dataset/carto.png" class="logo-third"/></a>
 CARTO is an open, powerful, and intuitive platform for discovering and predicting the key insights underlying the location data in our world.
 
 ### ArcGIS
-(connectorType: 'rest', provider: 'featureservice')
+**(connectorType: 'rest', provider: 'featureservice')**
 <a href="https://www.arcgis.com/features/index.html" target="_blank"><img src="https://www.arcgis.com/features/img/logo-esri.png" class="logo-third"/></a>
 ArcGIS Online is a Complete, Cloud-Based Mapping Platform
 
-### Google Earth Engine (Coming soon...)
-(connectorType: 'rest', provider: 'gee')
+### Google Earth Engine
+**(connectorType: 'rest', provider: 'gee')**
 <a href="https://earthengine.google.com/" target="_blank"><img src="https://earthengine.google.com/static/images/GoogleEarthEngine_Grey_108.png" class="logo-third"/></a>
 Google Earth Engine combines a multi-petabyte catalog of satellite imagery and geospatial datasets with planetary-scale analysis capabilities and makes it available for scientists, researchers, and developers to detect changes, map trends, and quantify differences on the Earth's surface.
 
 ### CSV
-(connectorType: 'document', provider: 'csv')
+**(connectorType: 'document', provider: 'csv')**
 
 ### JSON
-(connectorType: 'json', provider: 'rwjson')
+**(connectorType: 'json', provider: 'rwjson')**
 
 ### WMS
-(connectorType: 'wms', provider: 'wms')
+**(connectorType: 'wms', provider: 'wms')**
 
 ## How obtain all datasets
 

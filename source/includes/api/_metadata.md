@@ -8,7 +8,6 @@ Some fields are important to identify the entity properly, others are just optio
 
 | Field             | Description                                                       | Type
 | ------------------|:-----------------------------------------:                        | -----:
-| id                | The id of the metadata                                            | String
 | application       | The metadata application                                          | String
 | language          | The metadata language                                             | String
 | dataset           | The associated dataset id to the metadata                         | String

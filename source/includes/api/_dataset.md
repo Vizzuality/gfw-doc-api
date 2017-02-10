@@ -104,14 +104,14 @@ Available filters:
 | Field         | Description           | Type
 | ------------- |:-------------:| -----:|
 | ids           | Filter the datasets by dataset ids                              | Text
-| connector_type| Filter the datasets by dataset type (rest,json,wms,document)    | Text
+| name           | Filter the datasets by dataset name                              | Text
+| connectorType| Filter the datasets by dataset type (rest,json,wms,document)    | Text
 | sort          | Sort json response by specific attributes                       | Text
 | status        | Filter datasets on status (pending, active, disabled, all)      | Text
-| provider      | Filter datasets on provider (cartodb, json, etc..)              | Boolean
+| provider      | Filter datasets on provider (cartodb, json, etc..)              | Text
 | app           | Filter datasets on application (For filter or -- prep,gfw,etc.. -- for filter and prep@gfw@prep@etc..) | Text
 | includes      | Include relational resources (metadata,layer,widget,vocabulary) | Text
 
-includes for vocabulary: Coming soon..
 
 > Return the datasets filtered whose id contains d02df2f6-d80c-4274-bb6f-f062061655c4
 
@@ -275,10 +275,8 @@ To create a dataset, you need to define all of the required fields in the reques
 | dataAttributes    | Data fields - for json connector if data present              | Object | {"key1": {"type": "string"},... }               | No
 | tableName         | Table name                                                    | Text   | Any valid table name                            | Yes for GEE
 | legend            | Legend for dataset. Keys for special fields                   | Object | Example: "legend": {"long": "123", "lat": "123", "country": ["pais"], "region": ["barrio"], "date": ["startDate", "endDate"]}} | No
-| vacabularies      | Relationship between a dataset and a Vocabulary               | Object | Example: "vocabularies": { "voc one": {"tags": ["tag one", "tag two"]} } | No
-| dataOverwrite     | Allows to overwrite dataset's data                            | Boolean| default false                                   | No
-| tags              | Tags for dataset                                              | Array  | Any list text                                   | No
-| vocabularies      | Cluster of tags COMING SOON!                                  | Object | {"vocabularyOne": {"tags": [<tags>]},"vocabularyTwo": {"tags": [<tags>]}} | No
+| dataOverwrite     | Allows to overwrite dataset's data                            | Boolean| default false                                   | No                                 | No
+| vocabularies      | Cluster of tags                                | Object | {"vocabularyOne": {"tags": [<tags>]},"vocabularyTwo": {"tags": [<tags>]}} | No
 
 There are some differences between datasets types.
 
@@ -294,7 +292,6 @@ curl -X POST http://api.resourcewatch.org/dataset \
       "connectorType":"rest",
       "provider":"cartodb",
       "connectorUrl":"<cartoUrl>",
-      "dataPath": "<path to access data> default rows",
       "application":[
          "your", "apps"
       ],
@@ -315,7 +312,6 @@ curl -X POST http://api.resourcewatch.org/dataset \
       "connectorType":"rest",
       "provider":"cartodb",
       "connectorUrl":"https://wri-01.carto.com/tables/wdpa_protected_areas/table",
-      "dataPath": "rows",
       "application":[
          "gfw", "forest-atlas"
       ],
@@ -340,7 +336,6 @@ curl -X POST http://api.resourcewatch.org/dataset \
       "connectorType":"rest",
       "provider":"featureservice",
       "connectorUrl":"https://services.arcgis.com/uDTUpUPbk8X8mXwl/arcgis/rest/services/Public_Schools_in_Onondaga_County/FeatureServer/0?f=json",
-      "dataPath":"features",
       "application":[
          "prep"
       ],
@@ -444,23 +439,23 @@ Remember — create dataset is an authenticated endpoint!
 </aside>
 
 ## Updating a Dataset
-In order to modify the dataset, you can PUT/PATCH a request.
+In order to modify the dataset, you can PATCH a request.
 It accepts the same parameters as the _create dataset_ endpoint, and you will need an authentication token.
 
 > An example update request:
 
 ```shell
-curl -X PUT http://api.resourcewatch.org/dataset/<dataset-id> \
+curl -X PATCH http://api.resourcewatch.org/dataset/<dataset-id> \
 -H "Authorization: Bearer <your-token>" \
 -H "Content-Type: application/json" -d \
-'{__
-	"dataset": {__
+'{
+	"dataset": {
 		"name": "Another name for the dataset"
 	}
 }'
 ```
 <aside class="notice">
-Remember — create dataset is an authenticated endpoint!
+Remember — update dataset is an authenticated endpoint!
 </aside>
 
 ## Deleting a Dataset
@@ -472,7 +467,7 @@ curl -X DELETE http://api.resourcewatch.org/dataset/<dataset-id> \
 -H "Content-Type: application/json"
 ```
 <aside class="notice">
-Remember — create dataset is an authenticated endpoint!
+Remember — delete dataset is an authenticated endpoint!
 </aside>
 
 ## Cloning a Dataset
@@ -482,7 +477,7 @@ You can clone a dataset! Just send a POST request to the endpoint:
 curl -X POST http://api.resourcewatch.org/dataset/5306fd54-df71-4e20-8b34-2ff464ab28be/clone \
 -H "Authorization: Bearer <your-token>"
 -H "Content-Type: application/json" -d \
-'{__
+'{
   "dataset": {
     "dataset_url": "/query/5306fd54-df71-4e20-8b34-2ff464ab28be?sql=select%20%2A%20from%20data%20limit%2010",
     "application": [
@@ -494,7 +489,7 @@ curl -X POST http://api.resourcewatch.org/dataset/5306fd54-df71-4e20-8b34-2ff464
 ```
 
 <aside class="notice">
-Remember — create dataset is an authenticated endpoint!
+Remember — clone dataset is an authenticated endpoint!
 </aside>
 
 ## Concatenate Data
@@ -525,7 +520,7 @@ curl -X POST http://api.resourcewatch.org/dataset/:dataset_id/concat \
 ```
 
 <aside class="notice">
-Remember — create dataset is an authenticated endpoint!
+Remember — concatenate dataset is an authenticated endpoint!
 </aside>
 
 ## Overwrite Data
@@ -540,8 +535,8 @@ curl -X POST http://api.resourcewatch.org/dataset/:dataset_id/data-overwrite \
 -H "Authorization: Bearer <your-token>" \
 -H "Content-Type: application/json"  -d \
 '{
-   "connectorUrl":"<csvUrl>",
-   "dataPath": "data... etc"
+   "connectorUrl":"<url>",
+   "dataPath": "data"
 }'
 ```
 
@@ -557,7 +552,7 @@ curl -X POST http://api.resourcewatch.org/dataset/:dataset_id/data-overwrite \
 ```
 
 <aside class="notice">
-Remember — create dataset is an authenticated endpoint!
+Remember — overwrite dataset is an authenticated endpoint!
 </aside>
 
 
@@ -577,7 +572,7 @@ curl -X POST http://api.resourcewatch.org/dataset/:dataset_id/data/:data_id \
 ```
 
 <aside class="notice">
-Remember — create dataset is an authenticated endpoint!
+Remember — overwrite dataset is an authenticated endpoint!
 </aside>
 
 ## Delete specific Data
@@ -592,5 +587,5 @@ curl -X DELETE http://api.resourcewatch.org/dataset/:dataset_id/data/:data_id \
 ```
 
 <aside class="notice">
-Remember — create dataset is an authenticated endpoint!
+Remember — delete dataset is an authenticated endpoint!
 </aside>

@@ -1,6 +1,5 @@
 # Layer
 
-
 ## What is a Layer?
 Is a graphic representation of a Dataset's data.
 
@@ -104,7 +103,7 @@ Available filters:
 | name          | Filter the layers whose name contains the filter text    | Text
 | dataset       | Filter the layers by dataset uuid                        | Text
 | sort          | Sort json response by specific attributes                | Text
-| status        | Filter layers on status (pending, active, disabled, all) | Text
+| status        | Filter layers on status (pending, saved, failed, all)    | Text
 | published     | Filter layers on published status (true, false)          | Boolean
 | app           | Filter layers on application (prep, gfw, etc..)          | Text
 
@@ -236,7 +235,6 @@ To create a layer, you need to define all of the required fields in the request 
 | Field             | Description                               | Type    | Values                                          | Required |
 | ------------------|:-----------------------------------------:| -------:| ---------------------------------------:        |  -------:|
 | name              | Name of the layer                         | Text    | Any Text                                        | Yes
-| slug              | Slug of the layer                         | Text    | Text without special characters(aaa-bbb)        | No
 | description       | Description of the dataset                | Text    | Any text                                        | No
 | application       | Application to which the layer belongs    | Array   | gfw, forest-atlas, rw, prep, aqueduct, data4sdg | Yes
 | layerConfig       | Custom configuration                      | Object  | Valid object                                    | No
@@ -244,7 +242,7 @@ To create a layer, you need to define all of the required fields in the request 
 | applicationConfig | Custom configuration                      | Object  | Valid object                                    | No
 | staticImageConfig | Custom configuration                      | Object  | Valid object                                    | No
 | iso               | Isos to which the layer belongs           | Array   | BRA, ES                                         | No
-| status            | Status of the Layer                       | Boolean | true - false                                    | No
+| status            | Status of the Layer                       | Number  | 1                                               | No
 | dataset           | UuId of the dataset                       | Text    | Uuid of Dataset                                 | No
 
 
@@ -259,7 +257,8 @@ curl -X POST http://api.resourcewatch.org/dataset/<dataset_id>/layer \
       "application":[
          "your", "apps"
       ],
-      "name":"Example layer"
+      "name":"Example layer",
+      "status": 1
    }
 }'
 ```
@@ -271,7 +270,6 @@ To update a layer, you need to define all of the required fields in the request 
 | Field             | Description                               | Type    | Values                                          | Required |
 | ------------------|:-----------------------------------------:| -------:| ---------------------------------------:        |  -------:|
 | name              | Name of the layer                         | Text    | Any Text                                        | Yes
-| slug              | Slug of the layer                         | Text    | Text without special characters(aaa-bbb)        | No
 | description       | Description of the dataset                | Text    | Any text                                        | No
 | application       | Application to which the layer belongs    | Array   | gfw, forest-atlas, rw, prep, aqueduct, data4sdg | Yes
 | layerConfig       | Custom configuration                      | Object  | Valid object                                    | No
@@ -279,7 +277,7 @@ To update a layer, you need to define all of the required fields in the request 
 | applicationConfig | Custom configuration                      | Object  | Valid object                                    | No
 | staticImageConfig | Custom configuration                      | Object  | Valid object                                    | No
 | iso               | Isos to which the layer belongs           | Array   | BRA, ES                                         | No
-| status            | Status of the Layer                       | Boolean | true - false                                    | No
+| status            | Status of the Layer                       | Number  | 1                                               | No
 | dataset           | UuId of the dataset                       | Text    | Uuid of Dataset                                 | No
 
 
@@ -294,7 +292,8 @@ curl -X PATCH http://api.resourcewatch.org/dataset/<dataset_id>/layer/<layer_id>
       "application":[
          "your", "apps"
       ],
-      "name":"Example layer"
+      "name":"New Example layer Name",
+      "layerConfig": {}
    }
 }'
 ```

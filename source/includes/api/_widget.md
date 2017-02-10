@@ -9,7 +9,7 @@ Widget contains the next fields:
 | Field         | Description           | Type
 | ------------- |:-------------:| -----:|
 | userId        | Id of the owner                                           | Text
-| Application   | Application to which the dataset belongs                  | Array
+| application   | Application to which the dataset belongs                  | Array
 | slug          | Unique identifier of the widget                           | Text
 | name          | Name of the widget                                        | Url
 | description   | Description of the widget                                 | Array
@@ -25,7 +25,6 @@ Widget contains the next fields:
 | status        | Status of the Widget                                      | Text
 | published     | If it's available to use                                  | Text
 | verified      | If it's verified by other user                            | Text
-
 
 
 ### What is Vega?
@@ -58,7 +57,7 @@ Remember — the response is jsonapi format
             "application":[
                "aqueduct"
             ],
-            "slug":"ercentage-of-country-s-population-is-at-high-risk-of-hunger",
+            "slug":"percentage-of-country-s-population-is-at-high-risk-of-hunger",
             "name":"Percentage of country's population at high risk of hunger.",
             "description":"",
             "source":"",
@@ -97,11 +96,11 @@ Available filters:
 | name          | Filter the widgets whose name contains the filter text    | Text
 | dataset       | Filter the widgets by dataset uuid                        | Text
 | sort          | Sort json response by specific attributes                 | Text
-| status        | Filter widgets on status (pending, active, disabled, all) | Text
+| status        | Filter widgets on status (pending, saved, failed, all)    | Text
 | published     | Filter widgets on published status (true, false)          | Boolean
-| verified      | Filter by verified status (true,false)                    | Boolean
-| template      | Filter by template status (true,false)                    | Boolean
-| default       | Filter by default status (true,false)                     | Boolean
+| verified      | Filter by verified status (true, false)                    | Boolean
+| template      | Filter by template status (true, false)                    | Boolean
+| default       | Filter by default status (true, false)                     | Boolean
 | app           | Filter widgets on application (prep, gfw, etc..)          | Text
 
 
@@ -1019,7 +1018,6 @@ To create a widget, you need to define all of the required fields in the request
 | Field             | Description                               | Type    | Values                                          | Required |
 | ------------------|:-----------------------------------------:| -------:| ---------------------------------------:        |  -------:|
 | name              | Name of the widget                        | Text    | Any Text                                        | Yes
-| slug              | Slug of the widget                        | Text    | Text without special characters(aaa-bbb)        | No
 | description       | Description of the dataset                | Text    | Any text                                        | No
 | source            | Publisher of the original code            | Text    | Any text                                        | No
 | sourceUrl         | Link to publisher page                    | Text    | Any url                                         | No
@@ -1027,7 +1025,7 @@ To create a widget, you need to define all of the required fields in the request
 | authors           | Name of the authors                       | Text    | Any text                                        | No
 | queryUrl          | Url with the data of the chart shows      | Text    | Any valid query                                 | No
 | widgetConfig      | Vega configuration                        | Object  | Valid object                                    | No
-| status            | Status of the Widget                      | Boolean | true - false                                    | No
+| status            | Status of the Widget                      | Number  | 1                                               | No
 | published         | If it's available to use                  | Boolean | true - false                                    | No
 | verified          | If it's verified by other user            | Boolean | true - false                                    | No
 | template          | If it's a template                        | Boolean | true - false                                    | No
@@ -1048,6 +1046,8 @@ curl -X POST http://api.resourcewatch.org/dataset/<dataset_id>/widget \
          "your", "apps"
       ],
       "name":"Example Carto Dataset"
+      "status": 1,
+      "published": true
    }
 }'
 ```
@@ -1059,7 +1059,6 @@ To update a widget, you need to define all of the required fields in the request
 | Field             | Description                               | Type    | Values                                          | Required |
 | ------------------|:-----------------------------------------:| -------:| ---------------------------------------:        |  -------:|
 | name              | Name of the widget                        | Text    | Any Text                                        | Yes
-| slug              | Slug of the widget                        | Text    | Text without special characters(aaa-bbb)        | No
 | description       | Description of the dataset                | Text    | Any text                                        | No
 | source            | Publisher of the original code            | Text    | Any text                                        | No
 | sourceUrl         | Link to publisher page                    | Text    | Any url                                         | No
@@ -1067,7 +1066,7 @@ To update a widget, you need to define all of the required fields in the request
 | authors           | Name of the authors                       | Text    | Any text                                        | No
 | queryUrl          | Url with the data of the chart shows      | Text    | Any valid query                                 | No
 | widgetConfig      | Vega configuration                        | Object  | Valid object                                    | No
-| status            | Status of the Widget                      | Boolean | true - false                                    | No
+| status            | Status of the Widget                      | Number  | 1                                               | No
 | published         | If it's available to use                  | Boolean | true - false                                    | No
 | verified          | If it's verified by other user            | Boolean | true - false                                    | No
 | template          | If it's a template                        | Boolean | true - false                                    | No
@@ -1087,7 +1086,8 @@ curl -X PATCH http://api.resourcewatch.org/dataset/<dataset_id>/widget/<widget_i
       "application":[
          "your", "apps"
       ],
-      "name":"Example Carto Dataset"
+      "name":"New Example Carto Dataset Name",
+      "widgetConfig": {}
    }
 }'
 ```

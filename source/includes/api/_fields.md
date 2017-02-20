@@ -4,7 +4,7 @@
 
 Fields can be defined as the dataset properties. These fields are automatically generated when a dataset is created.
 
-## How the get the dataset fields
+## How to get the dataset fields
 
 Once the dataset is properly created and saved, it is possible to access to its fields getting also some information about them.
 

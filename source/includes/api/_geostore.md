@@ -40,7 +40,7 @@ If you have your own geojson, you can save it in geostore. To create the geostor
 > To create a Geostore, you have to do a POST with the following body:
 
 ```shell
-curl -X POST http://api.resourcewatch.org/geostore \
+curl -X POST https://api.resourcewatch.org/v1/geostore \
 -H "Content-Type: application/json"  -d \
  '{
    "geojson": <yourGeoJSONObject>
@@ -50,7 +50,7 @@ curl -X POST http://api.resourcewatch.org/geostore \
 > Real example
 
 ```shell
-curl -X POST http://api.resourcewatch.org/geostore \
+curl -X POST https://api.resourcewatch.org/v1/geostore \
 -H "Content-Type: application/json"  -d \
  '{
    "geojson":{
@@ -193,31 +193,31 @@ The response will be 200 if the geostore will save correctly and return the geos
 
 If you need obtain the geostore of a country, you can obtain it with the ISO3 code in the Geostore API.
 
-`GET http://api.resourcewatch.org/geostore/admin/<ISO3>`
+`GET https://api.resourcewatch.org/v1/geostore/admin/<ISO3>`
 
 ```shell
-curl -X GET http://api.resourcewatch.org/geostore/admin/<ISO3>
+curl -X GET https://api.resourcewatch.org/v1/geostore/admin/<ISO3>
 ```
 
 > Real example obtaining the geostore of Spain
 ```shell
-curl -X GET http://api.resourcewatch.org/geostore/admin/ESP
+curl -X GET https://api.resourcewatch.org/v1/geostore/admin/ESP
 ```
 
 ### From country and region
 
 If you need obtain the geostore of a region in a country, you can obtain it with the ISO3 and region code:
 
-`GET http://api.resourcewatch.org/geostore/admin/<ISO3>/<regionCode>`
+`GET https://api.resourcewatch.org/v1/geostore/admin/<ISO3>/<regionCode>`
 
 ```shell
-curl -X GET http://api.resourcewatch.org/geostore/admin/<ISO3>/<regionCode>
+curl -X GET https://api.resourcewatch.org/v1/geostore/admin/<ISO3>/<regionCode>
 ```
 
 > Real example obtaining the geostore of Madrid's Comunity in Spain
 
 ```shell
-curl -X GET http://api.resourcewatch.org/geostore/admin/ESP/8
+curl -X GET https://api.resourcewatch.org/v1/geostore/admin/ESP/8
 ```
 
 ### From World Database on Protected Areas (wdpa)
@@ -225,17 +225,17 @@ curl -X GET http://api.resourcewatch.org/geostore/admin/ESP/8
 Is possible obtain the geostore of a World Database on Protected Areas of the world. You only need the id of the protected area (WDPA).
 [World Database on Protected Areas web](https://www.protectedplanet.net/)
 
-`GET http://api.resourcewatch.org/geostore/wdpa/<wdpaId>`
+`GET https://api.resourcewatch.org/v1/geostore/wdpa/<wdpaId>`
 
 
 ```shell
-curl -X GET http://api.resourcewatch.org/geostore/wdpa/<wdpaId>
+curl -X GET https://api.resourcewatch.org/v1/geostore/wdpa/<wdpaId>
 ```
 
 > Real example obtaining the geostore of 'Sierra de Guadarrama' protected area
 
 ```shell
-curl -X GET http://api.resourcewatch.org/geostore/wdpa/555538160
+curl -X GET https://api.resourcewatch.org/v1/geostore/wdpa/555538160
 ```
 
 ### From land use areas
@@ -244,60 +244,60 @@ Geostore has the geojson of 4 differents lands use:
 
 #### Oil palm
 
-`GET http://api.resourcewatch.org/geostore/use/oilpalm/<id>`
+`GET https://api.resourcewatch.org/v1/geostore/use/oilpalm/<id>`
 
 ```shell
-curl -X GET http://api.resourcewatch.org/geostore/use/oilpalm/<id>
+curl -X GET https://api.resourcewatch.org/v1/geostore/use/oilpalm/<id>
 ```
 
 > Real example obtaining the geostore of one Oil palm area
 
 ```shell
-curl -X GET http://api.resourcewatch.org/geostore/use/oilpalm/556
+curl -X GET https://api.resourcewatch.org/v1/geostore/use/oilpalm/556
 ```
 
 #### Mining
 
-`GET http://api.resourcewatch.org/geostore/use/mining/<id>`
+`GET https://api.resourcewatch.org/v1/geostore/use/mining/<id>`
 
 ```shell
-curl -X GET http://api.resourcewatch.org/geostore/use/mining/<id>
+curl -X GET https://api.resourcewatch.org/v1/geostore/use/mining/<id>
 ```
 
 > Real example obtaining the geostore of one mining area
 
 ```shell
-curl -X GET http://api.resourcewatch.org/geostore/use/mining/573
+curl -X GET https://api.resourcewatch.org/v1/geostore/use/mining/573
 ```
 
 
 #### Wood fiber
 
-`GET http://api.resourcewatch.org/geostore/use/fiber/<id>`
+`GET https://api.resourcewatch.org/v1/geostore/use/fiber/<id>`
 
 ```shell
-curl -X GET http://api.resourcewatch.org/geostore/use/fiber/<id>
+curl -X GET https://api.resourcewatch.org/v1/geostore/use/fiber/<id>
 ```
 
 > Real example obtaining the geostore of one Wood fiber area
 
 ```shell
-curl -X GET http://api.resourcewatch.org/geostore/use/fiber/346
+curl -X GET https://api.resourcewatch.org/v1/geostore/use/fiber/346
 ```
 
 
 #### Congo Basin logging roads
 
-`GET http://api.resourcewatch.org/geostore/use/logging/<id>`
+`GET https://api.resourcewatch.org/v1/geostore/use/logging/<id>`
 
 ```shell
-curl -X GET http://api.resourcewatch.org/geostore/use/logging/<id>
+curl -X GET https://api.resourcewatch.org/v1/geostore/use/logging/<id>
 ```
 
 > Real example obtaining the geostore of Oil palm area
 
 ```shell
-curl -X GET http://api.resourcewatch.org/geostore/use/logging/102
+curl -X GET https://api.resourcewatch.org/v1/geostore/use/logging/102
 ```
 
 
@@ -318,7 +318,7 @@ To import the geojson in geostore, you need to define all of the required fields
 > To import a Geostore, you have to do a POST with the following body:
 
 ```shell
-curl -X POST http://api.resourcewatch.org/geostore \
+curl -X POST https://api.resourcewatch.org/v1/geostore \
 -H "Content-Type: application/json"  -d \
  '{
     "provider":{
@@ -333,7 +333,7 @@ curl -X POST http://api.resourcewatch.org/geostore \
 > Real example
 
 ```shell
-curl -X POST http://api.resourcewatch.org/geostore \
+curl -X POST https://api.resourcewatch.org/v1/geostore \
 -H "Content-Type: application/json"  -d \
  '{
     "provider":{
@@ -416,13 +416,13 @@ curl -X POST http://api.resourcewatch.org/geostore \
 To obtain a geostore, you only need the id of the Geostore. You can perform a GET request for the geostore with its id.
 
 ```shell
-curl -X GET http://api.resourcewatch.org/geostore/<geostoreId>
+curl -X GET https://api.resourcewatch.org/v1/geostore/<geostoreId>
 ```
 
 > Real example obtaining one geostore
 
 ```shell
-curl -X GET http://api.resourcewatch.org/geostore/use/logging/26f8975c4c647c19a2edaa11f23880a2
+curl -X GET https://api.resourcewatch.org/v1/geostore/use/logging/26f8975c4c647c19a2edaa11f23880a2
 ```
 
 > Example response

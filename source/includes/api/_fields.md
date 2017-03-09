@@ -11,13 +11,13 @@ Once the dataset is properly created and saved, it is possible to access to its 
 To do that, it is just necessary to make use of the following endpoint:
 
 ```shell
-curl -X GET http://api.resourcewatch.org/fields/<dataset-id>
+curl -X GET https://api.resourcewatch.org/v1/fields/<dataset-id>
 ```
 
 > Real example
 
 ```shell
-curl -X GET http://api.resourcewatch.org/fields/1170030b-9725-4bfe-8fb4-1b0eb81020d2
+curl -X GET https://api.resourcewatch.org/v1/fields/1170030b-9725-4bfe-8fb4-1b0eb81020d2
 ```
 
 > Response

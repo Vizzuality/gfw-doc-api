@@ -35,7 +35,7 @@ Google Earth Engine combines a multi-petabyte catalog of satellite imagery and g
 To obtain all datasets:
 
 ```shell
-curl -X GET http://api.resourcewatch.org/dataset
+curl -X GET https://api.resourcewatch.org/v1/dataset
 ```
 
 <aside class="success">
@@ -88,11 +88,11 @@ Remember — the response is jsonapi format
       },
    ],
    "links":{
-      "first":"http://api.resourcewatch.org/dataset?page%5Bnumber%5D=1",
-      "prev":"http://api.resourcewatch.org/dataset?page%5Bnumber%5D=1",
-      "next":"http://api.resourcewatch.org/dataset?page%5Bnumber%5D=2&page%5Bsize%5D=10",
-      "last":"http://api.resourcewatch.org/dataset?page%5Bnumber%5D=64&page%5Bsize%5D=10",
-      "self":"http://api.resourcewatch.org/dataset?page%5Bnumber%5D=1&page%5Bsize%5D=10"
+      "first":"https://api.resourcewatch.org/v1/dataset?page%5Bnumber%5D=1",
+      "prev":"https://api.resourcewatch.org/v1/dsataset?page%5Bnumber%5D=1",
+      "next":"https://api.resourcewatch.org/v1/dsataset?page%5Bnumber%5D=2&page%5Bsize%5D=10",
+      "last":"https://api.resourcewatch.org/v1/dsataset?page%5Bnumber%5D=64&page%5Bsize%5D=10",
+      "self":"https://api.resourcewatch.org/v1/dsataset?page%5Bnumber%5D=1&page%5Bsize%5D=10"
    }
 }
 ```
@@ -116,49 +116,49 @@ Available filters:
 > Return the datasets filtered whose id contains d02df2f6-d80c-4274-bb6f-f062061655c4
 
 ```shell
-curl -X GET http://api.resourcewatch.org/dataset?ids=d02df2f6-d80c-4274-bb6f-f062061655c4
+curl -X GET https://api.resourcewatch.org/v1/dataset?ids=d02df2f6-d80c-4274-bb6f-f062061655c4
 ```
 
 > Return the datasets filtered by connector_type
 
 ```shell
-curl -X GET http://api.resourcewatch.org/dataset?connector_type=wms
+curl -X GET https://api.resourcewatch.org/v1/dataset?connector_type=wms
 ```
 
 > Sort by name
 
 ```shell
-curl -X GET http://api.resourcewatch.org/dataset?sort=name
+curl -X GET https://api.resourcewatch.org/v1/dataset?sort=name
 ```
 
 > Filter datasets by status
 
 ```shell
-curl -X GET http://api.resourcewatch.org/dataset?status=failed
+curl -X GET https://api.resourcewatch.org/v1/dataset?status=failed
 ```
 
 > Return the datasets filtered whose applications contain prep
 
 ```shell
-curl -X GET http://api.resourcewatch.org/dataset?app=prep
+curl -X GET https://api.resourcewatch.org/v1/dataset?app=prep
 ```
 
 > Return the datasets filtered whose provider contain rwjson
 
 ```shell
-curl -X GET http://api.resourcewatch.org/dataset?provider=rwjson
+curl -X GET https://api.resourcewatch.org/v1/dataset?provider=rwjson
 ```
 
 > Return the datasets including layer
 
 ```shell
-curl -X GET http://api.resourcewatch.org/dataset?includes=layer
+curl -X GET https://api.resourcewatch.org/v1/dataset?includes=layer
 ```
 
 > Return the datasets including all available relational resources
 
 ```shell
-curl -X GET http://api.resourcewatch.org/dataset?includes=layer,widget,metadata,vocabulary
+curl -X GET https://api.resourcewatch.org/v1/dataset?includes=layer,widget,metadata,vocabulary
 ```
 
 ### Pagination params
@@ -171,7 +171,7 @@ curl -X GET http://api.resourcewatch.org/dataset?includes=layer,widget,metadata,
 > Return the datasets of the page 2 with 5 elements per page
 
 ```shell
-curl -X GET http://api.resourcewatch.org/dataset?page[size]=5&page[number]=2
+curl -X GET https://api.resourcewatch.org/v1/dataset?page[size]=5&page[number]=2
 ```
 
 ## How obtain a specific dataset
@@ -188,7 +188,7 @@ Available filters:
 > To obtain the dataset:
 
 ```shell
-curl -X GET http://api.resourcewatch.org/dataset/51943691-eebc-4cb4-bdfb-057ad4fc2145
+curl -X GET https://api.resourcewatch.org/v1/dataset/51943691-eebc-4cb4-bdfb-057ad4fc2145
 ```
 > Example response:
 
@@ -244,13 +244,13 @@ curl -X GET http://api.resourcewatch.org/dataset/51943691-eebc-4cb4-bdfb-057ad4f
 > To obtain the dataset including specific relational resource:
 
 ```shell
-curl -X GET http://api.resourcewatch.org/dataset/06c44f9a-aae7-401e-874c-de13b7764959?includes=metadata
+curl -X GET https://api.resourcewatch.org/v1/dataset/06c44f9a-aae7-401e-874c-de13b7764959?includes=metadata
 ```
 
 > To obtain the dataset including specific relational resource on specific application:
 
 ```shell
-curl -X GET http://api.resourcewatch.org/dataset/06c44f9a-aae7-401e-874c-de13b7764959?includes=metadata&app=rw
+curl -X GET https://api.resourcewatch.org/v1/dataset/06c44f9a-aae7-401e-874c-de13b7764959?includes=metadata&app=rw
 ```
 
 <aside class="success">
@@ -284,7 +284,7 @@ There are some differences between datasets types.
 > To create a Carto dataset, you have to do a POST with the following body:
 
 ```shell
-curl -X POST http://api.resourcewatch.org/dataset \
+curl -X POST https://api.resourcewatch.org/v1/dataset \
 -H "Authorization: Bearer <your-token>" \
 -H "Content-Type: application/json"  -d \
  '{
@@ -304,7 +304,7 @@ curl -X POST http://api.resourcewatch.org/dataset \
 > A real example:
 
 ```shell
-curl -X POST http://api.resourcewatch.org/dataset \
+curl -X POST https://api.resourcewatch.org/v1/dataset \
 -H "Authorization: Bearer <your-token>" \
 -H "Content-Type: application/json"  -d \
 '{
@@ -328,7 +328,7 @@ curl -X POST http://api.resourcewatch.org/dataset \
 > To create a ArcGIS dataset, you have to do a POST with the following body:
 
 ```shell
-curl -X POST http://api.resourcewatch.org/dataset \
+curl -X POST https://api.resourcewatch.org/v1/dataset \
 -H "Authorization: Bearer <your-token>" \
 -H "Content-Type: application/json"  -d \
 '{
@@ -367,7 +367,7 @@ CSV datasets support some optional fields on the creation process. They are:
 
 
 ```shell
-curl -X POST http://api.resourcewatch.org/dataset \
+curl -X POST https://api.resourcewatch.org/v1/dataset \
 -H "Authorization: Bearer <your-token>" \
 -H "Content-Type: application/json"  -d \
 '{
@@ -394,7 +394,7 @@ curl -X POST http://api.resourcewatch.org/dataset \
 > Real example:
 
 ```shell
-curl -X POST http://api.resourcewatch.org/dataset \
+curl -X POST https://api.resourcewatch.org/v1/dataset \
 -H "Authorization: Bearer <your-token>" \
 -H "Content-Type: application/json"  -d \
 '{
@@ -445,7 +445,7 @@ It accepts the same parameters as the _create dataset_ endpoint, and you will ne
 > An example update request:
 
 ```shell
-curl -X PATCH http://api.resourcewatch.org/dataset/<dataset-id> \
+curl -X PATCH https://api.resourcewatch.org/v1/dataset/<dataset-id> \
 -H "Authorization: Bearer <your-token>" \
 -H "Content-Type: application/json" -d \
 '{
@@ -462,7 +462,7 @@ Remember — update dataset is an authenticated endpoint!
 You can delete a dataset! Just send a DELETE request to the endpoint:
 
 ```shell
-curl -X DELETE http://api.resourcewatch.org/dataset/<dataset-id> \
+curl -X DELETE https://api.resourcewatch.org/v1/dataset/<dataset-id> \
 -H "Authorization: Bearer <your-token>"
 -H "Content-Type: application/json"
 ```
@@ -474,7 +474,7 @@ Remember — delete dataset is an authenticated endpoint!
 You can clone a dataset! Just send a POST request to the endpoint:
 
 ```shell
-curl -X POST http://api.resourcewatch.org/dataset/5306fd54-df71-4e20-8b34-2ff464ab28be/clone \
+curl -X POST https://api.resourcewatch.org/v1/dataset/5306fd54-df71-4e20-8b34-2ff464ab28be/clone \
 -H "Authorization: Bearer <your-token>"
 -H "Content-Type: application/json" -d \
 '{
@@ -500,7 +500,7 @@ Just send a POST request to the endpoint:
 > Concatenate data using external data source:
 
 ```shell
-curl -X POST http://api.resourcewatch.org/dataset/:dataset_id/concat \
+curl -X POST https://api.resourcewatch.org/v1/dataset/:dataset_id/concat \
 -H "Authorization: Bearer <your-token>" \
 -H "Content-Type: application/json"  -d \
 '{
@@ -511,7 +511,7 @@ curl -X POST http://api.resourcewatch.org/dataset/:dataset_id/concat \
 > Concatenate data using JSON array in post body:
 
 ```shell
-curl -X POST http://api.resourcewatch.org/dataset/:dataset_id/concat \
+curl -X POST https://api.resourcewatch.org/v1/dataset/:dataset_id/concat \
 -H "Authorization: Bearer <your-token>" \
 -H "Content-Type: application/json"  -d \
 '{
@@ -531,7 +531,7 @@ Just send a POST request to the endpoint:
 > Overwrite data using external data source:
 
 ```shell
-curl -X POST http://api.resourcewatch.org/dataset/:dataset_id/data-overwrite \
+curl -X POST https://api.resourcewatch.org/v1/dataset/:dataset_id/data-overwrite \
 -H "Authorization: Bearer <your-token>" \
 -H "Content-Type: application/json"  -d \
 '{
@@ -543,7 +543,7 @@ curl -X POST http://api.resourcewatch.org/dataset/:dataset_id/data-overwrite \
 > Overwrite data using JSON array in post body:
 
 ```shell
-curl -X POST http://api.resourcewatch.org/dataset/:dataset_id/data-overwrite \
+curl -X POST https://api.resourcewatch.org/v1/dataset/:dataset_id/data-overwrite \
 -H "Authorization: Bearer <your-token>" \
 -H "Content-Type: application/json"  -d \
 '{
@@ -562,7 +562,7 @@ You can update data in a dataset only if the dataset option overwrite (data_over
 Just send a POST request to the endpoint:
 
 ```shell
-curl -X POST http://api.resourcewatch.org/dataset/:dataset_id/data/:data_id \
+curl -X POST https://api.resourcewatch.org/v1/dataset/:dataset_id/data/:data_id \
 -H "Authorization: Bearer <your-token>" \
 -H "Content-Type: application/json"  -d \
 '{
@@ -581,7 +581,7 @@ You can delete data in a dataset only if the dataset option overwrite (data_over
 Just send a DELETE request to the endpoint:
 
 ```shell
-curl -X DELETE http://api.resourcewatch.org/dataset/:dataset_id/data/:data_id \
+curl -X DELETE https://api.resourcewatch.org/v1/dataset/:dataset_id/data/:data_id \
 -H "Authorization: Bearer <your-token>" \
 -H "Content-Type: application/json"
 ```

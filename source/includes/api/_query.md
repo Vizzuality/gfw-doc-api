@@ -1,8 +1,11 @@
 # Query
 
-In order to retrieve data from the created datasets it is possible to do queries in SQL or Feature Service languages to the API.
+In order to retrieve data from the datasets it is possible query in SQL or Feature Service languages to the API.
 
-Thanks to ```/query``` endpoint, the final user can get the desired information just sending a valid sql query.
+It is possible to query the dataset using the table name of the dataset or just the id or slug of it.
+
+**/query/<dataset.id>?sql=select * from <dataset.tableName>**
+**/query?sql=select * from <dataset.slug or dataset.id>**
 
 ## Query examples
 

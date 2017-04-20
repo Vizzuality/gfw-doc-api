@@ -2,7 +2,7 @@
 
 ## Tags definition
 
-A Tag is defined as a resource feature, or a value of a particular filter.
+A way to categorize a resource within a vocabulary context.
 
 ## Vocabulary definition
 

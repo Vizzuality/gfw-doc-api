@@ -45,7 +45,7 @@ If you don't know how to do this, please go to the <a href="#authentication">Aut
 </aside>
 
 ```shell
-curl -X POST http://api.resourcewatch.org/dataset/<dataset-id>/metadata \
+curl -X POST https://api.resourcewatch.org/v1/dataset/<dataset-id>/metadata \
 -H "Content-Type: application/json"  -d \
  '{
    "application": <app>,
@@ -57,7 +57,7 @@ curl -X POST http://api.resourcewatch.org/dataset/<dataset-id>/metadata \
 
 
 ```shell
-curl -X POST http://api.resourcewatch.org/dataset/942b3f38-9504-4273-af51-0440170ffc86/metadata \
+curl -X POST https://api.resourcewatch.org/v1/dataset/942b3f38-9504-4273-af51-0440170ffc86/metadata \
 -H "Content-Type: application/json"  -d \
  '{
    "application": "rw",
@@ -96,7 +96,7 @@ curl -X POST http://api.resourcewatch.org/dataset/942b3f38-9504-4273-af51-044017
 > The same operation applies to Widget and Layer just changing the endpoint for the appropriate one.
 
 ```shell
-curl -X POST http://api.resourcewatch.org/dataset/<dataset-id>/widget/<widget-id>/metadata \
+curl -X POST https://api.resourcewatch.org/v1/dataset/<dataset-id>/widget/<widget-id>/metadata \
 -H "Content-Type: application/json"  -d \
  '{
    "application": <app>,
@@ -105,7 +105,7 @@ curl -X POST http://api.resourcewatch.org/dataset/<dataset-id>/widget/<widget-id
 ```
 
 ```shell
-curl -X POST http://api.resourcewatch.org/dataset/<dataset-id>/layer/<layer-id>/metadata \
+curl -X POST https://api.resourcewatch.org/v1/dataset/<dataset-id>/layer/<layer-id>/metadata \
 -H "Content-Type: application/json"  -d \
  '{
    "application": <app>,
@@ -136,21 +136,21 @@ type: [dataset, widget, layer]
 ```
 
 ```shell
-curl -X GET http://api.resourcewatch.org/dataset/<dataset-id>/metadata
+curl -X GET https://api.resourcewatch.org/v1/dataset/<dataset-id>/metadata
 ```
 
 ```shell
-curl -X GET http://api.resourcewatch.org/dataset/<dataset-id>/widget/<widget-id>/metadata
+curl -X GET https://api.resourcewatch.org/v1/dataset/<dataset-id>/widget/<widget-id>/metadata
 ```
 
 ```shell
-curl -X GET http://api.resourcewatch.org/dataset/<dataset-id>/layer/<layer-id>/metadata
+curl -X GET https://api.resourcewatch.org/v1/dataset/<dataset-id>/layer/<layer-id>/metadata
 ```
 
 > Real example
 
 ```shell
-curl -X GET http://api.resourcewatch.org/dataset/942b3f38-9504-4273-af51-0440170ffc86/metadata
+curl -X GET https://api.resourcewatch.org/v1/dataset/942b3f38-9504-4273-af51-0440170ffc86/metadata
 ```
 
 ## Updating a metadata
@@ -160,7 +160,7 @@ Partial update
 "application" and "language" attributes are required and it is mandatory to include them in the payload.
 
 ```shell
-curl -X PATCH http://api.resourcewatch.org/dataset/<dataset-id>/metadata \
+curl -X PATCH https://api.resourcewatch.org/v1/dataset/<dataset-id>/metadata \
 -H "Content-Type: application/json"  -d \
  '{
    "application": <app>,
@@ -171,7 +171,7 @@ curl -X PATCH http://api.resourcewatch.org/dataset/<dataset-id>/metadata \
 > Real example
 
 ```shell
-curl -X PATCH http://api.resourcewatch.org/dataset/942b3f38-9504-4273-af51-0440170ffc86/metadata \
+curl -X PATCH https://api.resourcewatch.org/v1/dataset/942b3f38-9504-4273-af51-0440170ffc86/metadata \
 -H "Content-Type: application/json"  -d \
  '{
    "application": "rw",
@@ -225,46 +225,46 @@ curl -X PATCH http://api.resourcewatch.org/dataset/942b3f38-9504-4273-af51-04401
 "application" and "language" attributes are required and it is mandatory to include them in the Queryparams
 
 ```shell
-curl -X DELETE http://api.resourcewatch.org/dataset/<dataset-id>/metadata?application=<app-id>&language=<language>
+curl -X DELETE https://api.resourcewatch.org/v1/dataset/<dataset-id>/metadata?application=<app-id>&language=<language>
 ```
 
 > Real example
 
 ```shell
-curl -X DELETE http://api.resourcewatch.org/dataset/942b3f38-9504-4273-af51-0440170ffc86/metadata?application=rw&language=en \
+curl -X DELETE https://api.resourcewatch.org/v1/dataset/942b3f38-9504-4273-af51-0440170ffc86/metadata?application=rw&language=en \
 ```
 
 ## Getting all
 
 
 ```shell
-curl -X GET http://api.resourcewatch.org/metadata
+curl -X GET https://api.resourcewatch.org/v1/metadata
 ```
 
 > Real examples
 
 ```shell
-curl -X GET http://api.resourcewatch.org/metadata
+curl -X GET https://api.resourcewatch.org/v1/metadata
 ```
 
 ```shell
-curl -X GET http://api.resourcewatch.org/metadata?type=dataset
+curl -X GET https://api.resourcewatch.org/v1/metadata?type=dataset
 ```
 
 ```shell
-curl -X GET http://api.resourcewatch.org/metadata?type=widget
+curl -X GET https://api.resourcewatch.org/v1/metadata?type=widget
 ```
 
 ```shell
-curl -X GET http://api.resourcewatch.org/metadata?application=rw&language=es,en&limit=20
+curl -X GET https://api.resourcewatch.org/v1/metadata?application=rw&language=es,en&limit=20
 ```
 
 ```shell
-curl -X GET http://api.resourcewatch.org/metadata?application=rw,gfw&language=en&type=dataset
+curl -X GET https://api.resourcewatch.org/v1/metadata?application=rw,gfw&language=en&type=dataset
 ```
 
 ```shell
-curl -X GET http://api.resourcewatch.org/metadata?language=en
+curl -X GET https://api.resourcewatch.org/v1/metadata?language=en
 ```
 
 ## Finding (getting) by ids
@@ -296,7 +296,7 @@ type: [dataset, widget, layer]
 
 
 ```shell
-curl -X POST http://api.resourcewatch.org/dataset/metadata/find-by-ids \
+curl -X POST https://api.resourcewatch.org/v1/dataset/metadata/find-by-ids \
 -H "Content-Type: application/json"  -d \
  '{
    "ids": [<ids>]
@@ -306,7 +306,7 @@ curl -X POST http://api.resourcewatch.org/dataset/metadata/find-by-ids \
 > Real example
 
 ```shell
-curl -X POST http://api.resourcewatch.org/dataset/metadata/find-by-ids \
+curl -X POST https://api.resourcewatch.org/v1/dataset/metadata/find-by-ids \
 -H "Content-Type: application/json"  -d \
  '{
      "ids": "b000288d-7037-43ba-aa34-165eab549613, 942b3f38-9504-4273-af51-0440170ffc86"

@@ -430,6 +430,43 @@ curl -X POST https://api.resourcewatch.org/v1/dataset \
 }'
 ```
 
+## Uploading a Dataset (Binary)
+You can upload your raw data directly to S3 making use of the "upload" endpoint.
+This endpoint accepts a file in the property "dataset" and returns a valid
+connectorUrl. With this connectorUrl you can create or update a "document" dataset.
+
+```shell
+curl -X POST https://api.resourcewatch.org/v1/dataset/upload \
+-H "Authorization: Bearer <your-token>" \
+-H "Content-Type: multipart/form-data" \
+-F "dataset=@<your-file>"
+```
+
+It returns the following:
+
+> Response
+
+```json
+{
+  "connectorUrl": "rw.dataset.raw/tmp/upload_75755182b1ceda30abed717f655c077d-observed_temp.csv"
+}
+```
+
+```shell
+curl -X POST https://api.resourcewatch.org/v1/dataset \
+-H "Authorization: Bearer <your-token>" \
+-H "Content-Type: application/json"
+'{
+    "connectorType":"document",
+    "provider":"csv",
+    "connectorUrl":"rw.dataset.raw/tmp/upload_75755182b1ceda30abed717f655c077d-observed_temp.csv",
+    "application":[
+     "your", "apps"
+    ],
+    "name":"Example RAW Data Dataset"
+}'
+```
+
 ## Updating a Dataset
 
 In order to modify the dataset, you can PATCH a request.
@@ -570,3 +607,30 @@ curl -X DELETE https://api.resourcewatch.org/v1/dataset/:dataset_id/data/:data_i
 <aside class="notice">
 	This is an authenticated endpoint!
 </aside>
+
+## Dataset data sync
+To sync the data of a dataset, you need to choose the action type (concat or overwrite), a cron pattern and a valid url. This configuration should be set in the 'sync' property when creating or updating a document dataset.
+
+Please be sure that the 'overwrite' property is set to true. This could be used as a lock in order to not allow new updates even if the sync task is actually created.
+
+
+```shell
+curl -X POST https://api.resourcewatch.org/v1/dataset \
+-H "Authorization: Bearer <your-token>" \
+-H "Content-Type: application/json"
+'{
+    "connectorType":"document",
+    "provider":"csv",
+    "connectorUrl":"<csvUrl>",
+    "application":[
+     "your", "apps"
+    ],
+    "name":"Example SYNC Dataset",
+	"overwrite": true,
+	"sync": {
+		"action":"concat",
+		"cronPattern":"0 * * * * *",
+		"url":"<updateCsvUrl>"
+	}
+}'
+```

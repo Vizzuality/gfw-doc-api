@@ -1,13 +1,13 @@
 # Jiminy
 
-To obtain jiminy information of a query, it is possible:
+To get the jiminy information from a query, you can do request the following data:
 
 **/jiminy?sql=select <columns> from <dataset.slug or dataset.id> limit <number>**
 
-It's required set the name of columns that you want obtain jiminy information.
+In order to retrieve the mentioned information, the name of columns that you want obtain jiminy information are required.
 
 <aside class="notice">
-Remember — You always add a limit in the query because jiminy use the return data to obtain the information. If you don't set limit and the dataset contains a lot of data, jiminy will try to obtain all data.
+Remember — It is mandatory to set a limit value. If you don't set it and the dataset contains a lot of data, jiminy tries to obtain all data which can produce performance issues.
 </aside>
 
 > To obtain jiminy information, you have to do a GET with the following query params:

@@ -14,6 +14,7 @@ includes:
   - api/widget
   - api/layer
   - api/query
+  - api/jiminy
   - api/fields
   - api/metadata
   - api/vocabulary

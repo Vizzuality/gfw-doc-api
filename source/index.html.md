@@ -19,6 +19,7 @@ includes:
   - api/metadata
   - api/vocabulary
   - api/geostore
+  - api/subscriptions
   - errors
 
 search: true

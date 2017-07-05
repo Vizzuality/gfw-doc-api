@@ -20,6 +20,7 @@ includes:
   - api/vocabulary
   - api/geostore
   - api/subscriptions
+  - api/favourites
   - errors
 
 search: true

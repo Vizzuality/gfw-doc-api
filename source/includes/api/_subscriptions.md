@@ -41,7 +41,8 @@ You can create a subscription with 6 different params:
 > To create a Subscription, you have to do a POST with the following body:
 
 ```shell
-curl -X POST https://api.resourcewatch.org/v1/subscription \
+curl -X POST https://api.resourcewatch.org/v1/subscriptions \
+-H "Authorization: Bearer <your-token>" \
 -H "Content-Type: application/json"  -d \
  '{
    "name": "<name>",
@@ -70,7 +71,8 @@ curl -X POST https://api.resourcewatch.org/v1/subscription \
 > To create a Subscription, you have to do a POST with the following body:
 
 ```shell
-curl -X POST https://api.resourcewatch.org/v1/subscription \
+curl -X POST https://api.resourcewatch.org/v1/subscriptions \
+-H "Authorization: Bearer <your-token>" \
 -H "Content-Type: application/json"  -d \
  '{
    "name": "<name>",
@@ -102,7 +104,8 @@ curl -X POST https://api.resourcewatch.org/v1/subscription \
 > To create a Subscription, you have to do a POST with the following body:
 
 ```shell
-curl -X POST https://api.resourcewatch.org/v1/subscription \
+curl -X POST https://api.resourcewatch.org/v1/subscriptions \
+-H "Authorization: Bearer <your-token>" \
 -H "Content-Type: application/json"  -d \
  '{
    "name": "<name>",
@@ -133,7 +136,8 @@ curl -X POST https://api.resourcewatch.org/v1/subscription \
 > To create a Subscription, you have to do a POST with the following body:
 
 ```shell
-curl -X POST https://api.resourcewatch.org/v1/subscription \
+curl -X POST https://api.resourcewatch.org/v1/subscriptions \
+-H "Authorization: Bearer <your-token>" \
 -H "Content-Type: application/json"  -d \
  '{
    "name": "<name>",
@@ -162,7 +166,8 @@ curl -X POST https://api.resourcewatch.org/v1/subscription \
 > To create a Subscription, you have to do a POST with the following body:
 
 ```shell
-curl -X POST https://api.resourcewatch.org/v1/subscription \
+curl -X POST https://api.resourcewatch.org/v1/subscriptions \
+-H "Authorization: Bearer <your-token>" \
 -H "Content-Type: application/json"  -d \
  '{
    "name": "<name>",
@@ -185,7 +190,8 @@ Subscription has 4 differents lands use:
 #### Oil palm
 
 ```shell
-curl -X POST https://api.resourcewatch.org/v1/subscription \
+curl -X POST https://api.resourcewatch.org/v1/subscriptions \
+-H "Authorization: Bearer <your-token>" \
 -H "Content-Type: application/json"  -d \
  '{
    "name": "<name>",
@@ -207,7 +213,8 @@ curl -X POST https://api.resourcewatch.org/v1/subscription \
 #### Mining
 
 ```shell
-curl -X POST https://api.resourcewatch.org/v1/subscription \
+curl -X POST https://api.resourcewatch.org/v1/subscriptions \
+-H "Authorization: Bearer <your-token>" \
 -H "Content-Type: application/json"  -d \
  '{
    "name": "<name>",
@@ -228,7 +235,8 @@ curl -X POST https://api.resourcewatch.org/v1/subscription \
 #### Wood fiber
 
 ```shell
-curl -X POST https://api.resourcewatch.org/v1/subscription \
+curl -X POST https://api.resourcewatch.org/v1/subscriptions \
+-H "Authorization: Bearer <your-token>" \
 -H "Content-Type: application/json"  -d \
  '{
    "name": "<name>",
@@ -250,7 +258,8 @@ curl -X POST https://api.resourcewatch.org/v1/subscription \
 #### Congo Basin logging roads
 
 ```shell
-curl -X POST https://api.resourcewatch.org/v1/subscription \
+curl -X POST https://api.resourcewatch.org/v1/subscriptions \
+-H "Authorization: Bearer <your-token>" \
 -H "Content-Type: application/json"  -d \
  '{
    "name": "<name>",
@@ -280,7 +289,8 @@ curl -X POST https://api.resourcewatch.org/v1/subscription \
 > To create a Subscription, you have to do a POST with the following body:
 
 ```shell
-curl -X POST https://api.resourcewatch.org/v1/subscription \
+curl -X POST https://api.resourcewatch.org/v1/subscriptions \
+-H "Authorization: Bearer <your-token>" \
 -H "Content-Type: application/json"  -d \
  '{
    "name": "<name>",
@@ -301,16 +311,17 @@ curl -X POST https://api.resourcewatch.org/v1/subscription \
 
 All subscriptions are created unconfirmed. The user needs confirm his subscription with this endpoint.
 
-
-
-
+```shell
+curl -X GET https://api.resourcewatch.org/v1/subscriptions/:id/confirm
+```
 
 ## Obtain the subscriptions of a user
 
 To get the user subscriptions:
 
 ```shell
-curl -X GET https://api.resourcewatch.org/v1/subscription
+curl -X GET https://api.resourcewatch.org/v1/subscriptions \
+-H "Authorization: Bearer <your-token>" 
 ```
 
 <aside class="success">
@@ -363,7 +374,8 @@ Remember — the response is in JSONApi format
 To resend the confirmation
 
 ```shell
-curl -X PATCH https://api.resourcewatch.org/v1/subscriptions/:id/send_confirmation
+curl -X PATCH https://api.resourcewatch.org/v1/subscriptions/:id/send_confirmation \ 
+-H "Authorization: Bearer <your-token>" 
 ```
 
 ## Modify subscription
@@ -371,7 +383,9 @@ curl -X PATCH https://api.resourcewatch.org/v1/subscriptions/:id/send_confirmati
 To modify a subscription
 
 ```shell
-curl -X PATCH https://api.resourcewatch.org/v1/subscriptions/:id
+curl -X PATCH https://api.resourcewatch.org/v1/subscriptions/:id \
+-H "Authorization: Bearer <your-token>" 
+
 ```
 
 With the same body that create subscription.
@@ -382,7 +396,8 @@ With the same body that create subscription.
 To unsubscribe a subscription
 
 ```shell
-curl -X GET https://api.resourcewatch.org/v1/subscriptions/:id/unsubscribe
+curl -X GET https://api.resourcewatch.org/v1/subscriptions/:id/unsubscribe \
+-H "Authorization: Bearer <your-token>" 
 ```
 
 ## Delete subscription
@@ -390,5 +405,6 @@ curl -X GET https://api.resourcewatch.org/v1/subscriptions/:id/unsubscribe
 To delete a subscription (same that unsubscribe)
 
 ```shell
-curl -X DELETE https://api.resourcewatch.org/v1/subscriptions/:id/unsubscribe
+curl -X DELETE https://api.resourcewatch.org/v1/subscriptions/:id/unsubscribe \
+-H "Authorization: Bearer <your-token>" 
 ```

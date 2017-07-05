@@ -1,7 +1,7 @@
 # Subscriptions
 
 <aside class="notice">
-Remember — All endpoint of subscription need that you are authenticated.
+Remember — All subscription endpoints need to be authenticated.
 </aside>
 
 ## Create Subscription
@@ -321,7 +321,7 @@ To get the user subscriptions:
 
 ```shell
 curl -X GET https://api.resourcewatch.org/v1/subscriptions \
--H "Authorization: Bearer <your-token>" 
+-H "Authorization: Bearer <your-token>"
 ```
 
 <aside class="success">
@@ -374,8 +374,8 @@ Remember — the response is in JSONApi format
 To resend the confirmation
 
 ```shell
-curl -X PATCH https://api.resourcewatch.org/v1/subscriptions/:id/send_confirmation \ 
--H "Authorization: Bearer <your-token>" 
+curl -X PATCH https://api.resourcewatch.org/v1/subscriptions/:id/send_confirmation \
+-H "Authorization: Bearer <your-token>"
 ```
 
 ## Modify subscription
@@ -384,7 +384,7 @@ To modify a subscription
 
 ```shell
 curl -X PATCH https://api.resourcewatch.org/v1/subscriptions/:id \
--H "Authorization: Bearer <your-token>" 
+-H "Authorization: Bearer <your-token>"
 
 ```
 
@@ -397,7 +397,7 @@ To unsubscribe a subscription
 
 ```shell
 curl -X GET https://api.resourcewatch.org/v1/subscriptions/:id/unsubscribe \
--H "Authorization: Bearer <your-token>" 
+-H "Authorization: Bearer <your-token>"
 ```
 
 ## Delete subscription
@@ -406,5 +406,5 @@ To delete a subscription (same that unsubscribe)
 
 ```shell
 curl -X DELETE https://api.resourcewatch.org/v1/subscriptions/:id/unsubscribe \
--H "Authorization: Bearer <your-token>" 
+-H "Authorization: Bearer <your-token>"
 ```

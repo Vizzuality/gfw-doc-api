@@ -69,6 +69,7 @@ Remember — the response is in JSONApi format
 			"connectorUrl": "https://wri-01.carto.com/tables/combined01_prepared",
 			"tableName": "combined01_prepared",
 			"status": "saved",
+			"published": true,
 			"overwrite": false,
 			"legend": {
 				"date": [],
@@ -217,6 +218,9 @@ To create a dataset, you need to define all of the required fields in the reques
 | legend            | Legend for dataset. Keys for special fields                   | Object | "legend": {"long": "123", "lat": "123", "country": ["pais"], "region": ["barrio"], "date": ["startDate", "endDate"]}} | No
 | overwrite         | It allows to overwrite dataset data                           | Boolean| true/false                                      | No                                 
 | vocabularies      | Cluster of tags                                               | Object | {"vocabularyOne": {"tags": [<tags>]},"vocabularyTwo": {"tags": [<tags>]}} | No
+| widgetRelevantProps      | Group of relevant props of a widget					| Array  | Any Text 									   | No
+| layerRelevantProps       | Group of relevant props of a layer					    | Array  | Any Text 									   | No
+
 
 There are some differences between datasets types.
 

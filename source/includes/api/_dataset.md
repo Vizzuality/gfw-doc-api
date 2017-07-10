@@ -102,6 +102,12 @@ Available filters: Any dataset property
 curl -X GET https://api.resourcewatch.org/v1/dataset?name=birds&provider=cartodb
 ```
 
+Inclusive filtering with array props using '@'
+
+```shell
+curl -X GET https://api.resourcewatch.org/v1/dataset?app=gfw@rw@prep
+```
+
 ### Sorting
 
 Available sorting: Any dataset property (desc: -)
@@ -127,7 +133,7 @@ curl -X GET https://api.resourcewatch.org/v1/dataset?sort=slug,-provider,userId&
 By vocabulary-tag matching
 
 ```shell
-curl -X GET https://api.resourcewatch.org/v1dataset?sort=slug,-provider,userId&status=saved&includes=metadata,vocabulary,widget,layer&vocabulary[legacy]=umd
+curl -X GET https://api.resourcewatch.org/v1/dataset?sort=slug,-provider,userId&status=saved&includes=metadata,vocabulary,widget,layer&vocabulary[legacy]=umd
 ```
 
 ### Pagination
@@ -217,9 +223,12 @@ To create a dataset, you need to define all of the required fields in the reques
 | dataAttributes    | Data fields - for json connector if data present              | Object | {"key1": {"type": "string"},... }               | No (just for json if connectorUrl is not present)
 | legend            | Legend for dataset. Keys for special fields                   | Object | "legend": {"long": "123", "lat": "123", "country": ["pais"], "region": ["barrio"], "date": ["startDate", "endDate"]}} | No
 | overwrite         | It allows to overwrite dataset data                           | Boolean| true/false                                      | No                                 
+| published         | To set a public or private dataset                            | Boolean| true/false                                      | No                                 
+| verified          | To generate a verified blockchain of the dataset              | Boolean| true/false                                      | No                                 
 | vocabularies      | Cluster of tags                                               | Object | {"vocabularyOne": {"tags": [<tags>]},"vocabularyTwo": {"tags": [<tags>]}} | No
 | widgetRelevantProps      | Group of relevant props of a widget					| Array  | Any Text 									   | No
 | layerRelevantProps       | Group of relevant props of a layer					    | Array  | Any Text 									   | No
+| subscribable      | Available dataset queries             						 | Object | {"<queryName>": "<queryBodyTemplate>"}          | No (just for json if connectorUrl is not present)
 
 
 There are some differences between datasets types.
@@ -442,7 +451,6 @@ connectorUrl. With this connectorUrl you can create or update a "document" datas
 ```shell
 curl -X POST https://api.resourcewatch.org/v1/dataset/upload \
 -H "Authorization: Bearer <your-token>" \
--H "Content-Type: multipart/form-data" \
 -F "dataset=@<your-file>"
 ```
 

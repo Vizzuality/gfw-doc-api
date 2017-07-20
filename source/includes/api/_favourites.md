@@ -52,6 +52,13 @@ curl -X GET https://api.resourcewatch.org/v1/favourite \
 -H "Authorization: Bearer <your-token>"
 ```
 
+You can also retrieve all data about the resources just including the query parameter "include=true" in the request.
+
+```shell
+curl -X GET https://api.resourcewatch.org/v1/favourite?include=true \
+-H "Authorization: Bearer <your-token>"
+```
+
 ## Get favourite by id
 
 This endpoint returns the favourite with id of the param. If the favourite belongs to other user or not exist, the endpoint returns 400.
@@ -75,4 +82,3 @@ This endpoint deletes the favourite with id of the param. If the favourite belon
 curl -X DELETE https://api.resourcewatch.org/v1/favourite/:id \
 -H "Authorization: Bearer <your-token>"
 ```
-

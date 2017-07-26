@@ -21,6 +21,11 @@ ArcGIS Online is a Complete, Cloud-Based Mapping Platform
 <a href="https://earthengine.google.com/"><img src="https://earthengine.google.com/static/images/GoogleEarthEngine_Grey_108.png" class="logo-third"/></a>
 Google Earth Engine combines a multi-petabyte catalog of satellite imagery and geospatial datasets with planetary-scale analysis capabilities and makes it available for scientists, researchers, and developers to detect changes, map trends, and quantify differences on the Earth's surface.
 
+### Rasdaman
+**(connectorType: 'rest', provider: 'rasdaman')**
+Rasdaman ('raster data manager') is a database with capabilities for storage, manipulation and retrieval of multidimensional arrays.
+
+
 ### CSV
 **(connectorType: 'document', provider: 'csv')**
 
@@ -309,6 +314,21 @@ curl -X POST https://api.resourcewatch.org/v1/dataset \
 }'
 ```
 
+### Rasdaman
+The `connectorUrl` must be a valid url that responds to a Web Coverage Service (WCS Core) DescribeCoverage call with a valid XML document.
+
+```shell
+curl -H 'Authorization: Bearer <your-token>'  -H 'Content-Type: application/json' -XPOST 'https://api.resourcewatch.org/v1/dataset' -d '{
+    "connectorType":"rest",
+    "provider":"rasdaman",
+    "connectorUrl":"http://54.146.170.2:8080/rasdaman/ows?&SERVICE=WCS&VERSION=2.0.1&REQUEST=DescribeCoverage&COVERAGEID=nightlights",
+    "application":[
+     "rw"
+    ],
+    "name":"nightlights"
+}'
+```
+
 ### Document-CSV, Document-TSV, Document-XML
 
 The `connectorUrl` must be an accessible CSV, TSV or XML file, non-compressed - zip, tar, tar.gz, etc are not supported.
@@ -323,7 +343,7 @@ CSV datasets support some optional fields on the creation process. They are:
 | -- date           | Name of columns with date value (ISO Format)      | Array | Any list word | No
 | -- region         | Name of columns with region value (ISO3 code)     | Array | Any list word | No
 | -- country        | Name of columns with country value (ISO3 code)    | Array | Any list word | No
-
+z
 
 ```shell
 curl -X POST https://api.resourcewatch.org/v1/dataset \

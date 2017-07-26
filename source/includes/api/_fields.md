@@ -47,3 +47,52 @@ curl -X GET https://api.resourcewatch.org/v1/fields/1170030b-9725-4bfe-8fb4-1b0e
 	}
 }
 ```
+
+### Rasdaman
+
+The structure of datacubes needs of a more verbose fields specification. The fields endpoint for rasdaman-backed datasets includes information on the spatial reference system, nodata values, axes, units, and bands. It looks like so:
+
+> Example
+
+```shell
+curl -i  -XGET 'http://api.resourcewatch.org/v1/fields/491ae6fe-6767-44d1-b5c3-c7b8b384bb7a' 
+```
+
+> Response
+
+```json
+{
+  "coverageId": "nightlights",
+  "srs": {
+    "srsDimension": "2",
+    "srs": "crs/EPSG/0/4326"
+  },
+  "axisLabels": "Lat Long",
+  "uomLabels": "degree degree",
+  "fields": {
+    "undefined": {
+      "swe:nilValues": {
+        "swe:NilValues": {
+          "swe:nilValue": [
+            {
+              "reason": "",
+              "$t": "1"
+            },
+            {
+              "reason": "",
+              "$t": "2"
+            }
+          ]
+        }
+      },
+      "swe:uom": {
+        "code": "10^0"
+      }
+    }
+  },
+  "coverageBounds": {
+    "upperCorner": "89.999999999966665 180.000000000189335",
+    "lowerCorner": "-89.999999999961335 -179.999999999666665"
+  }
+}
+```

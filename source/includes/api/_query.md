@@ -45,7 +45,7 @@ select count(*) FROM tablename group by ST_GeoHash(the_geom, 8)
 
 ```
 
-## Raster queries
+## Rasdaman queries
 
 Rasdaman datasets do not expose a SQL interface from where to query the data – instead it offers interfaces to WCPS (the OGC Web Coverage Processing Service) and RasQL (a superset of SQL dealing with coverages). So far only WCPS is supported in the RW API. Two different endpoints are offered: one to directly run WCPS queries against the database, and one that abstracts the calculation of (2D) zonal statistics on rasdaman coverages with vector masks. For more information on the WCPS standard, consult the [OGC page](http://www.opengeospatial.org/standards/wcp) about it
 

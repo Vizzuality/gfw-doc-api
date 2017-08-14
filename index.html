@@ -130,7 +130,7 @@
 <p>To generate your own token, follow the next steps:</p>
 
 <ol>
-<li>Navigate to <a href="http://api.resourcewatch.org:82">http://api.resourcewatch.org:82</a>
+<li>Navigate to <a href="http://ui.resourcewatch.org:82">http://ui.resourcewatch.org:82</a>
 If you aren&rsquo;t logged in yet, the application will redirect you to the login page.
 You will see:
 <img src="images/authentication/login.png" alt="Control Tower login page" /></li>
@@ -154,7 +154,7 @@ You will see:
 <li>Allowed role values: USER, MANAGER, ADMIN</li>
 <li>Apps: rw, gfw, prep, etc&hellip;</li>
 </ul>
-<pre class="highlight shell"><code>curl -X POST https://api.resourcewatch.org/auth/user <span class="se">\</span>
+<pre class="highlight shell"><code>curl -X POST https://production-api.globalforestwatch.org/auth/user <span class="se">\</span>
 -H <span class="s2">"Authorization: Bearer &lt;your-token&gt;"</span> <span class="se">\</span>
 -H <span class="s2">"Content-Type: application/json"</span>  -d <span class="se">\</span>
  <span class="s1">'{
@@ -221,7 +221,7 @@ Rasdaman (&#39;raster data manager&rsquo;) is a database with capabilities for s
 <h2 id="getting-all-datasets">Getting all datasets</h2>
 
 <p>To get all datasets:</p>
-<pre class="highlight shell"><code>curl -X GET https://api.resourcewatch.org/v1/dataset
+<pre class="highlight shell"><code>curl -X GET https://production-api.globalforestwatch.org/v1/dataset
 </code></pre>
 <aside class="success">
 Remember — the response is in JSONApi format
@@ -275,26 +275,26 @@ The dataset slug cannot be updated even if the name changes.</p>
 <h3 id="filters">Filters</h3>
 
 <p>Available filters: Any dataset property</p>
-<pre class="highlight shell"><code>curl -X GET https://api.resourcewatch.org/v1/dataset?name<span class="o">=</span>birds&amp;provider<span class="o">=</span>cartodb
+<pre class="highlight shell"><code>curl -X GET https://production-api.globalforestwatch.org/v1/dataset?name<span class="o">=</span>birds&amp;provider<span class="o">=</span>cartodb
 </code></pre>
 <p>Inclusive filtering with array props using &rsquo;@&rsquo;</p>
-<pre class="highlight shell"><code>curl -X GET https://api.resourcewatch.org/v1/dataset?app<span class="o">=</span>gfw@rw@prep
+<pre class="highlight shell"><code>curl -X GET https://production-api.globalforestwatch.org/v1/dataset?app<span class="o">=</span>gfw@rw@prep
 </code></pre>
 <h3 id="sorting">Sorting</h3>
 
 <p>Available sorting: Any dataset property (desc: -)</p>
-<pre class="highlight shell"><code>curl -X GET https://api.resourcewatch.org/v1/dataset?sort<span class="o">=</span>-provider,slug
-</code></pre><pre class="highlight shell"><code>curl -X GET https://api.resourcewatch.org/v1/dataset?sort<span class="o">=</span>slug,-provider,userId&amp;status<span class="o">=</span>saved
+<pre class="highlight shell"><code>curl -X GET https://production-api.globalforestwatch.org/v1/dataset?sort<span class="o">=</span>-provider,slug
+</code></pre><pre class="highlight shell"><code>curl -X GET https://production-api.globalforestwatch.org/v1/dataset?sort<span class="o">=</span>slug,-provider,userId&amp;status<span class="o">=</span>saved
 </code></pre>
 <h3 id="relationships">Relationships</h3>
 
 <p>Available relationships: Any dataset relationship [&#39;widget&rsquo;, &#39;layer&rsquo;, &#39;vocabulary&rsquo;, &#39;metadata&rsquo;]</p>
-<pre class="highlight shell"><code>curl -X GET https://api.resourcewatch.org/v1/dataset?sort<span class="o">=</span>slug,-provider,userId&amp;status<span class="o">=</span>saved&amp;includes<span class="o">=</span>metadata,vocabulary,widget,layer
+<pre class="highlight shell"><code>curl -X GET https://production-api.globalforestwatch.org/v1/dataset?sort<span class="o">=</span>slug,-provider,userId&amp;status<span class="o">=</span>saved&amp;includes<span class="o">=</span>metadata,vocabulary,widget,layer
 </code></pre>
 <h3 id="advanced-filters">Advanced filters</h3>
 
 <p>By vocabulary-tag matching</p>
-<pre class="highlight shell"><code>curl -X GET https://api.resourcewatch.org/v1/dataset?sort<span class="o">=</span>slug,-provider,userId&amp;status<span class="o">=</span>saved&amp;includes<span class="o">=</span>metadata,vocabulary,widget,layer&amp;vocabulary[legacy]<span class="o">=</span>umd
+<pre class="highlight shell"><code>curl -X GET https://production-api.globalforestwatch.org/v1/dataset?sort<span class="o">=</span>slug,-provider,userId&amp;status<span class="o">=</span>saved&amp;includes<span class="o">=</span>metadata,vocabulary,widget,layer&amp;vocabulary[legacy]<span class="o">=</span>umd
 </code></pre>
 <h3 id="pagination">Pagination</h3>
 
@@ -316,15 +316,15 @@ The dataset slug cannot be updated even if the name changes.</p>
 <td style="text-align: right">Number</td>
 </tr>
 </tbody></table>
-<pre class="highlight shell"><code>curl -X GET https://api.resourcewatch.org/v1/dataset?sort<span class="o">=</span>slug,-provider,userId&amp;status<span class="o">=</span>saved&amp;includes<span class="o">=</span>metadata,vocabulary,widget,layer&amp;vocabulary[legacy]<span class="o">=</span>threshold&amp;page[number]<span class="o">=</span>1
-curl -X GET https://api.resourcewatch.org/v1/dataset?sort<span class="o">=</span>slug,-provider,userId&amp;status<span class="o">=</span>saved&amp;includes<span class="o">=</span>metadata,vocabulary,widget,layer&amp;vocabulary[legacy]<span class="o">=</span>threshold&amp;page[number]<span class="o">=</span>2
+<pre class="highlight shell"><code>curl -X GET https://production-api.globalforestwatch.org/v1/dataset?sort<span class="o">=</span>slug,-provider,userId&amp;status<span class="o">=</span>saved&amp;includes<span class="o">=</span>metadata,vocabulary,widget,layer&amp;vocabulary[legacy]<span class="o">=</span>threshold&amp;page[number]<span class="o">=</span>1
+curl -X GET https://production-api.globalforestwatch.org/v1/dataset?sort<span class="o">=</span>slug,-provider,userId&amp;status<span class="o">=</span>saved&amp;includes<span class="o">=</span>metadata,vocabulary,widget,layer&amp;vocabulary[legacy]<span class="o">=</span>threshold&amp;page[number]<span class="o">=</span>2
 </code></pre>
 <h2 id="how-to-get-a-specific-dataset">How to get a specific dataset</h2>
 
 <blockquote>
 <p>To get a dataset:</p>
 </blockquote>
-<pre class="highlight shell"><code>curl -X GET https://api.resourcewatch.org/v1/dataset/51943691-eebc-4cb4-bdfb-057ad4fc2145
+<pre class="highlight shell"><code>curl -X GET https://production-api.globalforestwatch.org/v1/dataset/51943691-eebc-4cb4-bdfb-057ad4fc2145
 </code></pre>
 <blockquote>
 <p>Response:</p>
@@ -366,7 +366,7 @@ curl -X GET https://api.resourcewatch.org/v1/dataset?sort<span class="o">=</span
 <blockquote>
 <p>To get the dataset including its relationships:</p>
 </blockquote>
-<pre class="highlight shell"><code>curl -X GET https://api.resourcewatch.org/v1/dataset/06c44f9a-aae7-401e-874c-de13b7764959?includes<span class="o">=</span>metadata,vocabulary,widget,layer
+<pre class="highlight shell"><code>curl -X GET https://production-api.globalforestwatch.org/v1/dataset/06c44f9a-aae7-401e-874c-de13b7764959?includes<span class="o">=</span>metadata,vocabulary,widget,layer
 </code></pre>
 <aside class="success">
 Remember — the response is in JSONApi format
@@ -525,7 +525,7 @@ Remember — the response is in JSONApi format
 <p>There are some differences between datasets types.</p>
 
 <h3 id="rest-carto-datasets">Rest-Carto datasets</h3>
-<pre class="highlight shell"><code>curl -X POST https://api.resourcewatch.org/v1/dataset <span class="se">\</span>
+<pre class="highlight shell"><code>curl -X POST https://production-api.globalforestwatch.org/v1/dataset <span class="se">\</span>
 -H <span class="s2">"Authorization: Bearer &lt;your-token&gt;"</span> <span class="se">\</span>
 -H <span class="s2">"Content-Type: application/json"</span>  -d <span class="se">\</span>
  <span class="s1">'{
@@ -541,7 +541,7 @@ Remember — the response is in JSONApi format
 <blockquote>
 <p>A real example:</p>
 </blockquote>
-<pre class="highlight shell"><code>curl -X POST https://api.resourcewatch.org/v1/dataset <span class="se">\</span>
+<pre class="highlight shell"><code>curl -X POST https://production-api.globalforestwatch.org/v1/dataset <span class="se">\</span>
 -H <span class="s2">"Authorization: Bearer &lt;your-token&gt;"</span> <span class="se">\</span>
 -H <span class="s2">"Content-Type: application/json"</span>  -d <span class="se">\</span>
 <span class="s1">'{
@@ -559,7 +559,7 @@ Remember — the response is in JSONApi format
 </aside>
 
 <h3 id="rest-arcgis">Rest-ArcGIS</h3>
-<pre class="highlight shell"><code>curl -X POST https://api.resourcewatch.org/v1/dataset <span class="se">\</span>
+<pre class="highlight shell"><code>curl -X POST https://production-api.globalforestwatch.org/v1/dataset <span class="se">\</span>
 -H <span class="s2">"Authorization: Bearer &lt;your-token&gt;"</span> <span class="se">\</span>
 -H <span class="s2">"Content-Type: application/json"</span>  -d <span class="se">\</span>
 <span class="s1">'{
@@ -577,7 +577,7 @@ Remember — the response is in JSONApi format
 </aside>
 
 <h3 id="rest-gee">Rest-GEE</h3>
-<pre class="highlight shell"><code>curl -X POST https://api.resourcewatch.org/v1/dataset <span class="se">\</span>
+<pre class="highlight shell"><code>curl -X POST https://production-api.globalforestwatch.org/v1/dataset <span class="se">\</span>
 -H <span class="s2">"Authorization: Bearer &lt;your-token&gt;"</span> <span class="se">\</span>
 -H <span class="s2">"Content-Type: application/json"</span>  -d <span class="se">\</span>
 <span class="s1">'{
@@ -593,7 +593,7 @@ Remember — the response is in JSONApi format
 <h3 id="rasdaman">Rasdaman</h3>
 
 <p>The <code class="prettyprint">connectorUrl</code> must be a valid url that responds to a Web Coverage Service (WCS Core) DescribeCoverage call with a valid XML document.</p>
-<pre class="highlight shell"><code>curl -H <span class="s1">'Authorization: Bearer &lt;your-token&gt;'</span>  -H <span class="s1">'Content-Type: application/json'</span> -XPOST <span class="s1">'https://api.resourcewatch.org/v1/dataset'</span> -d <span class="s1">'{
+<pre class="highlight shell"><code>curl -H <span class="s1">'Authorization: Bearer &lt;your-token&gt;'</span>  -H <span class="s1">'Content-Type: application/json'</span> -XPOST <span class="s1">'https://production-api.globalforestwatch.org/v1/dataset'</span> -d <span class="s1">'{
     "connectorType":"rest",
     "provider":"rasdaman",
     "connectorUrl":"http://54.146.170.2:8080/rasdaman/ows?&amp;SERVICE=WCS&amp;VERSION=2.0.1&amp;REQUEST=DescribeCoverage&amp;COVERAGEID=nightlights",
@@ -663,7 +663,7 @@ Remember — the response is in JSONApi format
 </tbody></table>
 
 <p>z</p>
-<pre class="highlight shell"><code>curl -X POST https://api.resourcewatch.org/v1/dataset <span class="se">\</span>
+<pre class="highlight shell"><code>curl -X POST https://production-api.globalforestwatch.org/v1/dataset <span class="se">\</span>
 -H <span class="s2">"Authorization: Bearer &lt;your-token&gt;"</span> <span class="se">\</span>
 -H <span class="s2">"Content-Type: application/json"</span>  -d <span class="se">\</span>
 <span class="s1">'{
@@ -686,7 +686,7 @@ Remember — the response is in JSONApi format
 <blockquote>
 <p>Real example:</p>
 </blockquote>
-<pre class="highlight shell"><code>curl -X POST https://api.resourcewatch.org/v1/dataset <span class="se">\</span>
+<pre class="highlight shell"><code>curl -X POST https://production-api.globalforestwatch.org/v1/dataset <span class="se">\</span>
 -H <span class="s2">"Authorization: Bearer &lt;your-token&gt;"</span> <span class="se">\</span>
 -H <span class="s2">"Content-Type: application/json"</span>  -d <span class="se">\</span>
 <span class="s1">'{
@@ -778,7 +778,7 @@ Remember — the response is in JSONApi format
 <aside class="notice">
     This is an authenticated endpoint!
 </aside>
-<pre class="highlight shell"><code>curl -X POST https://api.resourcewatch.org/v1/dataset <span class="se">\</span>
+<pre class="highlight shell"><code>curl -X POST https://production-api.globalforestwatch.org/v1/dataset <span class="se">\</span>
 -H <span class="s2">"Authorization: Bearer &lt;your-token&gt;"</span> <span class="se">\</span>
 -H <span class="s2">"Content-Type: application/json"</span>  -d <span class="se">\</span>
 <span class="s1">'{
@@ -799,7 +799,7 @@ Remember — the response is in JSONApi format
 }'</span>
 </code></pre>
 <p>Or it is also possible to create a JSON dataset setting the data directly in the request:</p>
-<pre class="highlight shell"><code>curl -X POST https://api.resourcewatch.org/v1/dataset <span class="se">\</span>
+<pre class="highlight shell"><code>curl -X POST https://production-api.globalforestwatch.org/v1/dataset <span class="se">\</span>
 -H <span class="s2">"Authorization: Bearer &lt;your-token&gt;"</span> <span class="se">\</span>
 -H <span class="s2">"Content-Type: application/json"</span>  -d <span class="se">\</span>
 <span class="s1">'{
@@ -828,7 +828,7 @@ Remember — the response is in JSONApi format
 <p>You can upload your raw data directly to S3 making use of the &ldquo;upload&rdquo; endpoint.
 This endpoint accepts a file in the property &ldquo;dataset&rdquo; and returns a valid
 connectorUrl. With this connectorUrl you can create or update a &ldquo;document&rdquo; dataset.</p>
-<pre class="highlight shell"><code>curl -X POST https://api.resourcewatch.org/v1/dataset/upload <span class="se">\</span>
+<pre class="highlight shell"><code>curl -X POST https://production-api.globalforestwatch.org/v1/dataset/upload <span class="se">\</span>
 -H <span class="s2">"Authorization: Bearer &lt;your-token&gt;"</span> <span class="se">\</span>
 -F <span class="s2">"dataset=@&lt;your-file&gt;"</span>
 </code></pre>
@@ -840,7 +840,7 @@ connectorUrl. With this connectorUrl you can create or update a &ldquo;document&
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"connectorUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"rw.dataset.raw/tmp/upload_75755182b1ceda30abed717f655c077d-observed_temp.csv"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><pre class="highlight shell"><code>curl -X POST https://api.resourcewatch.org/v1/dataset <span class="se">\</span>
+</span></code></pre><pre class="highlight shell"><code>curl -X POST https://production-api.globalforestwatch.org/v1/dataset <span class="se">\</span>
 -H <span class="s2">"Authorization: Bearer &lt;your-token&gt;"</span> <span class="se">\</span>
 -H <span class="s2">"Content-Type: application/json"</span>
 <span class="s1">'{
@@ -861,7 +861,7 @@ It accepts the same parameters as the <em>create dataset</em> endpoint, and you 
 <blockquote>
 <p>An example update request:</p>
 </blockquote>
-<pre class="highlight shell"><code>curl -X PATCH https://api.resourcewatch.org/v1/dataset/&lt;dataset-id&gt; <span class="se">\</span>
+<pre class="highlight shell"><code>curl -X PATCH https://production-api.globalforestwatch.org/v1/dataset/&lt;dataset-id&gt; <span class="se">\</span>
 -H <span class="s2">"Authorization: Bearer &lt;your-token&gt;"</span> <span class="se">\</span>
 -H <span class="s2">"Content-Type: application/json"</span> -d <span class="se">\</span>
 <span class="s1">'{
@@ -873,7 +873,7 @@ It accepts the same parameters as the <em>create dataset</em> endpoint, and you 
 </aside>
 
 <h2 id="deleting-a-dataset">Deleting a Dataset</h2>
-<pre class="highlight shell"><code>curl -X DELETE https://api.resourcewatch.org/v1/dataset/&lt;dataset-id&gt; <span class="se">\</span>
+<pre class="highlight shell"><code>curl -X DELETE https://production-api.globalforestwatch.org/v1/dataset/&lt;dataset-id&gt; <span class="se">\</span>
 -H <span class="s2">"Authorization: Bearer &lt;your-token&gt;"</span>
 -H <span class="s2">"Content-Type: application/json"</span>
 </code></pre>
@@ -882,7 +882,7 @@ It accepts the same parameters as the <em>create dataset</em> endpoint, and you 
 </aside>
 
 <h2 id="cloning-a-dataset">Cloning a Dataset</h2>
-<pre class="highlight shell"><code>curl -X POST https://api.resourcewatch.org/v1/dataset/5306fd54-df71-4e20-8b34-2ff464ab28be/clone <span class="se">\</span>
+<pre class="highlight shell"><code>curl -X POST https://production-api.globalforestwatch.org/v1/dataset/5306fd54-df71-4e20-8b34-2ff464ab28be/clone <span class="se">\</span>
 -H <span class="s2">"Authorization: Bearer &lt;your-token&gt;"</span>
 -H <span class="s2">"Content-Type: application/json"</span> -d <span class="se">\</span>
 <span class="s1">'{
@@ -906,7 +906,7 @@ It accepts the same parameters as the <em>create dataset</em> endpoint, and you 
 <blockquote>
 <p>Concatenate data using external data source:</p>
 </blockquote>
-<pre class="highlight shell"><code>curl -X POST https://api.resourcewatch.org/v1/dataset/:dataset_id/concat <span class="se">\</span>
+<pre class="highlight shell"><code>curl -X POST https://production-api.globalforestwatch.org/v1/dataset/:dataset_id/concat <span class="se">\</span>
 -H <span class="s2">"Authorization: Bearer &lt;your-token&gt;"</span> <span class="se">\</span>
 -H <span class="s2">"Content-Type: application/json"</span>  -d <span class="se">\</span>
 <span class="s1">'{
@@ -917,7 +917,7 @@ It accepts the same parameters as the <em>create dataset</em> endpoint, and you 
 <blockquote>
 <p>Concatenate data using JSON array in post body:</p>
 </blockquote>
-<pre class="highlight shell"><code>curl -X POST https://api.resourcewatch.org/v1/dataset/:dataset_id/concat <span class="se">\</span>
+<pre class="highlight shell"><code>curl -X POST https://production-api.globalforestwatch.org/v1/dataset/:dataset_id/concat <span class="se">\</span>
 -H <span class="s2">"Authorization: Bearer &lt;your-token&gt;"</span> <span class="se">\</span>
 -H <span class="s2">"Content-Type: application/json"</span>  -d <span class="se">\</span>
 <span class="s1">'{
@@ -935,7 +935,7 @@ It accepts the same parameters as the <em>create dataset</em> endpoint, and you 
 <blockquote>
 <p>Overwrite data using external data source:</p>
 </blockquote>
-<pre class="highlight shell"><code>curl -X POST https://api.resourcewatch.org/v1/dataset/:dataset_id/data-overwrite <span class="se">\</span>
+<pre class="highlight shell"><code>curl -X POST https://production-api.globalforestwatch.org/v1/dataset/:dataset_id/data-overwrite <span class="se">\</span>
 -H <span class="s2">"Authorization: Bearer &lt;your-token&gt;"</span> <span class="se">\</span>
 -H <span class="s2">"Content-Type: application/json"</span>  -d <span class="se">\</span>
 <span class="s1">'{
@@ -946,7 +946,7 @@ It accepts the same parameters as the <em>create dataset</em> endpoint, and you 
 <blockquote>
 <p>Overwrite data using JSON array in post body:</p>
 </blockquote>
-<pre class="highlight shell"><code>curl -X POST https://api.resourcewatch.org/v1/dataset/:dataset_id/data-overwrite <span class="se">\</span>
+<pre class="highlight shell"><code>curl -X POST https://production-api.globalforestwatch.org/v1/dataset/:dataset_id/data-overwrite <span class="se">\</span>
 -H <span class="s2">"Authorization: Bearer &lt;your-token&gt;"</span> <span class="se">\</span>
 -H <span class="s2">"Content-Type: application/json"</span>  -d <span class="se">\</span>
 <span class="s1">'{
@@ -960,7 +960,7 @@ It accepts the same parameters as the <em>create dataset</em> endpoint, and you 
 <h2 id="overwrite-specific-data">Overwrite specific Data</h2>
 
 <p>You can overwrite specific data if the overwrite dataset property has been set to true.</p>
-<pre class="highlight shell"><code>curl -X POST https://api.resourcewatch.org/v1/dataset/:dataset_id/data/:data_id <span class="se">\</span>
+<pre class="highlight shell"><code>curl -X POST https://production-api.globalforestwatch.org/v1/dataset/:dataset_id/data/:data_id <span class="se">\</span>
 -H <span class="s2">"Authorization: Bearer &lt;your-token&gt;"</span> <span class="se">\</span>
 -H <span class="s2">"Content-Type: application/json"</span>  -d <span class="se">\</span>
 <span class="s1">'{
@@ -975,7 +975,7 @@ It accepts the same parameters as the <em>create dataset</em> endpoint, and you 
 <h2 id="delete-specific-data">Delete specific Data</h2>
 
 <p>You can delete specific data if the overwrite dataset property has been set to true.</p>
-<pre class="highlight shell"><code>curl -X DELETE https://api.resourcewatch.org/v1/dataset/:dataset_id/data/:data_id <span class="se">\</span>
+<pre class="highlight shell"><code>curl -X DELETE https://production-api.globalforestwatch.org/v1/dataset/:dataset_id/data/:data_id <span class="se">\</span>
 -H <span class="s2">"Authorization: Bearer &lt;your-token&gt;"</span> <span class="se">\</span>
 -H <span class="s2">"Content-Type: application/json"</span>
 </code></pre>
@@ -988,7 +988,7 @@ It accepts the same parameters as the <em>create dataset</em> endpoint, and you 
 <p>To sync the data of a dataset, you need to choose the action type (concat or overwrite), a cron pattern and a valid url. This configuration should be set in the &#39;sync&rsquo; property when creating or updating a document dataset.</p>
 
 <p>Please be sure that the &#39;overwrite&rsquo; property is set to true. This could be used as a lock in order to not allow new updates even if the sync task is actually created.</p>
-<pre class="highlight shell"><code>curl -X POST https://api.resourcewatch.org/v1/dataset <span class="se">\</span>
+<pre class="highlight shell"><code>curl -X POST https://production-api.globalforestwatch.org/v1/dataset <span class="se">\</span>
 -H <span class="s2">"Authorization: Bearer &lt;your-token&gt;"</span> <span class="se">\</span>
 -H <span class="s2">"Content-Type: application/json"</span>
 <span class="s1">'{
@@ -1117,7 +1117,7 @@ It accepts the same parameters as the <em>create dataset</em> endpoint, and you 
 <h2 id="how-obtain-all-widgets">How obtain all widgets</h2>
 
 <p>To obtain all widgets:</p>
-<pre class="highlight shell"><code>curl -X GET https://api.resourcewatch.org/v1/widget
+<pre class="highlight shell"><code>curl -X GET https://production-api.globalforestwatch.org/v1/widget
 </code></pre>
 <aside class="success">
 Remember — the response is jsonapi format
@@ -1157,11 +1157,11 @@ Remember — the response is jsonapi format
       </span><span class="p">}</span><span class="w">
    </span><span class="p">],</span><span class="w">
    </span><span class="nt">"links"</span><span class="p">:{</span><span class="w">
-      </span><span class="nt">"first"</span><span class="p">:</span><span class="s2">"https://api.resourcewatch.org/v1/widget?page%5Bnumber%5D=1"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"prev"</span><span class="p">:</span><span class="s2">"https://api.resourcewatch.org/v1/widget?page%5Bnumber%5D=1"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"next"</span><span class="p">:</span><span class="s2">"https://api.resourcewatch.org/v1/widget?page%5Bnumber%5D=2&amp;page%5Bsize%5D=10"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"last"</span><span class="p">:</span><span class="s2">"https://api.resourcewatch.org/v1/widget?page%5Bnumber%5D=64&amp;page%5Bsize%5D=10"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"self"</span><span class="p">:</span><span class="s2">"https://api.resourcewatch.org/v1/widget?page%5Bnumber%5D=1&amp;page%5Bsize%5D=10"</span><span class="w">
+      </span><span class="nt">"first"</span><span class="p">:</span><span class="s2">"https://production-api.globalforestwatch.org/v1/widget?page%5Bnumber%5D=1"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"prev"</span><span class="p">:</span><span class="s2">"https://production-api.globalforestwatch.org/v1/widget?page%5Bnumber%5D=1"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"next"</span><span class="p">:</span><span class="s2">"https://production-api.globalforestwatch.org/v1/widget?page%5Bnumber%5D=2&amp;page%5Bsize%5D=10"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"last"</span><span class="p">:</span><span class="s2">"https://production-api.globalforestwatch.org/v1/widget?page%5Bnumber%5D=64&amp;page%5Bsize%5D=10"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"self"</span><span class="p">:</span><span class="s2">"https://production-api.globalforestwatch.org/v1/widget?page%5Bnumber%5D=1&amp;page%5Bsize%5D=10"</span><span class="w">
    </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
@@ -1226,48 +1226,48 @@ Remember — the response is jsonapi format
 <blockquote>
 <p>Return the widgets filtered whose name contains glad</p>
 </blockquote>
-<pre class="highlight shell"><code>curl -X GET https://api.resourcewatch.org/v1/widget?name<span class="o">=</span>glad
+<pre class="highlight shell"><code>curl -X GET https://production-api.globalforestwatch.org/v1/widget?name<span class="o">=</span>glad
 </code></pre>
 <blockquote>
 <p>Return the widgets filtered by dataset</p>
 </blockquote>
-<pre class="highlight shell"><code>curl -X GET https://api.resourcewatch.org/v1/widget?dataset<span class="o">=</span>d02df2f6-d80c-4274-bb6f-f062061655c4
-curl -X GET https://api.resourcewatch.org/v1/dataset/d02df2f6-d80c-4274-bb6f-f062061655c4/widget
+<pre class="highlight shell"><code>curl -X GET https://production-api.globalforestwatch.org/v1/widget?dataset<span class="o">=</span>d02df2f6-d80c-4274-bb6f-f062061655c4
+curl -X GET https://production-api.globalforestwatch.org/v1/dataset/d02df2f6-d80c-4274-bb6f-f062061655c4/widget
 </code></pre>
 <blockquote>
 <p>Sort by name</p>
 </blockquote>
-<pre class="highlight shell"><code>curl -X GET https://api.resourcewatch.org/v1/widget?sort<span class="o">=</span>name
+<pre class="highlight shell"><code>curl -X GET https://production-api.globalforestwatch.org/v1/widget?sort<span class="o">=</span>name
 </code></pre>
 <blockquote>
 <p>Filter widgets by status</p>
 </blockquote>
-<pre class="highlight shell"><code>curl -X GET https://api.resourcewatch.org/v1/widget?status<span class="o">=</span>failed
+<pre class="highlight shell"><code>curl -X GET https://production-api.globalforestwatch.org/v1/widget?status<span class="o">=</span>failed
 </code></pre>
 <blockquote>
 <p>Filter widgets by published status</p>
 </blockquote>
-<pre class="highlight shell"><code>curl -X GET https://api.resourcewatch.org/v1/widget?published<span class="o">=</span><span class="nb">false</span>
+<pre class="highlight shell"><code>curl -X GET https://production-api.globalforestwatch.org/v1/widget?published<span class="o">=</span><span class="nb">false</span>
 </code></pre>
 <blockquote>
 <p>Filter widgets by verified status</p>
 </blockquote>
-<pre class="highlight shell"><code>curl -X GET https://api.resourcewatch.org/v1/widget?verified<span class="o">=</span><span class="nb">false</span>
+<pre class="highlight shell"><code>curl -X GET https://production-api.globalforestwatch.org/v1/widget?verified<span class="o">=</span><span class="nb">false</span>
 </code></pre>
 <blockquote>
 <p>Return the widgets filtered by template</p>
 </blockquote>
-<pre class="highlight shell"><code>curl -X GET https://api.resourcewatch.org/v1/widget?template<span class="o">=</span><span class="nb">true</span>
+<pre class="highlight shell"><code>curl -X GET https://production-api.globalforestwatch.org/v1/widget?template<span class="o">=</span><span class="nb">true</span>
 </code></pre>
 <blockquote>
 <p>Filter widgets by default option</p>
 </blockquote>
-<pre class="highlight shell"><code>curl -X GET https://api.resourcewatch.org/v1/widget?default<span class="o">=</span><span class="nb">true</span>
+<pre class="highlight shell"><code>curl -X GET https://production-api.globalforestwatch.org/v1/widget?default<span class="o">=</span><span class="nb">true</span>
 </code></pre>
 <blockquote>
 <p>Return the widgets filtered whose applications contain rw</p>
 </blockquote>
-<pre class="highlight shell"><code>curl -X GET https://api.resourcewatch.org/v1/widget?app<span class="o">=</span>rw
+<pre class="highlight shell"><code>curl -X GET https://production-api.globalforestwatch.org/v1/widget?app<span class="o">=</span>rw
 </code></pre>
 <h3 id="pagination-params">Pagination params</h3>
 
@@ -1293,13 +1293,13 @@ curl -X GET https://api.resourcewatch.org/v1/dataset/d02df2f6-d80c-4274-bb6f-f06
 <blockquote>
 <p>Return the widgets of the page 2 with 5 elements per page</p>
 </blockquote>
-<pre class="highlight shell"><code>curl -X GET https://api.resourcewatch.org/v1/widget?page[size]<span class="o">=</span>5&amp;page[number]<span class="o">=</span>2
+<pre class="highlight shell"><code>curl -X GET https://production-api.globalforestwatch.org/v1/widget?page[size]<span class="o">=</span>5&amp;page[number]<span class="o">=</span>2
 </code></pre>
 <h2 id="how-obtain-a-widget-for-specific-dataset">How obtain a widget for specific dataset</h2>
 
 <p>To obtain the widget:</p>
-<pre class="highlight shell"><code>curl -X GET https://api.resourcewatch.org/v1/dataset/d02df2f6-d80c-4274-bb6f-f062061655c4/widget/20ec7861-5251-40a7-9503-5ee3686a66a3
-curl -X GET https://api.resourcewatch.org/v1/widget/20ec7861-5251-40a7-9503-5ee3686a66a3
+<pre class="highlight shell"><code>curl -X GET https://production-api.globalforestwatch.org/v1/dataset/d02df2f6-d80c-4274-bb6f-f062061655c4/widget/20ec7861-5251-40a7-9503-5ee3686a66a3
+curl -X GET https://production-api.globalforestwatch.org/v1/widget/20ec7861-5251-40a7-9503-5ee3686a66a3
 </code></pre>
 <aside class="success">
 Remember — the response is jsonapi format
@@ -2253,7 +2253,7 @@ Remember — the response is jsonapi format
 <blockquote>
 <p>To create a widget, you have to do a POST with the following body:</p>
 </blockquote>
-<pre class="highlight shell"><code>curl -X POST https://api.resourcewatch.org/v1/dataset/&lt;dataset_id&gt;/widget <span class="se">\</span>
+<pre class="highlight shell"><code>curl -X POST https://production-api.globalforestwatch.org/v1/dataset/&lt;dataset_id&gt;/widget <span class="se">\</span>
 -H <span class="s2">"Authorization: Bearer &lt;your-token&gt;"</span> <span class="se">\</span>
 -H <span class="s2">"Content-Type: application/json"</span>  -d <span class="se">\</span>
  <span class="s1">'{
@@ -2390,7 +2390,7 @@ Remember — the response is jsonapi format
 <blockquote>
 <p>To create a widget, you have to do a POST with the following body:</p>
 </blockquote>
-<pre class="highlight shell"><code>curl -X PATCH https://api.resourcewatch.org/v1/dataset/&lt;dataset_id&gt;/widget/&lt;widget_id&gt; <span class="se">\</span>
+<pre class="highlight shell"><code>curl -X PATCH https://production-api.globalforestwatch.org/v1/dataset/&lt;dataset_id&gt;/widget/&lt;widget_id&gt; <span class="se">\</span>
 -H <span class="s2">"Authorization: Bearer &lt;your-token&gt;"</span> <span class="se">\</span>
 -H <span class="s2">"Content-Type: application/json"</span>  -d <span class="se">\</span>
  <span class="s1">'{
@@ -2404,7 +2404,7 @@ Remember — the response is jsonapi format
 }'</span>
 </code></pre>
 <h2 id="delete-a-widget">Delete a Widget</h2>
-<pre class="highlight shell"><code>curl -X DELETE https://api.resourcewatch.org/v1/dataset/&lt;dataset_id&gt;/widget/&lt;widget_id&gt; <span class="se">\</span>
+<pre class="highlight shell"><code>curl -X DELETE https://production-api.globalforestwatch.org/v1/dataset/&lt;dataset_id&gt;/widget/&lt;widget_id&gt; <span class="se">\</span>
 -H <span class="s2">"Authorization: Bearer &lt;your-token&gt;"</span> <span class="se">\</span>
 -H <span class="s2">"Content-Type: application/json"</span>
 </code></pre>
@@ -2493,7 +2493,7 @@ Remember — the response is jsonapi format
 <h2 id="how-obtain-all-layers">How obtain all layers</h2>
 
 <p>To obtain all layers:</p>
-<pre class="highlight shell"><code>curl -X GET https://api.resourcewatch.org/v1/layer
+<pre class="highlight shell"><code>curl -X GET https://production-api.globalforestwatch.org/v1/layer
 </code></pre>
 <aside class="success">
 Remember — the response is jsonapi format
@@ -2550,11 +2550,11 @@ Remember — the response is jsonapi format
       </span><span class="p">}</span><span class="w">
    </span><span class="p">],</span><span class="w">
    </span><span class="nt">"links"</span><span class="p">:{</span><span class="w">
-      </span><span class="nt">"first"</span><span class="p">:</span><span class="s2">"https://api.resourcewatch.org/v1/layer?page%5Bnumber%5D=1"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"prev"</span><span class="p">:</span><span class="s2">"https://api.resourcewatch.org/v1/layer?page%5Bnumber%5D=1"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"next"</span><span class="p">:</span><span class="s2">"https://api.resourcewatch.org/v1/layer?page%5Bnumber%5D=2&amp;page%5Bsize%5D=10"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"last"</span><span class="p">:</span><span class="s2">"https://api.resourcewatch.org/v1/layer?page%5Bnumber%5D=64&amp;page%5Bsize%5D=10"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"self"</span><span class="p">:</span><span class="s2">"https://api.resourcewatch.org/v1/layer?page%5Bnumber%5D=1&amp;page%5Bsize%5D=10"</span><span class="w">
+      </span><span class="nt">"first"</span><span class="p">:</span><span class="s2">"https://production-api.globalforestwatch.org/v1/layer?page%5Bnumber%5D=1"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"prev"</span><span class="p">:</span><span class="s2">"https://production-api.globalforestwatch.org/v1/layer?page%5Bnumber%5D=1"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"next"</span><span class="p">:</span><span class="s2">"https://production-api.globalforestwatch.org/v1/layer?page%5Bnumber%5D=2&amp;page%5Bsize%5D=10"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"last"</span><span class="p">:</span><span class="s2">"https://production-api.globalforestwatch.org/v1/layer?page%5Bnumber%5D=64&amp;page%5Bsize%5D=10"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"self"</span><span class="p">:</span><span class="s2">"https://production-api.globalforestwatch.org/v1/layer?page%5Bnumber%5D=1&amp;page%5Bsize%5D=10"</span><span class="w">
    </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
@@ -2604,33 +2604,33 @@ Remember — the response is jsonapi format
 <blockquote>
 <p>Return the layers filtered whose name contains emissions</p>
 </blockquote>
-<pre class="highlight shell"><code>curl -X GET https://api.resourcewatch.org/v1/layer?name<span class="o">=</span>emissions
+<pre class="highlight shell"><code>curl -X GET https://production-api.globalforestwatch.org/v1/layer?name<span class="o">=</span>emissions
 </code></pre>
 <blockquote>
 <p>Return the layers filtered by dataset</p>
 </blockquote>
-<pre class="highlight shell"><code>curl -X GET https://api.resourcewatch.org/v1/layer?dataset<span class="o">=</span>11de2bc1-368b-42ed-a207-aaff8ece752b
-curl -X GET https://api.resourcewatch.org/v1/dataset/11de2bc1-368b-42ed-a207-aaff8ece752b/layer
+<pre class="highlight shell"><code>curl -X GET https://production-api.globalforestwatch.org/v1/layer?dataset<span class="o">=</span>11de2bc1-368b-42ed-a207-aaff8ece752b
+curl -X GET https://production-api.globalforestwatch.org/v1/dataset/11de2bc1-368b-42ed-a207-aaff8ece752b/layer
 </code></pre>
 <blockquote>
 <p>Sort by name</p>
 </blockquote>
-<pre class="highlight shell"><code>curl -X GET https://api.resourcewatch.org/v1/layer?sort<span class="o">=</span>name
+<pre class="highlight shell"><code>curl -X GET https://production-api.globalforestwatch.org/v1/layer?sort<span class="o">=</span>name
 </code></pre>
 <blockquote>
 <p>Filter layers by status</p>
 </blockquote>
-<pre class="highlight shell"><code>curl -X GET https://api.resourcewatch.org/v1/layer?status<span class="o">=</span>failed
+<pre class="highlight shell"><code>curl -X GET https://production-api.globalforestwatch.org/v1/layer?status<span class="o">=</span>failed
 </code></pre>
 <blockquote>
 <p>Filter layers by published status</p>
 </blockquote>
-<pre class="highlight shell"><code>curl -X GET https://api.resourcewatch.org/v1/layer?published<span class="o">=</span><span class="nb">false</span>
+<pre class="highlight shell"><code>curl -X GET https://production-api.globalforestwatch.org/v1/layer?published<span class="o">=</span><span class="nb">false</span>
 </code></pre>
 <blockquote>
 <p>Return the layers filtered whose applications contain rw</p>
 </blockquote>
-<pre class="highlight shell"><code>curl -X GET https://api.resourcewatch.org/v1/layer?app<span class="o">=</span>rw
+<pre class="highlight shell"><code>curl -X GET https://production-api.globalforestwatch.org/v1/layer?app<span class="o">=</span>rw
 </code></pre>
 <h3 id="pagination-params">Pagination params</h3>
 
@@ -2656,13 +2656,13 @@ curl -X GET https://api.resourcewatch.org/v1/dataset/11de2bc1-368b-42ed-a207-aaf
 <blockquote>
 <p>Return the layers of the page 2 with 5 elements per page</p>
 </blockquote>
-<pre class="highlight shell"><code>curl -X GET https://api.resourcewatch.org/v1/layer?page[size]<span class="o">=</span>5&amp;page[number]<span class="o">=</span>2
+<pre class="highlight shell"><code>curl -X GET https://production-api.globalforestwatch.org/v1/layer?page[size]<span class="o">=</span>5&amp;page[number]<span class="o">=</span>2
 </code></pre>
 <h2 id="how-obtain-a-layer-for-specific-dataset">How obtain a layer for specific dataset</h2>
 
 <p>To obtain the layer:</p>
-<pre class="highlight shell"><code>curl -X GET https://api.resourcewatch.org/v1/dataset/11de2bc1-368b-42ed-a207-aaff8ece752b/layer/e5c3e7c5-19ae-4ca0-a461-71f1f67aa553
-curl -X GET https://api.resourcewatch.org/v1/layer/e5c3e7c5-19ae-4ca0-a461-71f1f67aa553
+<pre class="highlight shell"><code>curl -X GET https://production-api.globalforestwatch.org/v1/dataset/11de2bc1-368b-42ed-a207-aaff8ece752b/layer/e5c3e7c5-19ae-4ca0-a461-71f1f67aa553
+curl -X GET https://production-api.globalforestwatch.org/v1/layer/e5c3e7c5-19ae-4ca0-a461-71f1f67aa553
 </code></pre>
 <aside class="success">
 Remember — the response is jsonapi format
@@ -2812,7 +2812,7 @@ Remember — the response is jsonapi format
 <blockquote>
 <p>To create a layer, you have to do a POST with the following body:</p>
 </blockquote>
-<pre class="highlight shell"><code>curl -X POST https://api.resourcewatch.org/v1/dataset/&lt;dataset_id&gt;/layer <span class="se">\</span>
+<pre class="highlight shell"><code>curl -X POST https://production-api.globalforestwatch.org/v1/dataset/&lt;dataset_id&gt;/layer <span class="se">\</span>
 -H <span class="s2">"Authorization: Bearer &lt;your-token&gt;"</span> <span class="se">\</span>
 -H <span class="s2">"Content-Type: application/json"</span>  -d <span class="se">\</span>
  <span class="s1">'{
@@ -2913,7 +2913,7 @@ Remember — the response is jsonapi format
 <blockquote>
 <p>To create a layer, you have to do a POST with the following body:</p>
 </blockquote>
-<pre class="highlight shell"><code>curl -X PATCH https://api.resourcewatch.org/v1/dataset/&lt;dataset_id&gt;/layer/&lt;layer_id&gt; <span class="se">\</span>
+<pre class="highlight shell"><code>curl -X PATCH https://production-api.globalforestwatch.org/v1/dataset/&lt;dataset_id&gt;/layer/&lt;layer_id&gt; <span class="se">\</span>
 -H <span class="s2">"Authorization: Bearer &lt;your-token&gt;"</span> <span class="se">\</span>
 -H <span class="s2">"Content-Type: application/json"</span>  -d <span class="se">\</span>
  <span class="s1">'{
@@ -2927,7 +2927,7 @@ Remember — the response is jsonapi format
 }'</span>
 </code></pre>
 <h2 id="delete-a-layer">Delete a Layer</h2>
-<pre class="highlight shell"><code>curl -X DELETE https://api.resourcewatch.org/v1/dataset/&lt;dataset_id&gt;/layer/&lt;layer_id&gt; <span class="se">\</span>
+<pre class="highlight shell"><code>curl -X DELETE https://production-api.globalforestwatch.org/v1/dataset/&lt;dataset_id&gt;/layer/&lt;layer_id&gt; <span class="se">\</span>
 -H <span class="s2">"Authorization: Bearer &lt;your-token&gt;"</span> <span class="se">\</span>
 -H <span class="s2">"Content-Type: application/json"</span>
 </code></pre>
@@ -2980,19 +2980,19 @@ select count(*) FROM tablename group by ST_GeoHash(the_geom, 8)
 <p>Rasdaman datasets do not expose a SQL interface from where to query the data – instead it offers interfaces to WCPS (the OGC Web Coverage Processing Service) and RasQL (a superset of SQL dealing with coverages). So far only WCPS is supported in the RW API. Two different endpoints are offered: one to directly run WCPS queries against the database, and one that abstracts the calculation of (2D) zonal statistics on rasdaman coverages with vector masks. For more information on the WCPS standard, consult the <a href="http://www.opengeospatial.org/standards/wcp">OGC page</a> about it</p>
 
 <p>In order to run a query directly, POST your query in the wcps attribute to the endpoint:</p>
-<pre class="highlight shell"><code>curl -i -H <span class="s1">'Authorization: Bearer your-token&gt;'</span> -H <span class="s1">'Content-Type: application/json'</span> -XPOST <span class="s1">'http://api.resourcewatch.org/v1/query/491ae6fe-6767-44d1-b5c3-c7b8b384bb7a/'</span> -d <span class="s1">'{
+<pre class="highlight shell"><code>curl -i -H <span class="s1">'Authorization: Bearer your-token&gt;'</span> -H <span class="s1">'Content-Type: application/json'</span> -XPOST <span class="s1">'http://production-api.globalforestwatch.org/v1/query/491ae6fe-6767-44d1-b5c3-c7b8b384bb7a/'</span> -d <span class="s1">'{
     "wcps": "FOR c in (nightlights) return 1"
 }
 '</span>
 </code></pre>
 <p>The result of a WCPS query can have varying dimensionality, depending of the axes of the original dataset. The result must be encoded in an appropriate file format, which is done with the <code class="prettyprint">encode</code> WCPS function. A large variety of formats is supported (as the underlying implementation depends on GDAL), but some care has to be taken to match the dimensionality of the query output with one that the desired format supports. For subsetting the domain of the original coverage, trimming and slicing can be used too:</p>
-<pre class="highlight plaintext"><code>curl -i -H 'Authorization: Bearer &lt;your-token&gt;' -H 'Content-Type: application/json' -XPOST 'http://api.resourcewatch.org/v1/query/491ae6fe-6767-44d1-b5c3-c7b8b384bb7a/' -d '{
+<pre class="highlight plaintext"><code>curl -i -H 'Authorization: Bearer &lt;your-token&gt;' -H 'Content-Type: application/json' -XPOST 'http://production-api.globalforestwatch.org/v1/query/491ae6fe-6767-44d1-b5c3-c7b8b384bb7a/' -d '{
     "wcps":  "for cov in (nightlights) return encode( cov[ Long(-1:1), Lat(-1:1)], \"CSV\")"
 }
 '
 </code></pre>
 <p>For zonal stats, use the &lsquo;stats&rsquo; endpoint. The geostore will be used to generate spatial masks. If the original coverage is not 2-dimensional, additional subsettings have to be specified in the requests as &#39;additionalAxes&rsquo; to reduce the coverage dimensionality. The most usual subsetting will be a time slice that has to be specified as an ANSI (ISO 8601) date –with the appropriate level of granularity.</p>
-<pre class="highlight shell"><code>curl -i -H <span class="s1">'Authorization: Bearer &lt;your-token&gt;'</span> -H <span class="s1">'Content-Type: application/json'</span> -XPOST <span class="s1">'http://api.resourcewatch.org/v1/stats/e9c3a94d-6b1c-4513-a745-6acdff53cfc9'</span> -d <span class="s1">'{
+<pre class="highlight shell"><code>curl -i -H <span class="s1">'Authorization: Bearer &lt;your-token&gt;'</span> -H <span class="s1">'Content-Type: application/json'</span> -XPOST <span class="s1">'http://production-api.globalforestwatch.org/v1/stats/e9c3a94d-6b1c-4513-a745-6acdff53cfc9'</span> -d <span class="s1">'{
     "geostore": "70ba01daaa803aea2eeff502c845bcef",
     "additionalAxes": {
         "ansi": "1950-03-03"
@@ -3029,11 +3029,11 @@ Remember — It is mandatory to set a limit value. If you don&rsquo;t set it, an
 <blockquote>
 <p>To obtain jiminy information, you have to do a GET with the following query params:</p>
 </blockquote>
-<pre class="highlight shell"><code>curl -X GET https://api.resourcewatch.org/v1/jiminy?sql<span class="o">=</span><span class="k">select</span> &lt;columns&gt; from &lt;dataset.slug or dataset.id&gt; <span class="se">\</span>
+<pre class="highlight shell"><code>curl -X GET https://production-api.globalforestwatch.org/v1/jiminy?sql<span class="o">=</span><span class="k">select</span> &lt;columns&gt; from &lt;dataset.slug or dataset.id&gt; <span class="se">\</span>
 -H <span class="s2">"Content-Type: application/json"</span>
 </code></pre>
 <p>It is possible do a POST too:</p>
-<pre class="highlight shell"><code>curl -X POST https://api.resourcewatch.org/v1/jiminy <span class="se">\</span>
+<pre class="highlight shell"><code>curl -X POST https://production-api.globalforestwatch.org/v1/jiminy <span class="se">\</span>
 -H <span class="s2">"Content-Type: application/json"</span>  -d <span class="se">\</span>
  <span class="s1">'{
    "sql": "select &lt;columns&gt; from &lt;dataset.slug or dataset.id&gt;"
@@ -3042,7 +3042,7 @@ Remember — It is mandatory to set a limit value. If you don&rsquo;t set it, an
 <blockquote>
 <p>Real example</p>
 </blockquote>
-<pre class="highlight shell"><code>curl -X GET https://api.resourcewatch.org/v1/jiminy?sql<span class="o">=</span><span class="k">select </span>satellite, confidence, track, acq_date from VIIRS-Active-Fire-Global-1490086842549 limit 1000 <span class="se">\</span>
+<pre class="highlight shell"><code>curl -X GET https://production-api.globalforestwatch.org/v1/jiminy?sql<span class="o">=</span><span class="k">select </span>satellite, confidence, track, acq_date from VIIRS-Active-Fire-Global-1490086842549 limit 1000 <span class="se">\</span>
 -H <span class="s2">"Content-Type: application/json"</span>
 </code></pre>
 <p>The response will be 200 if the query is correct:</p>
@@ -3128,12 +3128,12 @@ Remember — It is mandatory to set a limit value. If you don&rsquo;t set it, an
 <p>Once the dataset is properly created and saved, it is possible to access to its fields getting also some information about them.</p>
 
 <p>To do that, it is just necessary to make use of the following endpoint:</p>
-<pre class="highlight shell"><code>curl -X GET https://api.resourcewatch.org/v1/fields/&lt;dataset-id&gt;
+<pre class="highlight shell"><code>curl -X GET https://production-api.globalforestwatch.org/v1/fields/&lt;dataset-id&gt;
 </code></pre>
 <blockquote>
 <p>Real example</p>
 </blockquote>
-<pre class="highlight shell"><code>curl -X GET https://api.resourcewatch.org/v1/fields/1170030b-9725-4bfe-8fb4-1b0eb81020d2
+<pre class="highlight shell"><code>curl -X GET https://production-api.globalforestwatch.org/v1/fields/1170030b-9725-4bfe-8fb4-1b0eb81020d2
 </code></pre>
 <blockquote>
 <p>Response</p>
@@ -3169,7 +3169,7 @@ Remember — It is mandatory to set a limit value. If you don&rsquo;t set it, an
 <blockquote>
 <p>Example</p>
 </blockquote>
-<pre class="highlight shell"><code>curl -i  -XGET <span class="s1">'http://api.resourcewatch.org/v1/fields/491ae6fe-6767-44d1-b5c3-c7b8b384bb7a'</span> 
+<pre class="highlight shell"><code>curl -i  -XGET <span class="s1">'http://production-api.globalforestwatch.org/v1/fields/491ae6fe-6767-44d1-b5c3-c7b8b384bb7a'</span> 
 </code></pre>
 <blockquote>
 <p>Response</p>
@@ -3347,7 +3347,7 @@ Remember — It is mandatory to set a limit value. If you don&rsquo;t set it, an
 Please, be sure that the request is properly authenticated and the current user has permission to the resource.
 If you don&rsquo;t know how to do this, please go to the <a href="#authentication">Authentication section</a>
 </aside>
-<pre class="highlight shell"><code>curl -X POST https://api.resourcewatch.org/v1/dataset/&lt;dataset-id&gt;/metadata <span class="se">\</span>
+<pre class="highlight shell"><code>curl -X POST https://production-api.globalforestwatch.org/v1/dataset/&lt;dataset-id&gt;/metadata <span class="se">\</span>
 -H <span class="s2">"Content-Type: application/json"</span>  -d <span class="se">\</span>
  <span class="s1">'{
    "application": &lt;app&gt;,
@@ -3357,7 +3357,7 @@ If you don&rsquo;t know how to do this, please go to the <a href="#authenticatio
 <blockquote>
 <p>Real example</p>
 </blockquote>
-<pre class="highlight shell"><code>curl -X POST https://api.resourcewatch.org/v1/dataset/942b3f38-9504-4273-af51-0440170ffc86/metadata <span class="se">\</span>
+<pre class="highlight shell"><code>curl -X POST https://production-api.globalforestwatch.org/v1/dataset/942b3f38-9504-4273-af51-0440170ffc86/metadata <span class="se">\</span>
 -H <span class="s2">"Content-Type: application/json"</span>  -d <span class="se">\</span>
  <span class="s1">'{
    "application": "rw",
@@ -3394,13 +3394,13 @@ If you don&rsquo;t know how to do this, please go to the <a href="#authenticatio
 
 <p>The same operation applies to Widget and Layer just changing the endpoint for the appropriate one.</p>
 </blockquote>
-<pre class="highlight shell"><code>curl -X POST https://api.resourcewatch.org/v1/dataset/&lt;dataset-id&gt;/widget/&lt;widget-id&gt;/metadata <span class="se">\</span>
+<pre class="highlight shell"><code>curl -X POST https://production-api.globalforestwatch.org/v1/dataset/&lt;dataset-id&gt;/widget/&lt;widget-id&gt;/metadata <span class="se">\</span>
 -H <span class="s2">"Content-Type: application/json"</span>  -d <span class="se">\</span>
  <span class="s1">'{
    "application": &lt;app&gt;,
    "language": &lt;language&gt;
   }'</span>
-</code></pre><pre class="highlight shell"><code>curl -X POST https://api.resourcewatch.org/v1/dataset/&lt;dataset-id&gt;/layer/&lt;layer-id&gt;/metadata <span class="se">\</span>
+</code></pre><pre class="highlight shell"><code>curl -X POST https://production-api.globalforestwatch.org/v1/dataset/&lt;dataset-id&gt;/layer/&lt;layer-id&gt;/metadata <span class="se">\</span>
 -H <span class="s2">"Content-Type: application/json"</span>  -d <span class="se">\</span>
  <span class="s1">'{
    "application": &lt;app&gt;,
@@ -3428,21 +3428,21 @@ limit: the desired number
 <code class="prettyprint">
 type: [dataset, widget, layer]
 </code></p>
-<pre class="highlight shell"><code>curl -X GET https://api.resourcewatch.org/v1/dataset/&lt;dataset-id&gt;/metadata
-</code></pre><pre class="highlight shell"><code>curl -X GET https://api.resourcewatch.org/v1/dataset/&lt;dataset-id&gt;/widget/&lt;widget-id&gt;/metadata
-</code></pre><pre class="highlight shell"><code>curl -X GET https://api.resourcewatch.org/v1/dataset/&lt;dataset-id&gt;/layer/&lt;layer-id&gt;/metadata
+<pre class="highlight shell"><code>curl -X GET https://production-api.globalforestwatch.org/v1/dataset/&lt;dataset-id&gt;/metadata
+</code></pre><pre class="highlight shell"><code>curl -X GET https://production-api.globalforestwatch.org/v1/dataset/&lt;dataset-id&gt;/widget/&lt;widget-id&gt;/metadata
+</code></pre><pre class="highlight shell"><code>curl -X GET https://production-api.globalforestwatch.org/v1/dataset/&lt;dataset-id&gt;/layer/&lt;layer-id&gt;/metadata
 </code></pre>
 <blockquote>
 <p>Real example</p>
 </blockquote>
-<pre class="highlight shell"><code>curl -X GET https://api.resourcewatch.org/v1/dataset/942b3f38-9504-4273-af51-0440170ffc86/metadata
+<pre class="highlight shell"><code>curl -X GET https://production-api.globalforestwatch.org/v1/dataset/942b3f38-9504-4273-af51-0440170ffc86/metadata
 </code></pre>
 <h2 id="updating-a-metadata">Updating a metadata</h2>
 
 <p>Partial update</p>
 
 <p>&ldquo;application&rdquo; and &ldquo;language&rdquo; attributes are required and it is mandatory to include them in the payload.</p>
-<pre class="highlight shell"><code>curl -X PATCH https://api.resourcewatch.org/v1/dataset/&lt;dataset-id&gt;/metadata <span class="se">\</span>
+<pre class="highlight shell"><code>curl -X PATCH https://production-api.globalforestwatch.org/v1/dataset/&lt;dataset-id&gt;/metadata <span class="se">\</span>
 -H <span class="s2">"Content-Type: application/json"</span>  -d <span class="se">\</span>
  <span class="s1">'{
    "application": &lt;app&gt;,
@@ -3452,7 +3452,7 @@ type: [dataset, widget, layer]
 <blockquote>
 <p>Real example</p>
 </blockquote>
-<pre class="highlight shell"><code>curl -X PATCH https://api.resourcewatch.org/v1/dataset/942b3f38-9504-4273-af51-0440170ffc86/metadata <span class="se">\</span>
+<pre class="highlight shell"><code>curl -X PATCH https://production-api.globalforestwatch.org/v1/dataset/942b3f38-9504-4273-af51-0440170ffc86/metadata <span class="se">\</span>
 -H <span class="s2">"Content-Type: application/json"</span>  -d <span class="se">\</span>
  <span class="s1">'{
    "application": "rw",
@@ -3502,25 +3502,25 @@ type: [dataset, widget, layer]
 <h2 id="deleting-a-metadata">Deleting a metadata</h2>
 
 <p>&ldquo;application&rdquo; and &ldquo;language&rdquo; attributes are required and it is mandatory to include them in the Queryparams</p>
-<pre class="highlight shell"><code>curl -X DELETE https://api.resourcewatch.org/v1/dataset/&lt;dataset-id&gt;/metadata?application<span class="o">=</span>&lt;app-id&gt;&amp;language<span class="o">=</span>&lt;language&gt;
+<pre class="highlight shell"><code>curl -X DELETE https://production-api.globalforestwatch.org/v1/dataset/&lt;dataset-id&gt;/metadata?application<span class="o">=</span>&lt;app-id&gt;&amp;language<span class="o">=</span>&lt;language&gt;
 </code></pre>
 <blockquote>
 <p>Real example</p>
 </blockquote>
-<pre class="highlight shell"><code>curl -X DELETE https://api.resourcewatch.org/v1/dataset/942b3f38-9504-4273-af51-0440170ffc86/metadata?application<span class="o">=</span>rw&amp;language<span class="o">=</span>en <span class="se">\</span>
+<pre class="highlight shell"><code>curl -X DELETE https://production-api.globalforestwatch.org/v1/dataset/942b3f38-9504-4273-af51-0440170ffc86/metadata?application<span class="o">=</span>rw&amp;language<span class="o">=</span>en <span class="se">\</span>
 </code></pre>
 <h2 id="getting-all">Getting all</h2>
-<pre class="highlight shell"><code>curl -X GET https://api.resourcewatch.org/v1/metadata
+<pre class="highlight shell"><code>curl -X GET https://production-api.globalforestwatch.org/v1/metadata
 </code></pre>
 <blockquote>
 <p>Real examples</p>
 </blockquote>
-<pre class="highlight shell"><code>curl -X GET https://api.resourcewatch.org/v1/metadata
-</code></pre><pre class="highlight shell"><code>curl -X GET https://api.resourcewatch.org/v1/metadata?type<span class="o">=</span>dataset
-</code></pre><pre class="highlight shell"><code>curl -X GET https://api.resourcewatch.org/v1/metadata?type<span class="o">=</span>widget
-</code></pre><pre class="highlight shell"><code>curl -X GET https://api.resourcewatch.org/v1/metadata?application<span class="o">=</span>rw&amp;language<span class="o">=</span>es,en&amp;limit<span class="o">=</span>20
-</code></pre><pre class="highlight shell"><code>curl -X GET https://api.resourcewatch.org/v1/metadata?application<span class="o">=</span>rw,gfw&amp;language<span class="o">=</span>en&amp;type<span class="o">=</span>dataset
-</code></pre><pre class="highlight shell"><code>curl -X GET https://api.resourcewatch.org/v1/metadata?language<span class="o">=</span>en
+<pre class="highlight shell"><code>curl -X GET https://production-api.globalforestwatch.org/v1/metadata
+</code></pre><pre class="highlight shell"><code>curl -X GET https://production-api.globalforestwatch.org/v1/metadata?type<span class="o">=</span>dataset
+</code></pre><pre class="highlight shell"><code>curl -X GET https://production-api.globalforestwatch.org/v1/metadata?type<span class="o">=</span>widget
+</code></pre><pre class="highlight shell"><code>curl -X GET https://production-api.globalforestwatch.org/v1/metadata?application<span class="o">=</span>rw&amp;language<span class="o">=</span>es,en&amp;limit<span class="o">=</span>20
+</code></pre><pre class="highlight shell"><code>curl -X GET https://production-api.globalforestwatch.org/v1/metadata?application<span class="o">=</span>rw,gfw&amp;language<span class="o">=</span>en&amp;type<span class="o">=</span>dataset
+</code></pre><pre class="highlight shell"><code>curl -X GET https://production-api.globalforestwatch.org/v1/metadata?language<span class="o">=</span>en
 </code></pre>
 <h2 id="finding-getting-by-ids">Finding (getting) by ids</h2>
 
@@ -3548,7 +3548,7 @@ limit: the desired number
 <code class="prettyprint">
 type: [dataset, widget, layer]
 </code></p>
-<pre class="highlight shell"><code>curl -X POST https://api.resourcewatch.org/v1/dataset/metadata/find-by-ids <span class="se">\</span>
+<pre class="highlight shell"><code>curl -X POST https://production-api.globalforestwatch.org/v1/dataset/metadata/find-by-ids <span class="se">\</span>
 -H <span class="s2">"Content-Type: application/json"</span>  -d <span class="se">\</span>
  <span class="s1">'{
    "ids": [&lt;ids&gt;]
@@ -3557,7 +3557,7 @@ type: [dataset, widget, layer]
 <blockquote>
 <p>Real example</p>
 </blockquote>
-<pre class="highlight shell"><code>curl -X POST https://api.resourcewatch.org/v1/dataset/metadata/find-by-ids <span class="se">\</span>
+<pre class="highlight shell"><code>curl -X POST https://production-api.globalforestwatch.org/v1/dataset/metadata/find-by-ids <span class="se">\</span>
 -H <span class="s2">"Content-Type: application/json"</span>  -d <span class="se">\</span>
  <span class="s1">'{
      "ids": "b000288d-7037-43ba-aa34-165eab549613, 942b3f38-9504-4273-af51-0440170ffc86"
@@ -3677,17 +3677,17 @@ To do it, the only parameter that is required is the name of the Vocabulary.</p>
 Please, be sure that the request is properly authenticated and the current user has permission to the resource.
 If you don&rsquo;t know how to do this, please go to the <a href="#authentication">Authentication section</a>
 </aside>
-<pre class="highlight shell"><code>curl -X POST https://api.resourcewatch.org/v1/dataset/&lt;dataset-id&gt;/vocabulary/&lt;vocabulary-id&gt; <span class="se">\</span>
+<pre class="highlight shell"><code>curl -X POST https://production-api.globalforestwatch.org/v1/dataset/&lt;dataset-id&gt;/vocabulary/&lt;vocabulary-id&gt; <span class="se">\</span>
 -H <span class="s2">"Content-Type: application/json"</span>  -d <span class="se">\</span>
  <span class="s1">'{
    "tags": [&lt;tags&gt;]
   }'</span>
-</code></pre><pre class="highlight shell"><code>curl -X POST https://api.resourcewatch.org/v1/dataset/&lt;dataset-id&gt;/widget/&lt;widget-id&gt;/vocabulary/&lt;vocabulary-id&gt; <span class="se">\</span>
+</code></pre><pre class="highlight shell"><code>curl -X POST https://production-api.globalforestwatch.org/v1/dataset/&lt;dataset-id&gt;/widget/&lt;widget-id&gt;/vocabulary/&lt;vocabulary-id&gt; <span class="se">\</span>
 -H <span class="s2">"Content-Type: application/json"</span>  -d <span class="se">\</span>
  <span class="s1">'{
    "tags": [&lt;tags&gt;]
   }'</span>
-</code></pre><pre class="highlight shell"><code>curl -X POST https://api.resourcewatch.org/v1/dataset/&lt;dataset-id&gt;/layer/&lt;layer-id&gt;/vocabulary/&lt;vocabulary-id&gt; <span class="se">\</span>
+</code></pre><pre class="highlight shell"><code>curl -X POST https://production-api.globalforestwatch.org/v1/dataset/&lt;dataset-id&gt;/layer/&lt;layer-id&gt;/vocabulary/&lt;vocabulary-id&gt; <span class="se">\</span>
 -H <span class="s2">"Content-Type: application/json"</span>  -d <span class="se">\</span>
  <span class="s1">'{
    "tags": [&lt;tags&gt;]
@@ -3696,7 +3696,7 @@ If you don&rsquo;t know how to do this, please go to the <a href="#authenticatio
 <blockquote>
 <p>real example</p>
 </blockquote>
-<pre class="highlight shell"><code>curl -X POST https://api.resourcewatch.org/v1/dataset/942b3f38-9504-4273-af51-0440170ffc86/vocabulary/science
+<pre class="highlight shell"><code>curl -X POST https://production-api.globalforestwatch.org/v1/dataset/942b3f38-9504-4273-af51-0440170ffc86/vocabulary/science
 -H <span class="s2">"Content-Type: application/json"</span>  -d <span class="se">\</span>
  <span class="s1">'{
    "tags": ["biology", "chemistry"]
@@ -3745,17 +3745,17 @@ If you don&rsquo;t know how to do this, please go to the <a href="#authenticatio
 
 <p>If a relationship has to be updated, it&rsquo;s necessary to define the new tags of it.
 The previous tags will be deleted in benefit of the new ones.</p>
-<pre class="highlight shell"><code>curl -X PATCH https://api.resourcewatch.org/v1/dataset/&lt;dataset-id&gt;/vocabulary/&lt;vocabulary-id&gt; <span class="se">\</span>
+<pre class="highlight shell"><code>curl -X PATCH https://production-api.globalforestwatch.org/v1/dataset/&lt;dataset-id&gt;/vocabulary/&lt;vocabulary-id&gt; <span class="se">\</span>
 -H <span class="s2">"Content-Type: application/json"</span>  -d <span class="se">\</span>
  <span class="s1">'{
    "tags": [&lt;tags&gt;]
   }'</span>
-</code></pre><pre class="highlight shell"><code>curl -X PATCH https://api.resourcewatch.org/v1/dataset/&lt;dataset-id&gt;/widget/&lt;widget-id&gt;/vocabulary/&lt;vocabulary-id&gt; <span class="se">\</span>
+</code></pre><pre class="highlight shell"><code>curl -X PATCH https://production-api.globalforestwatch.org/v1/dataset/&lt;dataset-id&gt;/widget/&lt;widget-id&gt;/vocabulary/&lt;vocabulary-id&gt; <span class="se">\</span>
 -H <span class="s2">"Content-Type: application/json"</span>  -d <span class="se">\</span>
  <span class="s1">'{
    "tags": [&lt;tags&gt;]
   }'</span>
-</code></pre><pre class="highlight shell"><code>curl -X PATCH https://api.resourcewatch.org/v1/dataset/&lt;dataset-id&gt;/layer/&lt;layer-id&gt;/vocabulary/&lt;vocabulary-id&gt; <span class="se">\</span>
+</code></pre><pre class="highlight shell"><code>curl -X PATCH https://production-api.globalforestwatch.org/v1/dataset/&lt;dataset-id&gt;/layer/&lt;layer-id&gt;/vocabulary/&lt;vocabulary-id&gt; <span class="se">\</span>
 -H <span class="s2">"Content-Type: application/json"</span>  -d <span class="se">\</span>
  <span class="s1">'{
    "tags": [&lt;tags&gt;]
@@ -3764,7 +3764,7 @@ The previous tags will be deleted in benefit of the new ones.</p>
 <blockquote>
 <p>real example</p>
 </blockquote>
-<pre class="highlight shell"><code>curl -X PATCH https://api.resourcewatch.org/v1/dataset/942b3f38-9504-4273-af51-0440170ffc86/vocabulary/science
+<pre class="highlight shell"><code>curl -X PATCH https://production-api.globalforestwatch.org/v1/dataset/942b3f38-9504-4273-af51-0440170ffc86/vocabulary/science
 -H <span class="s2">"Content-Type: application/json"</span>  -d <span class="se">\</span>
  <span class="s1">'{
    "tags": ["maths", "astronomy"]
@@ -3812,7 +3812,7 @@ The previous tags will be deleted in benefit of the new ones.</p>
 <h2 id="creating-several-relationships">Creating several relationships</h2>
 
 <p>There is also an endpoint that allows to create some relationships in the same request.</p>
-<pre class="highlight shell"><code>curl -X POST https://api.resourcewatch.org/v1/dataset/&lt;dataset-id&gt;/vocabulary <span class="se">\</span>
+<pre class="highlight shell"><code>curl -X POST https://production-api.globalforestwatch.org/v1/dataset/&lt;dataset-id&gt;/vocabulary <span class="se">\</span>
 -H <span class="s2">"Content-Type: application/json"</span>  -d <span class="se">\</span>
  <span class="s1">'{
    "vocabularyOne": {
@@ -3822,7 +3822,7 @@ The previous tags will be deleted in benefit of the new ones.</p>
        "tags": [&lt;tags&gt;]
    }
   }'</span>
-</code></pre><pre class="highlight shell"><code>curl -X POST https://api.resourcewatch.org/v1/dataset/&lt;dataset-id&gt;/widget/&lt;widget-id&gt;/vocabulary<span class="se">\</span>
+</code></pre><pre class="highlight shell"><code>curl -X POST https://production-api.globalforestwatch.org/v1/dataset/&lt;dataset-id&gt;/widget/&lt;widget-id&gt;/vocabulary<span class="se">\</span>
 -H <span class="s2">"Content-Type: application/json"</span>  -d <span class="se">\</span>
 <span class="s1">'{
   "vocabularyOne": {
@@ -3832,7 +3832,7 @@ The previous tags will be deleted in benefit of the new ones.</p>
       "tags": [&lt;tags&gt;]
   }
  }'</span>
-</code></pre><pre class="highlight shell"><code>curl -X POST https://api.resourcewatch.org/v1/dataset/&lt;dataset-id&gt;/layer/&lt;layer-id&gt;/vocabulary <span class="se">\</span>
+</code></pre><pre class="highlight shell"><code>curl -X POST https://production-api.globalforestwatch.org/v1/dataset/&lt;dataset-id&gt;/layer/&lt;layer-id&gt;/vocabulary <span class="se">\</span>
 -H <span class="s2">"Content-Type: application/json"</span>  -d <span class="se">\</span>
 <span class="s1">'{
   "vocabularyOne": {
@@ -3846,7 +3846,7 @@ The previous tags will be deleted in benefit of the new ones.</p>
 <blockquote>
 <p>real example</p>
 </blockquote>
-<pre class="highlight shell"><code>curl -X POST https://api.resourcewatch.org/v1/dataset/942b3f38-9504-4273-af51-0440170ffc86/vocabulary
+<pre class="highlight shell"><code>curl -X POST https://production-api.globalforestwatch.org/v1/dataset/942b3f38-9504-4273-af51-0440170ffc86/vocabulary
 -H <span class="s2">"Content-Type: application/json"</span>  -d <span class="se">\</span>
  <span class="s1">'{
      "country": {
@@ -3956,14 +3956,14 @@ The previous tags will be deleted in benefit of the new ones.</p>
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <h2 id="deleting-relationships">Deleting relationships</h2>
-<pre class="highlight shell"><code>curl -X DELETE https://api.resourcewatch.org/v1/dataset/&lt;dataset-id&gt;/vocabulary/&lt;vocabulary-id&gt;
-</code></pre><pre class="highlight shell"><code>curl -X DELETE https://api.resourcewatch.org/v1/dataset/&lt;dataset-id&gt;/widget/&lt;widget-id&gt;/vocabulary/&lt;vocabulary-id&gt;
-</code></pre><pre class="highlight shell"><code>curl -X DELETE https://api.resourcewatch.org/v1/dataset/&lt;dataset-id&gt;/layer/&lt;layer-id&gt;/vocabulary/&lt;vocabulary-id&gt;
+<pre class="highlight shell"><code>curl -X DELETE https://production-api.globalforestwatch.org/v1/dataset/&lt;dataset-id&gt;/vocabulary/&lt;vocabulary-id&gt;
+</code></pre><pre class="highlight shell"><code>curl -X DELETE https://production-api.globalforestwatch.org/v1/dataset/&lt;dataset-id&gt;/widget/&lt;widget-id&gt;/vocabulary/&lt;vocabulary-id&gt;
+</code></pre><pre class="highlight shell"><code>curl -X DELETE https://production-api.globalforestwatch.org/v1/dataset/&lt;dataset-id&gt;/layer/&lt;layer-id&gt;/vocabulary/&lt;vocabulary-id&gt;
 </code></pre>
 <blockquote>
 <p>real example</p>
 </blockquote>
-<pre class="highlight shell"><code>curl -X DELETE https://api.resourcewatch.org/v1/dataset/942b3f38-9504-4273-af51-0440170ffc86/vocabulary/science
+<pre class="highlight shell"><code>curl -X DELETE https://production-api.globalforestwatch.org/v1/dataset/942b3f38-9504-4273-af51-0440170ffc86/vocabulary/science
 </code></pre>
 <blockquote>
 <p>response</p>
@@ -3998,14 +3998,14 @@ The previous tags will be deleted in benefit of the new ones.</p>
 <h2 id="getting-vocabularies-associated-to-a-resource">Getting vocabularies associated to a resource</h2>
 
 <p>It can be requested all the vocabularies associated to a particular resource.</p>
-<pre class="highlight shell"><code>curl -X GET https://api.resourcewatch.org/v1/dataset/&lt;dataset-id&gt;/vocabulary
-</code></pre><pre class="highlight shell"><code>curl -X GET https://api.resourcewatch.org/v1/dataset/&lt;dataset-id&gt;/widget/&lt;widget-id&gt;/vocabulary
-</code></pre><pre class="highlight shell"><code>curl -X GET https://api.resourcewatch.org/v1/dataset/&lt;dataset-id&gt;/layer/&lt;layer-id&gt;/vocabulary
+<pre class="highlight shell"><code>curl -X GET https://production-api.globalforestwatch.org/v1/dataset/&lt;dataset-id&gt;/vocabulary
+</code></pre><pre class="highlight shell"><code>curl -X GET https://production-api.globalforestwatch.org/v1/dataset/&lt;dataset-id&gt;/widget/&lt;widget-id&gt;/vocabulary
+</code></pre><pre class="highlight shell"><code>curl -X GET https://production-api.globalforestwatch.org/v1/dataset/&lt;dataset-id&gt;/layer/&lt;layer-id&gt;/vocabulary
 </code></pre>
 <blockquote>
 <p>real example</p>
 </blockquote>
-<pre class="highlight shell"><code>curl -X GET https://api.resourcewatch.org/v1/dataset/942b3f38-9504-4273-af51-0440170ffc86/vocabulary
+<pre class="highlight shell"><code>curl -X GET https://production-api.globalforestwatch.org/v1/dataset/942b3f38-9504-4273-af51-0440170ffc86/vocabulary
 </code></pre>
 <blockquote>
 <p>response</p>
@@ -4038,9 +4038,9 @@ The previous tags will be deleted in benefit of the new ones.</p>
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <h2 id="getting-a-single-relationship-broken-now">Getting a single relationship (broken now)</h2>
-<pre class="highlight shell"><code>curl -X GET https://api.resourcewatch.org/v1/dataset/&lt;dataset-id&gt;/vocabulary/&lt;vocabulary-id&gt;
-</code></pre><pre class="highlight shell"><code>curl -X GET https://api.resourcewatch.org/v1/dataset/&lt;dataset-id&gt;/widget/&lt;widget-id&gt;/vocabulary/&lt;vocabulary-id&gt;
-</code></pre><pre class="highlight shell"><code>curl -X GET https://api.resourcewatch.org/v1/dataset/&lt;dataset-id&gt;/layer/&lt;layer-id&gt;/vocabulary/&lt;vocabulary-id&gt;
+<pre class="highlight shell"><code>curl -X GET https://production-api.globalforestwatch.org/v1/dataset/&lt;dataset-id&gt;/vocabulary/&lt;vocabulary-id&gt;
+</code></pre><pre class="highlight shell"><code>curl -X GET https://production-api.globalforestwatch.org/v1/dataset/&lt;dataset-id&gt;/widget/&lt;widget-id&gt;/vocabulary/&lt;vocabulary-id&gt;
+</code></pre><pre class="highlight shell"><code>curl -X GET https://production-api.globalforestwatch.org/v1/dataset/&lt;dataset-id&gt;/layer/&lt;layer-id&gt;/vocabulary/&lt;vocabulary-id&gt;
 </code></pre>
 <h2 id="getting-resources-common-use-case">Getting resources (COMMON USE CASE)</h2>
 
@@ -4051,19 +4051,19 @@ the desired vocabulary-tag matching.</p>
 all resources that at least have one (or more) tags in a particular vocabulary. At the same time it will also apply an OR to the entities of other vocabulary-tag matchings.</p>
 
 <p>The query has to be set in the url by the Queryparams</p>
-<pre class="highlight shell"><code>curl -X GET https://api.resourcewatch.org/v1/dataset/vocabulary/find
-</code></pre><pre class="highlight shell"><code>curl -X GET https://api.resourcewatch.org/v1/dataset/&lt;dataset-id&gt;/widget/vocabulary/find
-</code></pre><pre class="highlight shell"><code>curl -X GET https://api.resourcewatch.org/v1/dataset/&lt;dataset-id&gt;/layer/vocabulary/find
+<pre class="highlight shell"><code>curl -X GET https://production-api.globalforestwatch.org/v1/dataset/vocabulary/find
+</code></pre><pre class="highlight shell"><code>curl -X GET https://production-api.globalforestwatch.org/v1/dataset/&lt;dataset-id&gt;/widget/vocabulary/find
+</code></pre><pre class="highlight shell"><code>curl -X GET https://production-api.globalforestwatch.org/v1/dataset/&lt;dataset-id&gt;/layer/vocabulary/find
 </code></pre>
 <blockquote>
 <p>real example</p>
 </blockquote>
-<pre class="highlight shell"><code>curl -X GET http://api.resourcewatch.org/v1/dataset/vocabulary/find?legacy<span class="o">=</span>cdi,coasts
+<pre class="highlight shell"><code>curl -X GET http://production-api.globalforestwatch.org/v1/dataset/vocabulary/find?legacy<span class="o">=</span>cdi,coasts
 </code></pre>
 <h2 id="getting-all-vocabularies">Getting all vocabularies</h2>
 
 <p>This endpoints is quite useful to have a quick overview of all existing vocabularies and resources.</p>
-<pre class="highlight shell"><code>curl -X GET https://api.resourcewatch.org/v1/vocabulary
+<pre class="highlight shell"><code>curl -X GET https://production-api.globalforestwatch.org/v1/vocabulary
 </code></pre>
 <h2 id="finding-getting-by-ids">Finding (getting) by ids</h2>
 
@@ -4071,17 +4071,17 @@ all resources that at least have one (or more) tags in a particular vocabulary. 
 This property can be an Array or a String (comma-separated)
 payload -&gt; {&ldquo;ids&rdquo;: [&ldquo;112313&rdquo;, &ldquo;111123&rdquo;]}
 payload -&gt; {&ldquo;ids&rdquo;: &ldquo;112313, 111123&rdquo;}</p>
-<pre class="highlight shell"><code>curl -X POST https://api.resourcewatch.org/v1/dataset/vocabulary/find-by-ids <span class="se">\</span>
+<pre class="highlight shell"><code>curl -X POST https://production-api.globalforestwatch.org/v1/dataset/vocabulary/find-by-ids <span class="se">\</span>
 -H <span class="s2">"Content-Type: application/json"</span>  -d <span class="se">\</span>
  <span class="s1">'{
    "ids": [&lt;ids&gt;]
   }'</span>
-</code></pre><pre class="highlight shell"><code>curl -X POST https://api.resourcewatch.org/v1/dataset/&lt;dataset-id&gt;/widget/vocabulary/find-by-ids <span class="se">\</span>
+</code></pre><pre class="highlight shell"><code>curl -X POST https://production-api.globalforestwatch.org/v1/dataset/&lt;dataset-id&gt;/widget/vocabulary/find-by-ids <span class="se">\</span>
 -H <span class="s2">"Content-Type: application/json"</span>  -d <span class="se">\</span>
  <span class="s1">'{
    "ids": [&lt;ids&gt;]
   }'</span>
-</code></pre><pre class="highlight shell"><code>curl -X POST https://api.resourcewatch.org/v1/dataset/&lt;dataset-id&gt;/layer/vocabulary/find-by-ids <span class="se">\</span>
+</code></pre><pre class="highlight shell"><code>curl -X POST https://production-api.globalforestwatch.org/v1/dataset/&lt;dataset-id&gt;/layer/vocabulary/find-by-ids <span class="se">\</span>
 -H <span class="s2">"Content-Type: application/json"</span>  -d <span class="se">\</span>
  <span class="s1">'{
    "ids": [&lt;ids&gt;]
@@ -4090,7 +4090,7 @@ payload -&gt; {&ldquo;ids&rdquo;: &ldquo;112313, 111123&rdquo;}</p>
 <blockquote>
 <p>real example</p>
 </blockquote>
-<pre class="highlight shell"><code>curl -X POST https://api.resourcewatch.org/v1/dataset/vocabulary/find-by-ids <span class="se">\</span>
+<pre class="highlight shell"><code>curl -X POST https://production-api.globalforestwatch.org/v1/dataset/vocabulary/find-by-ids <span class="se">\</span>
 -H <span class="s2">"Content-Type: application/json"</span>  -d <span class="se">\</span>
  <span class="s1">'{
     "ids": "942b3f38-9504-4273-af51-0440170ffc86, 08ff8183-48dc-457a-8924-bb4e7a87b8a8"
@@ -4139,7 +4139,7 @@ payload -&gt; {&ldquo;ids&rdquo;: &ldquo;112313, 111123&rdquo;}</p>
 <h2 id="vocabulary-creation">Vocabulary Creation</h2>
 
 <p>As it was mentioned before, it is possible to just create a new and empty vocabulary</p>
-<pre class="highlight shell"><code>curl -X POST https://api.resourcewatch.org/v1/vocabulary/vocabularyName <span class="se">\</span>
+<pre class="highlight shell"><code>curl -X POST https://production-api.globalforestwatch.org/v1/vocabulary/vocabularyName <span class="se">\</span>
 -H <span class="s2">"Content-Type: application/json"</span>  -d <span class="se">\</span>
  <span class="s1">'{
    "name": &lt;vocabularyName&gt;
@@ -4249,7 +4249,7 @@ Remember — All endpoint of geostore don&rsquo;t need that you are authenticate
 <blockquote>
 <p>To create a Geostore, you have to do a POST with the following body:</p>
 </blockquote>
-<pre class="highlight shell"><code>curl -X POST https://api.resourcewatch.org/v1/geostore <span class="se">\</span>
+<pre class="highlight shell"><code>curl -X POST https://production-api.globalforestwatch.org/v1/geostore <span class="se">\</span>
 -H <span class="s2">"Content-Type: application/json"</span>  -d <span class="se">\</span>
  <span class="s1">'{
    "geojson": &lt;yourGeoJSONObject&gt;
@@ -4258,7 +4258,7 @@ Remember — All endpoint of geostore don&rsquo;t need that you are authenticate
 <blockquote>
 <p>Real example</p>
 </blockquote>
-<pre class="highlight shell"><code>curl -X POST https://api.resourcewatch.org/v1/geostore <span class="se">\</span>
+<pre class="highlight shell"><code>curl -X POST https://production-api.globalforestwatch.org/v1/geostore <span class="se">\</span>
 -H <span class="s2">"Content-Type: application/json"</span>  -d <span class="se">\</span>
  <span class="s1">'{
    "geojson":{
@@ -4399,13 +4399,13 @@ Remember — All endpoint of geostore don&rsquo;t need that you are authenticate
 
 <p>If you need obtain the geostore of a country, you can obtain it with the ISO3 code in the Geostore API.</p>
 
-<p><code class="prettyprint">GET https://api.resourcewatch.org/v1/geostore/admin/&lt;ISO3&gt;</code></p>
-<pre class="highlight shell"><code>curl -X GET https://api.resourcewatch.org/v1/geostore/admin/&lt;ISO3&gt;
+<p><code class="prettyprint">GET https://production-api.globalforestwatch.org/v1/geostore/admin/&lt;ISO3&gt;</code></p>
+<pre class="highlight shell"><code>curl -X GET https://production-api.globalforestwatch.org/v1/geostore/admin/&lt;ISO3&gt;
 </code></pre>
 <blockquote>
 <p>Real example obtaining the geostore of Spain
 <code class="prettyprint">shell
-curl -X GET https://api.resourcewatch.org/v1/geostore/admin/ESP
+curl -X GET https://production-api.globalforestwatch.org/v1/geostore/admin/ESP
 </code></p>
 </blockquote>
 
@@ -4413,26 +4413,26 @@ curl -X GET https://api.resourcewatch.org/v1/geostore/admin/ESP
 
 <p>If you need obtain the geostore of a region in a country, you can obtain it with the ISO3 and region code:</p>
 
-<p><code class="prettyprint">GET https://api.resourcewatch.org/v1/geostore/admin/&lt;ISO3&gt;/&lt;regionCode&gt;</code></p>
-<pre class="highlight shell"><code>curl -X GET https://api.resourcewatch.org/v1/geostore/admin/&lt;ISO3&gt;/&lt;regionCode&gt;
+<p><code class="prettyprint">GET https://production-api.globalforestwatch.org/v1/geostore/admin/&lt;ISO3&gt;/&lt;regionCode&gt;</code></p>
+<pre class="highlight shell"><code>curl -X GET https://production-api.globalforestwatch.org/v1/geostore/admin/&lt;ISO3&gt;/&lt;regionCode&gt;
 </code></pre>
 <blockquote>
 <p>Real example obtaining the geostore of Madrid&rsquo;s Comunity in Spain</p>
 </blockquote>
-<pre class="highlight shell"><code>curl -X GET https://api.resourcewatch.org/v1/geostore/admin/ESP/8
+<pre class="highlight shell"><code>curl -X GET https://production-api.globalforestwatch.org/v1/geostore/admin/ESP/8
 </code></pre>
 <h3 id="from-world-database-on-protected-areas-wdpa">From World Database on Protected Areas (wdpa)</h3>
 
 <p>Is possible obtain the geostore of a World Database on Protected Areas of the world. You only need the id of the protected area (WDPA).
 <a href="https://www.protectedplanet.net/">World Database on Protected Areas web</a></p>
 
-<p><code class="prettyprint">GET https://api.resourcewatch.org/v1/geostore/wdpa/&lt;wdpaId&gt;</code></p>
-<pre class="highlight shell"><code>curl -X GET https://api.resourcewatch.org/v1/geostore/wdpa/&lt;wdpaId&gt;
+<p><code class="prettyprint">GET https://production-api.globalforestwatch.org/v1/geostore/wdpa/&lt;wdpaId&gt;</code></p>
+<pre class="highlight shell"><code>curl -X GET https://production-api.globalforestwatch.org/v1/geostore/wdpa/&lt;wdpaId&gt;
 </code></pre>
 <blockquote>
 <p>Real example obtaining the geostore of &lsquo;Sierra de Guadarrama&rsquo; protected area</p>
 </blockquote>
-<pre class="highlight shell"><code>curl -X GET https://api.resourcewatch.org/v1/geostore/wdpa/555538160
+<pre class="highlight shell"><code>curl -X GET https://production-api.globalforestwatch.org/v1/geostore/wdpa/555538160
 </code></pre>
 <h3 id="from-land-use-areas">From land use areas</h3>
 
@@ -4440,43 +4440,43 @@ curl -X GET https://api.resourcewatch.org/v1/geostore/admin/ESP
 
 <h4 id="oil-palm">Oil palm</h4>
 
-<p><code class="prettyprint">GET https://api.resourcewatch.org/v1/geostore/use/oilpalm/&lt;id&gt;</code></p>
-<pre class="highlight shell"><code>curl -X GET https://api.resourcewatch.org/v1/geostore/use/oilpalm/&lt;id&gt;
+<p><code class="prettyprint">GET https://production-api.globalforestwatch.org/v1/geostore/use/oilpalm/&lt;id&gt;</code></p>
+<pre class="highlight shell"><code>curl -X GET https://production-api.globalforestwatch.org/v1/geostore/use/oilpalm/&lt;id&gt;
 </code></pre>
 <blockquote>
 <p>Real example obtaining the geostore of one Oil palm area</p>
 </blockquote>
-<pre class="highlight shell"><code>curl -X GET https://api.resourcewatch.org/v1/geostore/use/oilpalm/556
+<pre class="highlight shell"><code>curl -X GET https://production-api.globalforestwatch.org/v1/geostore/use/oilpalm/556
 </code></pre>
 <h4 id="mining">Mining</h4>
 
-<p><code class="prettyprint">GET https://api.resourcewatch.org/v1/geostore/use/mining/&lt;id&gt;</code></p>
-<pre class="highlight shell"><code>curl -X GET https://api.resourcewatch.org/v1/geostore/use/mining/&lt;id&gt;
+<p><code class="prettyprint">GET https://production-api.globalforestwatch.org/v1/geostore/use/mining/&lt;id&gt;</code></p>
+<pre class="highlight shell"><code>curl -X GET https://production-api.globalforestwatch.org/v1/geostore/use/mining/&lt;id&gt;
 </code></pre>
 <blockquote>
 <p>Real example obtaining the geostore of one mining area</p>
 </blockquote>
-<pre class="highlight shell"><code>curl -X GET https://api.resourcewatch.org/v1/geostore/use/mining/573
+<pre class="highlight shell"><code>curl -X GET https://production-api.globalforestwatch.org/v1/geostore/use/mining/573
 </code></pre>
 <h4 id="wood-fiber">Wood fiber</h4>
 
-<p><code class="prettyprint">GET https://api.resourcewatch.org/v1/geostore/use/fiber/&lt;id&gt;</code></p>
-<pre class="highlight shell"><code>curl -X GET https://api.resourcewatch.org/v1/geostore/use/fiber/&lt;id&gt;
+<p><code class="prettyprint">GET https://production-api.globalforestwatch.org/v1/geostore/use/fiber/&lt;id&gt;</code></p>
+<pre class="highlight shell"><code>curl -X GET https://production-api.globalforestwatch.org/v1/geostore/use/fiber/&lt;id&gt;
 </code></pre>
 <blockquote>
 <p>Real example obtaining the geostore of one Wood fiber area</p>
 </blockquote>
-<pre class="highlight shell"><code>curl -X GET https://api.resourcewatch.org/v1/geostore/use/fiber/346
+<pre class="highlight shell"><code>curl -X GET https://production-api.globalforestwatch.org/v1/geostore/use/fiber/346
 </code></pre>
 <h4 id="congo-basin-logging-roads">Congo Basin logging roads</h4>
 
-<p><code class="prettyprint">GET https://api.resourcewatch.org/v1/geostore/use/logging/&lt;id&gt;</code></p>
-<pre class="highlight shell"><code>curl -X GET https://api.resourcewatch.org/v1/geostore/use/logging/&lt;id&gt;
+<p><code class="prettyprint">GET https://production-api.globalforestwatch.org/v1/geostore/use/logging/&lt;id&gt;</code></p>
+<pre class="highlight shell"><code>curl -X GET https://production-api.globalforestwatch.org/v1/geostore/use/logging/&lt;id&gt;
 </code></pre>
 <blockquote>
 <p>Real example obtaining the geostore of Oil palm area</p>
 </blockquote>
-<pre class="highlight shell"><code>curl -X GET https://api.resourcewatch.org/v1/geostore/use/logging/102
+<pre class="highlight shell"><code>curl -X GET https://production-api.globalforestwatch.org/v1/geostore/use/logging/102
 </code></pre>
 <h3 id="from-carto">From Carto</h3>
 
@@ -4532,7 +4532,7 @@ To import the geojson in geostore, you need to define all of the required fields
 <blockquote>
 <p>To import a Geostore, you have to do a POST with the following body:</p>
 </blockquote>
-<pre class="highlight shell"><code>curl -X POST https://api.resourcewatch.org/v1/geostore <span class="se">\</span>
+<pre class="highlight shell"><code>curl -X POST https://production-api.globalforestwatch.org/v1/geostore <span class="se">\</span>
 -H <span class="s2">"Content-Type: application/json"</span>  -d <span class="se">\</span>
  <span class="s1">'{
     "provider":{
@@ -4546,7 +4546,7 @@ To import the geojson in geostore, you need to define all of the required fields
 <blockquote>
 <p>Real example</p>
 </blockquote>
-<pre class="highlight shell"><code>curl -X POST https://api.resourcewatch.org/v1/geostore <span class="se">\</span>
+<pre class="highlight shell"><code>curl -X POST https://production-api.globalforestwatch.org/v1/geostore <span class="se">\</span>
 -H <span class="s2">"Content-Type: application/json"</span>  -d <span class="se">\</span>
  <span class="s1">'{
     "provider":{
@@ -4624,12 +4624,12 @@ To import the geojson in geostore, you need to define all of the required fields
 <h2 id="obtain-a-geostore">Obtain a Geostore</h2>
 
 <p>To obtain a geostore, you only need the id of the Geostore. You can perform a GET request for the geostore with its id.</p>
-<pre class="highlight shell"><code>curl -X GET https://api.resourcewatch.org/v1/geostore/&lt;geostoreId&gt;
+<pre class="highlight shell"><code>curl -X GET https://production-api.globalforestwatch.org/v1/geostore/&lt;geostoreId&gt;
 </code></pre>
 <blockquote>
 <p>Real example obtaining one geostore</p>
 </blockquote>
-<pre class="highlight shell"><code>curl -X GET https://api.resourcewatch.org/v1/geostore/use/logging/26f8975c4c647c19a2edaa11f23880a2
+<pre class="highlight shell"><code>curl -X GET https://production-api.globalforestwatch.org/v1/geostore/use/logging/26f8975c4c647c19a2edaa11f23880a2
 </code></pre>
 <blockquote>
 <p>Example response</p>
@@ -4799,7 +4799,7 @@ Remember — All subscriptions are created unconfirmed and the process sends a e
 <blockquote>
 <p>To create a Subscription, you have to do a POST with the following body:</p>
 </blockquote>
-<pre class="highlight shell"><code>curl -X POST https://api.resourcewatch.org/v1/subscriptions <span class="se">\</span>
+<pre class="highlight shell"><code>curl -X POST https://production-api.globalforestwatch.org/v1/subscriptions <span class="se">\</span>
 -H <span class="s2">"Authorization: Bearer &lt;your-token&gt;"</span> <span class="se">\</span>
 -H <span class="s2">"Content-Type: application/json"</span>  -d <span class="se">\</span>
  <span class="s1">'{
@@ -4845,7 +4845,7 @@ Remember — All subscriptions are created unconfirmed and the process sends a e
 <blockquote>
 <p>To create a Subscription, you have to do a POST with the following body:</p>
 </blockquote>
-<pre class="highlight shell"><code>curl -X POST https://api.resourcewatch.org/v1/subscriptions <span class="se">\</span>
+<pre class="highlight shell"><code>curl -X POST https://production-api.globalforestwatch.org/v1/subscriptions <span class="se">\</span>
 -H <span class="s2">"Authorization: Bearer &lt;your-token&gt;"</span> <span class="se">\</span>
 -H <span class="s2">"Content-Type: application/json"</span>  -d <span class="se">\</span>
  <span class="s1">'{
@@ -4898,7 +4898,7 @@ Remember — All subscriptions are created unconfirmed and the process sends a e
 <blockquote>
 <p>To create a Subscription, you have to do a POST with the following body:</p>
 </blockquote>
-<pre class="highlight shell"><code>curl -X POST https://api.resourcewatch.org/v1/subscriptions <span class="se">\</span>
+<pre class="highlight shell"><code>curl -X POST https://production-api.globalforestwatch.org/v1/subscriptions <span class="se">\</span>
 -H <span class="s2">"Authorization: Bearer &lt;your-token&gt;"</span> <span class="se">\</span>
 -H <span class="s2">"Content-Type: application/json"</span>  -d <span class="se">\</span>
  <span class="s1">'{
@@ -4942,7 +4942,7 @@ Remember — All subscriptions are created unconfirmed and the process sends a e
 <blockquote>
 <p>To create a Subscription, you have to do a POST with the following body:</p>
 </blockquote>
-<pre class="highlight shell"><code>curl -X POST https://api.resourcewatch.org/v1/subscriptions <span class="se">\</span>
+<pre class="highlight shell"><code>curl -X POST https://production-api.globalforestwatch.org/v1/subscriptions <span class="se">\</span>
 -H <span class="s2">"Authorization: Bearer &lt;your-token&gt;"</span> <span class="se">\</span>
 -H <span class="s2">"Content-Type: application/json"</span>  -d <span class="se">\</span>
  <span class="s1">'{
@@ -4988,7 +4988,7 @@ Remember — All subscriptions are created unconfirmed and the process sends a e
 <blockquote>
 <p>To create a Subscription, you have to do a POST with the following body:</p>
 </blockquote>
-<pre class="highlight shell"><code>curl -X POST https://api.resourcewatch.org/v1/subscriptions <span class="se">\</span>
+<pre class="highlight shell"><code>curl -X POST https://production-api.globalforestwatch.org/v1/subscriptions <span class="se">\</span>
 -H <span class="s2">"Authorization: Bearer &lt;your-token&gt;"</span> <span class="se">\</span>
 -H <span class="s2">"Content-Type: application/json"</span>  -d <span class="se">\</span>
  <span class="s1">'{
@@ -5009,7 +5009,7 @@ Remember — All subscriptions are created unconfirmed and the process sends a e
 <p>Subscription has 4 differents lands use:</p>
 
 <h4 id="oil-palm">Oil palm</h4>
-<pre class="highlight shell"><code>curl -X POST https://api.resourcewatch.org/v1/subscriptions <span class="se">\</span>
+<pre class="highlight shell"><code>curl -X POST https://production-api.globalforestwatch.org/v1/subscriptions <span class="se">\</span>
 -H <span class="s2">"Authorization: Bearer &lt;your-token&gt;"</span> <span class="se">\</span>
 -H <span class="s2">"Content-Type: application/json"</span>  -d <span class="se">\</span>
  <span class="s1">'{
@@ -5028,7 +5028,7 @@ Remember — All subscriptions are created unconfirmed and the process sends a e
   }'</span>
 </code></pre>
 <h4 id="mining">Mining</h4>
-<pre class="highlight shell"><code>curl -X POST https://api.resourcewatch.org/v1/subscriptions <span class="se">\</span>
+<pre class="highlight shell"><code>curl -X POST https://production-api.globalforestwatch.org/v1/subscriptions <span class="se">\</span>
 -H <span class="s2">"Authorization: Bearer &lt;your-token&gt;"</span> <span class="se">\</span>
 -H <span class="s2">"Content-Type: application/json"</span>  -d <span class="se">\</span>
  <span class="s1">'{
@@ -5047,7 +5047,7 @@ Remember — All subscriptions are created unconfirmed and the process sends a e
   }'</span>
 </code></pre>
 <h4 id="wood-fiber">Wood fiber</h4>
-<pre class="highlight shell"><code>curl -X POST https://api.resourcewatch.org/v1/subscriptions <span class="se">\</span>
+<pre class="highlight shell"><code>curl -X POST https://production-api.globalforestwatch.org/v1/subscriptions <span class="se">\</span>
 -H <span class="s2">"Authorization: Bearer &lt;your-token&gt;"</span> <span class="se">\</span>
 -H <span class="s2">"Content-Type: application/json"</span>  -d <span class="se">\</span>
  <span class="s1">'{
@@ -5066,7 +5066,7 @@ Remember — All subscriptions are created unconfirmed and the process sends a e
   }'</span>
 </code></pre>
 <h4 id="congo-basin-logging-roads">Congo Basin logging roads</h4>
-<pre class="highlight shell"><code>curl -X POST https://api.resourcewatch.org/v1/subscriptions <span class="se">\</span>
+<pre class="highlight shell"><code>curl -X POST https://production-api.globalforestwatch.org/v1/subscriptions <span class="se">\</span>
 -H <span class="s2">"Authorization: Bearer &lt;your-token&gt;"</span> <span class="se">\</span>
 -H <span class="s2">"Content-Type: application/json"</span>  -d <span class="se">\</span>
  <span class="s1">'{
@@ -5108,7 +5108,7 @@ Remember — All subscriptions are created unconfirmed and the process sends a e
 <blockquote>
 <p>To create a Subscription, you have to do a POST with the following body:</p>
 </blockquote>
-<pre class="highlight shell"><code>curl -X POST https://api.resourcewatch.org/v1/subscriptions <span class="se">\</span>
+<pre class="highlight shell"><code>curl -X POST https://production-api.globalforestwatch.org/v1/subscriptions <span class="se">\</span>
 -H <span class="s2">"Authorization: Bearer &lt;your-token&gt;"</span> <span class="se">\</span>
 -H <span class="s2">"Content-Type: application/json"</span>  -d <span class="se">\</span>
  <span class="s1">'{
@@ -5128,12 +5128,12 @@ Remember — All subscriptions are created unconfirmed and the process sends a e
 <h2 id="confirm-subscription">Confirm subscription</h2>
 
 <p>All subscriptions are created unconfirmed. The user needs confirm his subscription with this endpoint.</p>
-<pre class="highlight shell"><code>curl -X GET https://api.resourcewatch.org/v1/subscriptions/:id/confirm
+<pre class="highlight shell"><code>curl -X GET https://production-api.globalforestwatch.org/v1/subscriptions/:id/confirm
 </code></pre>
 <h2 id="obtain-the-subscriptions-of-a-user">Obtain the subscriptions of a user</h2>
 
 <p>To get the user subscriptions:</p>
-<pre class="highlight shell"><code>curl -X GET https://api.resourcewatch.org/v1/subscriptions <span class="se">\</span>
+<pre class="highlight shell"><code>curl -X GET https://production-api.globalforestwatch.org/v1/subscriptions <span class="se">\</span>
 -H <span class="s2">"Authorization: Bearer &lt;your-token&gt;"</span>
 </code></pre>
 <aside class="success">
@@ -5184,13 +5184,13 @@ Remember — the response is in JSONApi format
 <h2 id="resend-confirmation">Resend confirmation</h2>
 
 <p>To resend the confirmation</p>
-<pre class="highlight shell"><code>curl -X PATCH https://api.resourcewatch.org/v1/subscriptions/:id/send_confirmation <span class="se">\</span>
+<pre class="highlight shell"><code>curl -X PATCH https://production-api.globalforestwatch.org/v1/subscriptions/:id/send_confirmation <span class="se">\</span>
 -H <span class="s2">"Authorization: Bearer &lt;your-token&gt;"</span>
 </code></pre>
 <h2 id="modify-subscription">Modify subscription</h2>
 
 <p>To modify a subscription</p>
-<pre class="highlight shell"><code>curl -X PATCH https://api.resourcewatch.org/v1/subscriptions/:id <span class="se">\</span>
+<pre class="highlight shell"><code>curl -X PATCH https://production-api.globalforestwatch.org/v1/subscriptions/:id <span class="se">\</span>
 -H <span class="s2">"Authorization: Bearer &lt;your-token&gt;"</span>
 
 </code></pre>
@@ -5199,13 +5199,13 @@ Remember — the response is in JSONApi format
 <h2 id="unsubscribe">Unsubscribe</h2>
 
 <p>To unsubscribe a subscription</p>
-<pre class="highlight shell"><code>curl -X GET https://api.resourcewatch.org/v1/subscriptions/:id/unsubscribe <span class="se">\</span>
+<pre class="highlight shell"><code>curl -X GET https://production-api.globalforestwatch.org/v1/subscriptions/:id/unsubscribe <span class="se">\</span>
 -H <span class="s2">"Authorization: Bearer &lt;your-token&gt;"</span>
 </code></pre>
 <h2 id="delete-subscription">Delete subscription</h2>
 
 <p>To delete a subscription (same that unsubscribe)</p>
-<pre class="highlight shell"><code>curl -X DELETE https://api.resourcewatch.org/v1/subscriptions/:id/unsubscribe <span class="se">\</span>
+<pre class="highlight shell"><code>curl -X DELETE https://production-api.globalforestwatch.org/v1/subscriptions/:id/unsubscribe <span class="se">\</span>
 -H <span class="s2">"Authorization: Bearer &lt;your-token&gt;"</span>
 </code></pre>
           <h1 id="favourites">Favourites</h1>
@@ -5276,7 +5276,7 @@ Remember — All favourite endpoints need to be authenticated.
 <blockquote>
 <p>To create a favourite, you have to do a POST with the following body:</p>
 </blockquote>
-<pre class="highlight shell"><code>curl -X POST https://api.resourcewatch.org/v1/favourite <span class="se">\</span>
+<pre class="highlight shell"><code>curl -X POST https://production-api.globalforestwatch.org/v1/favourite <span class="se">\</span>
 -H <span class="s2">"Authorization: Bearer &lt;your-token&gt;"</span> <span class="se">\</span>
 -H <span class="s2">"Content-Type: application/json"</span>  -d <span class="se">\</span>
  <span class="s1">'{
@@ -5291,11 +5291,11 @@ Remember — All favourite endpoints need to be authenticated.
 <blockquote>
 <p>To get all favourite of the logged user, you have to do a GET:</p>
 </blockquote>
-<pre class="highlight shell"><code>curl -X GET https://api.resourcewatch.org/v1/favourite <span class="se">\</span>
+<pre class="highlight shell"><code>curl -X GET https://production-api.globalforestwatch.org/v1/favourite <span class="se">\</span>
 -H <span class="s2">"Authorization: Bearer &lt;your-token&gt;"</span>
 </code></pre>
 <p>You can also retrieve all data about the resources just including the query parameter &ldquo;include=true&rdquo; in the request.</p>
-<pre class="highlight shell"><code>curl -X GET https://api.resourcewatch.org/v1/favourite?include<span class="o">=</span><span class="nb">true</span> <span class="se">\</span>
+<pre class="highlight shell"><code>curl -X GET https://production-api.globalforestwatch.org/v1/favourite?include<span class="o">=</span><span class="nb">true</span> <span class="se">\</span>
 -H <span class="s2">"Authorization: Bearer &lt;your-token&gt;"</span>
 </code></pre>
 <h2 id="get-favourite-by-id">Get favourite by id</h2>
@@ -5305,7 +5305,7 @@ Remember — All favourite endpoints need to be authenticated.
 <blockquote>
 <p>To get the favourite by id, you have to do a GET:</p>
 </blockquote>
-<pre class="highlight shell"><code>curl -X GET https://api.resourcewatch.org/v1/favourite/:id <span class="se">\</span>
+<pre class="highlight shell"><code>curl -X GET https://production-api.globalforestwatch.org/v1/favourite/:id <span class="se">\</span>
 -H <span class="s2">"Authorization: Bearer &lt;your-token&gt;"</span>
 </code></pre>
 <h2 id="delete-favourite">Delete favourite</h2>
@@ -5315,7 +5315,7 @@ Remember — All favourite endpoints need to be authenticated.
 <blockquote>
 <p>To delete the favourite by id, you have to do a DELETE:</p>
 </blockquote>
-<pre class="highlight shell"><code>curl -X DELETE https://api.resourcewatch.org/v1/favourite/:id <span class="se">\</span>
+<pre class="highlight shell"><code>curl -X DELETE https://production-api.globalforestwatch.org/v1/favourite/:id <span class="se">\</span>
 -H <span class="s2">"Authorization: Bearer &lt;your-token&gt;"</span>
 </code></pre>
           <h1 id="errors">Errors</h1>

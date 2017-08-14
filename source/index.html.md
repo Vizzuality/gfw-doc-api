@@ -28,4 +28,4 @@ search: true
 
 # Introduction
 
-Welcome to the Resource Watch API Documentation
+Welcome to the Global Forest Watch API Documentation

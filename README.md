@@ -1,8 +1,8 @@
-# Documentation of RW API
+# Documentation of Global Forest Watch API
 
 To see the documentation, you access to:
 
-[https://resource-watch.github.io/doc-api](https://resource-watch.github.io/doc-api)
+[https://vizzuality.github.io/gfw-doc-api](https://vizzuality.github.io/gfw-doc-api)
 
 Created with slate project:
 

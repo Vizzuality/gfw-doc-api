@@ -27,7 +27,7 @@ Layer contains the next fields:
 To obtain all layers:
 
 ```shell
-curl -X GET https://api.resourcewatch.org/v1/layer
+curl -X GET https://production-api.globalforestwatch.org/v1/layer
 ```
 
 <aside class="success">
@@ -85,11 +85,11 @@ Remember — the response is jsonapi format
       }
    ],
    "links":{
-      "first":"https://api.resourcewatch.org/v1/layer?page%5Bnumber%5D=1",
-      "prev":"https://api.resourcewatch.org/v1/layer?page%5Bnumber%5D=1",
-      "next":"https://api.resourcewatch.org/v1/layer?page%5Bnumber%5D=2&page%5Bsize%5D=10",
-      "last":"https://api.resourcewatch.org/v1/layer?page%5Bnumber%5D=64&page%5Bsize%5D=10",
-      "self":"https://api.resourcewatch.org/v1/layer?page%5Bnumber%5D=1&page%5Bsize%5D=10"
+      "first":"https://production-api.globalforestwatch.org/v1/layer?page%5Bnumber%5D=1",
+      "prev":"https://production-api.globalforestwatch.org/v1/layer?page%5Bnumber%5D=1",
+      "next":"https://production-api.globalforestwatch.org/v1/layer?page%5Bnumber%5D=2&page%5Bsize%5D=10",
+      "last":"https://production-api.globalforestwatch.org/v1/layer?page%5Bnumber%5D=64&page%5Bsize%5D=10",
+      "self":"https://production-api.globalforestwatch.org/v1/layer?page%5Bnumber%5D=1&page%5Bsize%5D=10"
    }
 }
 ```
@@ -111,38 +111,38 @@ Available filters:
 > Return the layers filtered whose name contains emissions
 
 ```shell
-curl -X GET https://api.resourcewatch.org/v1/layer?name=emissions
+curl -X GET https://production-api.globalforestwatch.org/v1/layer?name=emissions
 ```
 
 > Return the layers filtered by dataset
 
 ```shell
-curl -X GET https://api.resourcewatch.org/v1/layer?dataset=11de2bc1-368b-42ed-a207-aaff8ece752b
-curl -X GET https://api.resourcewatch.org/v1/dataset/11de2bc1-368b-42ed-a207-aaff8ece752b/layer
+curl -X GET https://production-api.globalforestwatch.org/v1/layer?dataset=11de2bc1-368b-42ed-a207-aaff8ece752b
+curl -X GET https://production-api.globalforestwatch.org/v1/dataset/11de2bc1-368b-42ed-a207-aaff8ece752b/layer
 ```
 
 > Sort by name
 
 ```shell
-curl -X GET https://api.resourcewatch.org/v1/layer?sort=name
+curl -X GET https://production-api.globalforestwatch.org/v1/layer?sort=name
 ```
 
 > Filter layers by status
 
 ```shell
-curl -X GET https://api.resourcewatch.org/v1/layer?status=failed
+curl -X GET https://production-api.globalforestwatch.org/v1/layer?status=failed
 ```
 
 > Filter layers by published status
 
 ```shell
-curl -X GET https://api.resourcewatch.org/v1/layer?published=false
+curl -X GET https://production-api.globalforestwatch.org/v1/layer?published=false
 ```
 
 > Return the layers filtered whose applications contain rw
 
 ```shell
-curl -X GET https://api.resourcewatch.org/v1/layer?app=rw
+curl -X GET https://production-api.globalforestwatch.org/v1/layer?app=rw
 ```
 
 ### Pagination params
@@ -155,7 +155,7 @@ curl -X GET https://api.resourcewatch.org/v1/layer?app=rw
 > Return the layers of the page 2 with 5 elements per page
 
 ```shell
-curl -X GET https://api.resourcewatch.org/v1/layer?page[size]=5&page[number]=2
+curl -X GET https://production-api.globalforestwatch.org/v1/layer?page[size]=5&page[number]=2
 ```
 
 ## How obtain a layer for specific dataset
@@ -163,8 +163,8 @@ curl -X GET https://api.resourcewatch.org/v1/layer?page[size]=5&page[number]=2
 To obtain the layer:
 
 ```shell
-curl -X GET https://api.resourcewatch.org/v1/dataset/11de2bc1-368b-42ed-a207-aaff8ece752b/layer/e5c3e7c5-19ae-4ca0-a461-71f1f67aa553
-curl -X GET https://api.resourcewatch.org/v1/layer/e5c3e7c5-19ae-4ca0-a461-71f1f67aa553
+curl -X GET https://production-api.globalforestwatch.org/v1/dataset/11de2bc1-368b-42ed-a207-aaff8ece752b/layer/e5c3e7c5-19ae-4ca0-a461-71f1f67aa553
+curl -X GET https://production-api.globalforestwatch.org/v1/layer/e5c3e7c5-19ae-4ca0-a461-71f1f67aa553
 ```
 
 <aside class="success">
@@ -249,7 +249,7 @@ To create a layer, you need to define all of the required fields in the request 
 > To create a layer, you have to do a POST with the following body:
 
 ```shell
-curl -X POST https://api.resourcewatch.org/v1/dataset/<dataset_id>/layer \
+curl -X POST https://production-api.globalforestwatch.org/v1/dataset/<dataset_id>/layer \
 -H "Authorization: Bearer <your-token>" \
 -H "Content-Type: application/json"  -d \
  '{
@@ -284,7 +284,7 @@ To update a layer, you need to define all of the required fields in the request 
 > To create a layer, you have to do a POST with the following body:
 
 ```shell
-curl -X PATCH https://api.resourcewatch.org/v1/dataset/<dataset_id>/layer/<layer_id> \
+curl -X PATCH https://production-api.globalforestwatch.org/v1/dataset/<dataset_id>/layer/<layer_id> \
 -H "Authorization: Bearer <your-token>" \
 -H "Content-Type: application/json"  -d \
  '{
@@ -301,7 +301,7 @@ curl -X PATCH https://api.resourcewatch.org/v1/dataset/<dataset_id>/layer/<layer
 ## Delete a Layer
 
 ```shell
-curl -X DELETE https://api.resourcewatch.org/v1/dataset/<dataset_id>/layer/<layer_id> \
+curl -X DELETE https://production-api.globalforestwatch.org/v1/dataset/<dataset_id>/layer/<layer_id> \
 -H "Authorization: Bearer <your-token>" \
 -H "Content-Type: application/json"
 ```

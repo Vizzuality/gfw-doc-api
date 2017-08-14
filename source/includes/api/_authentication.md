@@ -6,7 +6,7 @@ The RW API uses JWT Tokens to identify and authenticate users.
 
 To generate your own token, follow the next steps:
 
-1. Navigate to [http://api.resourcewatch.org:82](http://api.resourcewatch.org:82)
+1. Navigate to [http://ui.resourcewatch.org:82](http://ui.resourcewatch.org:82)
 If you aren't logged in yet, the application will redirect you to the login page.
 You will see:
 ![Control Tower login page](images/authentication/login.png)
@@ -31,7 +31,7 @@ To create a new user do the following:
 
 
 ```shell
-curl -X POST https://api.resourcewatch.org/auth/user \
+curl -X POST https://production-api.globalforestwatch.org/auth/user \
 -H "Authorization: Bearer <your-token>" \
 -H "Content-Type: application/json"  -d \
  '{

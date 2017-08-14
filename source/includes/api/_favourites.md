@@ -31,7 +31,7 @@ To create a favourite, you need to define all next fields in the request body. T
 
 
 ```shell
-curl -X POST https://api.resourcewatch.org/v1/favourite \
+curl -X POST https://production-api.globalforestwatch.org/v1/favourite \
 -H "Authorization: Bearer <your-token>" \
 -H "Content-Type: application/json"  -d \
  '{
@@ -48,14 +48,14 @@ This endpoint returns the favourites of the logged user.
 
 
 ```shell
-curl -X GET https://api.resourcewatch.org/v1/favourite \
+curl -X GET https://production-api.globalforestwatch.org/v1/favourite \
 -H "Authorization: Bearer <your-token>"
 ```
 
 You can also retrieve all data about the resources just including the query parameter "include=true" in the request.
 
 ```shell
-curl -X GET https://api.resourcewatch.org/v1/favourite?include=true \
+curl -X GET https://production-api.globalforestwatch.org/v1/favourite?include=true \
 -H "Authorization: Bearer <your-token>"
 ```
 
@@ -67,7 +67,7 @@ This endpoint returns the favourite with id of the param. If the favourite belon
 
 
 ```shell
-curl -X GET https://api.resourcewatch.org/v1/favourite/:id \
+curl -X GET https://production-api.globalforestwatch.org/v1/favourite/:id \
 -H "Authorization: Bearer <your-token>"
 ```
 
@@ -79,6 +79,6 @@ This endpoint deletes the favourite with id of the param. If the favourite belon
 
 
 ```shell
-curl -X DELETE https://api.resourcewatch.org/v1/favourite/:id \
+curl -X DELETE https://production-api.globalforestwatch.org/v1/favourite/:id \
 -H "Authorization: Bearer <your-token>"
 ```

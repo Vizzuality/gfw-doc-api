@@ -14,14 +14,14 @@ Remember — It is mandatory to set a limit value. If you don't set it, and the 
 
 
 ```shell
-curl -X GET https://api.resourcewatch.org/v1/jiminy?sql=select <columns> from <dataset.slug or dataset.id> \
+curl -X GET https://production-api.globalforestwatch.org/v1/jiminy?sql=select <columns> from <dataset.slug or dataset.id> \
 -H "Content-Type: application/json"
 ```
 
 It is possible do a POST too:
 
 ```shell
-curl -X POST https://api.resourcewatch.org/v1/jiminy \
+curl -X POST https://production-api.globalforestwatch.org/v1/jiminy \
 -H "Content-Type: application/json"  -d \
  '{
    "sql": "select <columns> from <dataset.slug or dataset.id>"
@@ -32,7 +32,7 @@ curl -X POST https://api.resourcewatch.org/v1/jiminy \
 > Real example
 
 ```shell
-curl -X GET https://api.resourcewatch.org/v1/jiminy?sql=select satellite, confidence, track, acq_date from VIIRS-Active-Fire-Global-1490086842549 limit 1000 \
+curl -X GET https://production-api.globalforestwatch.org/v1/jiminy?sql=select satellite, confidence, track, acq_date from VIIRS-Active-Fire-Global-1490086842549 limit 1000 \
 -H "Content-Type: application/json"
 ```
 

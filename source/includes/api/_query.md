@@ -52,7 +52,7 @@ Rasdaman datasets do not expose a SQL interface from where to query the data –
 In order to run a query directly, POST your query in the wcps attribute to the endpoint:
 
 ```shell
-curl -i -H 'Authorization: Bearer your-token>' -H 'Content-Type: application/json' -XPOST 'http://api.resourcewatch.org/v1/query/491ae6fe-6767-44d1-b5c3-c7b8b384bb7a/' -d '{
+curl -i -H 'Authorization: Bearer your-token>' -H 'Content-Type: application/json' -XPOST 'http://production-api.globalforestwatch.org/v1/query/491ae6fe-6767-44d1-b5c3-c7b8b384bb7a/' -d '{
 	"wcps": "FOR c in (nightlights) return 1"
 }
 '
@@ -61,7 +61,7 @@ curl -i -H 'Authorization: Bearer your-token>' -H 'Content-Type: application/jso
 The result of a WCPS query can have varying dimensionality, depending of the axes of the original dataset. The result must be encoded in an appropriate file format, which is done with the `encode` WCPS function. A large variety of formats is supported (as the underlying implementation depends on GDAL), but some care has to be taken to match the dimensionality of the query output with one that the desired format supports. For subsetting the domain of the original coverage, trimming and slicing can be used too:
 
 ```
-curl -i -H 'Authorization: Bearer <your-token>' -H 'Content-Type: application/json' -XPOST 'http://api.resourcewatch.org/v1/query/491ae6fe-6767-44d1-b5c3-c7b8b384bb7a/' -d '{
+curl -i -H 'Authorization: Bearer <your-token>' -H 'Content-Type: application/json' -XPOST 'http://production-api.globalforestwatch.org/v1/query/491ae6fe-6767-44d1-b5c3-c7b8b384bb7a/' -d '{
 	"wcps":  "for cov in (nightlights) return encode( cov[ Long(-1:1), Lat(-1:1)], \"CSV\")"
 }
 '
@@ -70,7 +70,7 @@ curl -i -H 'Authorization: Bearer <your-token>' -H 'Content-Type: application/js
 For zonal stats, use the 'stats' endpoint. The geostore will be used to generate spatial masks. If the original coverage is not 2-dimensional, additional subsettings have to be specified in the requests as 'additionalAxes' to reduce the coverage dimensionality. The most usual subsetting will be a time slice that has to be specified as an ANSI (ISO 8601) date –with the appropriate level of granularity.
 
 ```shell
-curl -i -H 'Authorization: Bearer <your-token>' -H 'Content-Type: application/json' -XPOST 'http://api.resourcewatch.org/v1/stats/e9c3a94d-6b1c-4513-a745-6acdff53cfc9' -d '{
+curl -i -H 'Authorization: Bearer <your-token>' -H 'Content-Type: application/json' -XPOST 'http://production-api.globalforestwatch.org/v1/stats/e9c3a94d-6b1c-4513-a745-6acdff53cfc9' -d '{
 	"geostore": "70ba01daaa803aea2eeff502c845bcef",
 	"additionalAxes": {
 		"ansi": "1950-03-03"

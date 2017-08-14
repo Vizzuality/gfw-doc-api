@@ -46,7 +46,7 @@ Rasdaman ('raster data manager') is a database with capabilities for storage, ma
 To get all datasets:
 
 ```shell
-curl -X GET https://api.resourcewatch.org/v1/dataset
+curl -X GET https://production-api.globalforestwatch.org/v1/dataset
 ```
 
 <aside class="success">
@@ -104,13 +104,13 @@ When a dataset is created the status is set to “pending” by default. Once th
 Available filters: Any dataset property
 
 ```shell
-curl -X GET https://api.resourcewatch.org/v1/dataset?name=birds&provider=cartodb
+curl -X GET https://production-api.globalforestwatch.org/v1/dataset?name=birds&provider=cartodb
 ```
 
 Inclusive filtering with array props using '@'
 
 ```shell
-curl -X GET https://api.resourcewatch.org/v1/dataset?app=gfw@rw@prep
+curl -X GET https://production-api.globalforestwatch.org/v1/dataset?app=gfw@rw@prep
 ```
 
 ### Sorting
@@ -118,11 +118,11 @@ curl -X GET https://api.resourcewatch.org/v1/dataset?app=gfw@rw@prep
 Available sorting: Any dataset property (desc: -)
 
 ```shell
-curl -X GET https://api.resourcewatch.org/v1/dataset?sort=-provider,slug
+curl -X GET https://production-api.globalforestwatch.org/v1/dataset?sort=-provider,slug
 ```
 
 ```shell
-curl -X GET https://api.resourcewatch.org/v1/dataset?sort=slug,-provider,userId&status=saved
+curl -X GET https://production-api.globalforestwatch.org/v1/dataset?sort=slug,-provider,userId&status=saved
 ```
 
 ### Relationships
@@ -130,7 +130,7 @@ curl -X GET https://api.resourcewatch.org/v1/dataset?sort=slug,-provider,userId&
 Available relationships: Any dataset relationship ['widget', 'layer', 'vocabulary', 'metadata']
 
 ```shell
-curl -X GET https://api.resourcewatch.org/v1/dataset?sort=slug,-provider,userId&status=saved&includes=metadata,vocabulary,widget,layer
+curl -X GET https://production-api.globalforestwatch.org/v1/dataset?sort=slug,-provider,userId&status=saved&includes=metadata,vocabulary,widget,layer
 ```
 
 ### Advanced filters
@@ -138,7 +138,7 @@ curl -X GET https://api.resourcewatch.org/v1/dataset?sort=slug,-provider,userId&
 By vocabulary-tag matching
 
 ```shell
-curl -X GET https://api.resourcewatch.org/v1/dataset?sort=slug,-provider,userId&status=saved&includes=metadata,vocabulary,widget,layer&vocabulary[legacy]=umd
+curl -X GET https://production-api.globalforestwatch.org/v1/dataset?sort=slug,-provider,userId&status=saved&includes=metadata,vocabulary,widget,layer&vocabulary[legacy]=umd
 ```
 
 ### Pagination
@@ -149,8 +149,8 @@ curl -X GET https://api.resourcewatch.org/v1/dataset?sort=slug,-provider,userId&
 | page[number]    | The page number          | Number
 
 ```shell
-curl -X GET https://api.resourcewatch.org/v1/dataset?sort=slug,-provider,userId&status=saved&includes=metadata,vocabulary,widget,layer&vocabulary[legacy]=threshold&page[number]=1
-curl -X GET https://api.resourcewatch.org/v1/dataset?sort=slug,-provider,userId&status=saved&includes=metadata,vocabulary,widget,layer&vocabulary[legacy]=threshold&page[number]=2
+curl -X GET https://production-api.globalforestwatch.org/v1/dataset?sort=slug,-provider,userId&status=saved&includes=metadata,vocabulary,widget,layer&vocabulary[legacy]=threshold&page[number]=1
+curl -X GET https://production-api.globalforestwatch.org/v1/dataset?sort=slug,-provider,userId&status=saved&includes=metadata,vocabulary,widget,layer&vocabulary[legacy]=threshold&page[number]=2
 ```
 
 ## How to get a specific dataset
@@ -158,7 +158,7 @@ curl -X GET https://api.resourcewatch.org/v1/dataset?sort=slug,-provider,userId&
 > To get a dataset:
 
 ```shell
-curl -X GET https://api.resourcewatch.org/v1/dataset/51943691-eebc-4cb4-bdfb-057ad4fc2145
+curl -X GET https://production-api.globalforestwatch.org/v1/dataset/51943691-eebc-4cb4-bdfb-057ad4fc2145
 ```
 > Response:
 
@@ -201,7 +201,7 @@ curl -X GET https://api.resourcewatch.org/v1/dataset/51943691-eebc-4cb4-bdfb-057
 > To get the dataset including its relationships:
 
 ```shell
-curl -X GET https://api.resourcewatch.org/v1/dataset/06c44f9a-aae7-401e-874c-de13b7764959?includes=metadata,vocabulary,widget,layer
+curl -X GET https://production-api.globalforestwatch.org/v1/dataset/06c44f9a-aae7-401e-874c-de13b7764959?includes=metadata,vocabulary,widget,layer
 ```
 
 <aside class="success">
@@ -241,7 +241,7 @@ There are some differences between datasets types.
 ### Rest-Carto datasets
 
 ```shell
-curl -X POST https://api.resourcewatch.org/v1/dataset \
+curl -X POST https://production-api.globalforestwatch.org/v1/dataset \
 -H "Authorization: Bearer <your-token>" \
 -H "Content-Type: application/json"  -d \
  '{
@@ -258,7 +258,7 @@ curl -X POST https://api.resourcewatch.org/v1/dataset \
 > A real example:
 
 ```shell
-curl -X POST https://api.resourcewatch.org/v1/dataset \
+curl -X POST https://production-api.globalforestwatch.org/v1/dataset \
 -H "Authorization: Bearer <your-token>" \
 -H "Content-Type: application/json"  -d \
 '{
@@ -279,7 +279,7 @@ curl -X POST https://api.resourcewatch.org/v1/dataset \
 ### Rest-ArcGIS
 
 ```shell
-curl -X POST https://api.resourcewatch.org/v1/dataset \
+curl -X POST https://production-api.globalforestwatch.org/v1/dataset \
 -H "Authorization: Bearer <your-token>" \
 -H "Content-Type: application/json"  -d \
 '{
@@ -300,7 +300,7 @@ curl -X POST https://api.resourcewatch.org/v1/dataset \
 ### Rest-GEE
 
 ```shell
-curl -X POST https://api.resourcewatch.org/v1/dataset \
+curl -X POST https://production-api.globalforestwatch.org/v1/dataset \
 -H "Authorization: Bearer <your-token>" \
 -H "Content-Type: application/json"  -d \
 '{
@@ -318,7 +318,7 @@ curl -X POST https://api.resourcewatch.org/v1/dataset \
 The `connectorUrl` must be a valid url that responds to a Web Coverage Service (WCS Core) DescribeCoverage call with a valid XML document.
 
 ```shell
-curl -H 'Authorization: Bearer <your-token>'  -H 'Content-Type: application/json' -XPOST 'https://api.resourcewatch.org/v1/dataset' -d '{
+curl -H 'Authorization: Bearer <your-token>'  -H 'Content-Type: application/json' -XPOST 'https://production-api.globalforestwatch.org/v1/dataset' -d '{
     "connectorType":"rest",
     "provider":"rasdaman",
     "connectorUrl":"http://54.146.170.2:8080/rasdaman/ows?&SERVICE=WCS&VERSION=2.0.1&REQUEST=DescribeCoverage&COVERAGEID=nightlights",
@@ -346,7 +346,7 @@ CSV datasets support some optional fields on the creation process. They are:
 z
 
 ```shell
-curl -X POST https://api.resourcewatch.org/v1/dataset \
+curl -X POST https://production-api.globalforestwatch.org/v1/dataset \
 -H "Authorization: Bearer <your-token>" \
 -H "Content-Type: application/json"  -d \
 '{
@@ -370,7 +370,7 @@ curl -X POST https://api.resourcewatch.org/v1/dataset \
 > Real example:
 
 ```shell
-curl -X POST https://api.resourcewatch.org/v1/dataset \
+curl -X POST https://production-api.globalforestwatch.org/v1/dataset \
 -H "Authorization: Bearer <your-token>" \
 -H "Content-Type: application/json"  -d \
 '{
@@ -414,7 +414,7 @@ JSON datasets support some optional fields in the creation process. They are:
 </aside>
 
 ```shell
-curl -X POST https://api.resourcewatch.org/v1/dataset \
+curl -X POST https://production-api.globalforestwatch.org/v1/dataset \
 -H "Authorization: Bearer <your-token>" \
 -H "Content-Type: application/json"  -d \
 '{
@@ -438,7 +438,7 @@ curl -X POST https://api.resourcewatch.org/v1/dataset \
 Or it is also possible to create a JSON dataset setting the data directly in the request:
 
 ```shell
-curl -X POST https://api.resourcewatch.org/v1/dataset \
+curl -X POST https://production-api.globalforestwatch.org/v1/dataset \
 -H "Authorization: Bearer <your-token>" \
 -H "Content-Type: application/json"  -d \
 '{
@@ -469,7 +469,7 @@ This endpoint accepts a file in the property "dataset" and returns a valid
 connectorUrl. With this connectorUrl you can create or update a "document" dataset.
 
 ```shell
-curl -X POST https://api.resourcewatch.org/v1/dataset/upload \
+curl -X POST https://production-api.globalforestwatch.org/v1/dataset/upload \
 -H "Authorization: Bearer <your-token>" \
 -F "dataset=@<your-file>"
 ```
@@ -485,7 +485,7 @@ It returns the following:
 ```
 
 ```shell
-curl -X POST https://api.resourcewatch.org/v1/dataset \
+curl -X POST https://production-api.globalforestwatch.org/v1/dataset \
 -H "Authorization: Bearer <your-token>" \
 -H "Content-Type: application/json"
 '{
@@ -507,7 +507,7 @@ It accepts the same parameters as the _create dataset_ endpoint, and you will ne
 > An example update request:
 
 ```shell
-curl -X PATCH https://api.resourcewatch.org/v1/dataset/<dataset-id> \
+curl -X PATCH https://production-api.globalforestwatch.org/v1/dataset/<dataset-id> \
 -H "Authorization: Bearer <your-token>" \
 -H "Content-Type: application/json" -d \
 '{
@@ -521,7 +521,7 @@ curl -X PATCH https://api.resourcewatch.org/v1/dataset/<dataset-id> \
 ## Deleting a Dataset
 
 ```shell
-curl -X DELETE https://api.resourcewatch.org/v1/dataset/<dataset-id> \
+curl -X DELETE https://production-api.globalforestwatch.org/v1/dataset/<dataset-id> \
 -H "Authorization: Bearer <your-token>"
 -H "Content-Type: application/json"
 ```
@@ -532,7 +532,7 @@ curl -X DELETE https://api.resourcewatch.org/v1/dataset/<dataset-id> \
 ## Cloning a Dataset
 
 ```shell
-curl -X POST https://api.resourcewatch.org/v1/dataset/5306fd54-df71-4e20-8b34-2ff464ab28be/clone \
+curl -X POST https://production-api.globalforestwatch.org/v1/dataset/5306fd54-df71-4e20-8b34-2ff464ab28be/clone \
 -H "Authorization: Bearer <your-token>"
 -H "Content-Type: application/json" -d \
 '{
@@ -556,7 +556,7 @@ You can add more data to a dataset only if the overwrite dataset property has be
 > Concatenate data using external data source:
 
 ```shell
-curl -X POST https://api.resourcewatch.org/v1/dataset/:dataset_id/concat \
+curl -X POST https://production-api.globalforestwatch.org/v1/dataset/:dataset_id/concat \
 -H "Authorization: Bearer <your-token>" \
 -H "Content-Type: application/json"  -d \
 '{
@@ -567,7 +567,7 @@ curl -X POST https://api.resourcewatch.org/v1/dataset/:dataset_id/concat \
 > Concatenate data using JSON array in post body:
 
 ```shell
-curl -X POST https://api.resourcewatch.org/v1/dataset/:dataset_id/concat \
+curl -X POST https://production-api.globalforestwatch.org/v1/dataset/:dataset_id/concat \
 -H "Authorization: Bearer <your-token>" \
 -H "Content-Type: application/json"  -d \
 '{
@@ -585,7 +585,7 @@ You can overwrite the data if the overwrite dataset property has been set to tru
 > Overwrite data using external data source:
 
 ```shell
-curl -X POST https://api.resourcewatch.org/v1/dataset/:dataset_id/data-overwrite \
+curl -X POST https://production-api.globalforestwatch.org/v1/dataset/:dataset_id/data-overwrite \
 -H "Authorization: Bearer <your-token>" \
 -H "Content-Type: application/json"  -d \
 '{
@@ -597,7 +597,7 @@ curl -X POST https://api.resourcewatch.org/v1/dataset/:dataset_id/data-overwrite
 > Overwrite data using JSON array in post body:
 
 ```shell
-curl -X POST https://api.resourcewatch.org/v1/dataset/:dataset_id/data-overwrite \
+curl -X POST https://production-api.globalforestwatch.org/v1/dataset/:dataset_id/data-overwrite \
 -H "Authorization: Bearer <your-token>" \
 -H "Content-Type: application/json"  -d \
 '{
@@ -614,7 +614,7 @@ curl -X POST https://api.resourcewatch.org/v1/dataset/:dataset_id/data-overwrite
 You can overwrite specific data if the overwrite dataset property has been set to true.
 
 ```shell
-curl -X POST https://api.resourcewatch.org/v1/dataset/:dataset_id/data/:data_id \
+curl -X POST https://production-api.globalforestwatch.org/v1/dataset/:dataset_id/data/:data_id \
 -H "Authorization: Bearer <your-token>" \
 -H "Content-Type: application/json"  -d \
 '{
@@ -631,7 +631,7 @@ curl -X POST https://api.resourcewatch.org/v1/dataset/:dataset_id/data/:data_id 
 You can delete specific data if the overwrite dataset property has been set to true.
 
 ```shell
-curl -X DELETE https://api.resourcewatch.org/v1/dataset/:dataset_id/data/:data_id \
+curl -X DELETE https://production-api.globalforestwatch.org/v1/dataset/:dataset_id/data/:data_id \
 -H "Authorization: Bearer <your-token>" \
 -H "Content-Type: application/json"
 ```
@@ -647,7 +647,7 @@ Please be sure that the 'overwrite' property is set to true. This could be used 
 
 
 ```shell
-curl -X POST https://api.resourcewatch.org/v1/dataset \
+curl -X POST https://production-api.globalforestwatch.org/v1/dataset \
 -H "Authorization: Bearer <your-token>" \
 -H "Content-Type: application/json"
 '{

@@ -37,7 +37,7 @@ Vega is a visualization grammar, a declarative format for creating, saving and s
 To obtain all widgets:
 
 ```shell
-curl -X GET https://api.resourcewatch.org/v1/widget
+curl -X GET https://production-api.globalforestwatch.org/v1/widget
 ```
 
 <aside class="success">
@@ -78,11 +78,11 @@ Remember — the response is jsonapi format
       }
    ],
    "links":{
-      "first":"https://api.resourcewatch.org/v1/widget?page%5Bnumber%5D=1",
-      "prev":"https://api.resourcewatch.org/v1/widget?page%5Bnumber%5D=1",
-      "next":"https://api.resourcewatch.org/v1/widget?page%5Bnumber%5D=2&page%5Bsize%5D=10",
-      "last":"https://api.resourcewatch.org/v1/widget?page%5Bnumber%5D=64&page%5Bsize%5D=10",
-      "self":"https://api.resourcewatch.org/v1/widget?page%5Bnumber%5D=1&page%5Bsize%5D=10"
+      "first":"https://production-api.globalforestwatch.org/v1/widget?page%5Bnumber%5D=1",
+      "prev":"https://production-api.globalforestwatch.org/v1/widget?page%5Bnumber%5D=1",
+      "next":"https://production-api.globalforestwatch.org/v1/widget?page%5Bnumber%5D=2&page%5Bsize%5D=10",
+      "last":"https://production-api.globalforestwatch.org/v1/widget?page%5Bnumber%5D=64&page%5Bsize%5D=10",
+      "self":"https://production-api.globalforestwatch.org/v1/widget?page%5Bnumber%5D=1&page%5Bsize%5D=10"
    }
 }
 ```
@@ -107,56 +107,56 @@ Available filters:
 > Return the widgets filtered whose name contains glad
 
 ```shell
-curl -X GET https://api.resourcewatch.org/v1/widget?name=glad
+curl -X GET https://production-api.globalforestwatch.org/v1/widget?name=glad
 ```
 
 > Return the widgets filtered by dataset
 
 ```shell
-curl -X GET https://api.resourcewatch.org/v1/widget?dataset=d02df2f6-d80c-4274-bb6f-f062061655c4
-curl -X GET https://api.resourcewatch.org/v1/dataset/d02df2f6-d80c-4274-bb6f-f062061655c4/widget
+curl -X GET https://production-api.globalforestwatch.org/v1/widget?dataset=d02df2f6-d80c-4274-bb6f-f062061655c4
+curl -X GET https://production-api.globalforestwatch.org/v1/dataset/d02df2f6-d80c-4274-bb6f-f062061655c4/widget
 ```
 
 > Sort by name
 
 ```shell
-curl -X GET https://api.resourcewatch.org/v1/widget?sort=name
+curl -X GET https://production-api.globalforestwatch.org/v1/widget?sort=name
 ```
 
 > Filter widgets by status
 
 ```shell
-curl -X GET https://api.resourcewatch.org/v1/widget?status=failed
+curl -X GET https://production-api.globalforestwatch.org/v1/widget?status=failed
 ```
 
 > Filter widgets by published status
 
 ```shell
-curl -X GET https://api.resourcewatch.org/v1/widget?published=false
+curl -X GET https://production-api.globalforestwatch.org/v1/widget?published=false
 ```
 
 > Filter widgets by verified status
 
 ```shell
-curl -X GET https://api.resourcewatch.org/v1/widget?verified=false
+curl -X GET https://production-api.globalforestwatch.org/v1/widget?verified=false
 ```
 
 > Return the widgets filtered by template
 
 ```shell
-curl -X GET https://api.resourcewatch.org/v1/widget?template=true
+curl -X GET https://production-api.globalforestwatch.org/v1/widget?template=true
 ```
 
 > Filter widgets by default option
 
 ```shell
-curl -X GET https://api.resourcewatch.org/v1/widget?default=true
+curl -X GET https://production-api.globalforestwatch.org/v1/widget?default=true
 ```
 
 > Return the widgets filtered whose applications contain rw
 
 ```shell
-curl -X GET https://api.resourcewatch.org/v1/widget?app=rw
+curl -X GET https://production-api.globalforestwatch.org/v1/widget?app=rw
 ```
 
 ### Pagination params
@@ -169,7 +169,7 @@ curl -X GET https://api.resourcewatch.org/v1/widget?app=rw
 > Return the widgets of the page 2 with 5 elements per page
 
 ```shell
-curl -X GET https://api.resourcewatch.org/v1/widget?page[size]=5&page[number]=2
+curl -X GET https://production-api.globalforestwatch.org/v1/widget?page[size]=5&page[number]=2
 ```
 
 ## How obtain a widget for specific dataset
@@ -177,8 +177,8 @@ curl -X GET https://api.resourcewatch.org/v1/widget?page[size]=5&page[number]=2
 To obtain the widget:
 
 ```shell
-curl -X GET https://api.resourcewatch.org/v1/dataset/d02df2f6-d80c-4274-bb6f-f062061655c4/widget/20ec7861-5251-40a7-9503-5ee3686a66a3
-curl -X GET https://api.resourcewatch.org/v1/widget/20ec7861-5251-40a7-9503-5ee3686a66a3
+curl -X GET https://production-api.globalforestwatch.org/v1/dataset/d02df2f6-d80c-4274-bb6f-f062061655c4/widget/20ec7861-5251-40a7-9503-5ee3686a66a3
+curl -X GET https://production-api.globalforestwatch.org/v1/widget/20ec7861-5251-40a7-9503-5ee3686a66a3
 ```
 
 <aside class="success">
@@ -1037,7 +1037,7 @@ To create a widget, you need to define all of the required fields in the request
 > To create a widget, you have to do a POST with the following body:
 
 ```shell
-curl -X POST https://api.resourcewatch.org/v1/dataset/<dataset_id>/widget \
+curl -X POST https://production-api.globalforestwatch.org/v1/dataset/<dataset_id>/widget \
 -H "Authorization: Bearer <your-token>" \
 -H "Content-Type: application/json"  -d \
  '{
@@ -1078,7 +1078,7 @@ To update a widget, you need to define all of the required fields in the request
 > To create a widget, you have to do a POST with the following body:
 
 ```shell
-curl -X PATCH https://api.resourcewatch.org/v1/dataset/<dataset_id>/widget/<widget_id> \
+curl -X PATCH https://production-api.globalforestwatch.org/v1/dataset/<dataset_id>/widget/<widget_id> \
 -H "Authorization: Bearer <your-token>" \
 -H "Content-Type: application/json"  -d \
  '{
@@ -1095,7 +1095,7 @@ curl -X PATCH https://api.resourcewatch.org/v1/dataset/<dataset_id>/widget/<widg
 ## Delete a Widget
 
 ```shell
-curl -X DELETE https://api.resourcewatch.org/v1/dataset/<dataset_id>/widget/<widget_id> \
+curl -X DELETE https://production-api.globalforestwatch.org/v1/dataset/<dataset_id>/widget/<widget_id> \
 -H "Authorization: Bearer <your-token>" \
 -H "Content-Type: application/json"
 ```

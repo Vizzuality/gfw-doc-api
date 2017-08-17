@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Fira+Sans:300,400,500');
+
 /*
 Copyright 2008-2013 Concur Technologies, Inc.
 
@@ -68,7 +70,8 @@ $phone-width: $tablet-width - $nav-width !default; // min width before reverting
 // FONTS
 ////////////////////
 %default-font {
-  font-family: "Helvetica Neue", Helvetica, Arial, "Microsoft Yahei","微软雅黑", STXihei, "华文细黑", sans-serif;
+  //font-family: "Helvetica Neue", Helvetica, Arial, "Microsoft Yahei","微软雅黑", STXihei, "华文细黑", sans-serif;
+  font-family: “Fira Sans”, “Helvetica Neue”, Helvetica, Arial, “Microsoft Yahei”, STXihei, sans-serif;
   font-size: 13px;
 }
 

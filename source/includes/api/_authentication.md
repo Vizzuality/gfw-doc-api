@@ -1,6 +1,6 @@
 # Authentication
 
-The RW API uses JWT Tokens to identify and authenticate users.
+The GFW API uses JWT Tokens to identify and authenticate users.
 
 ## How to generate your own Oauth Token
 

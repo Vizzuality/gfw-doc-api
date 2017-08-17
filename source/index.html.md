@@ -11,16 +11,12 @@ toc_footers:
 includes:
   - api/authentication
   - api/dataset
-  - api/widget
   - api/layer
   - api/query
-  - api/jiminy
   - api/fields
   - api/metadata
-  - api/vocabulary
   - api/geostore
   - api/subscriptions
-  - api/favourites
   - errors
 
 search: true
